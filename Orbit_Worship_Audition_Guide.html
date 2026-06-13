@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbit Worship — Audition Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0A0A10;
+      --surface:   #13131C;
+      --card:      #1A1A26;
+      --border:    #2A2A3A;
+      --gold:      #F5A623;
+      --gold-dim:  #C4821A;
+      --gold-bg:   rgba(245,166,35,0.10);
+      --blue:      #5B8EF0;
+      --blue-bg:   rgba(91,142,240,0.12);
+      --violet:    #A97CF0;
+      --violet-bg: rgba(169,124,240,0.12);
+      --green:     #4ECBA1;
+      --green-bg:  rgba(78,203,161,0.12);
+      --red:       #F06060;
+      --red-bg:    rgba(240,96,96,0.10);
+      --text:      #F0F0F8;
+      --muted:     #7A7A9A;
+      --light:     #C8C8E0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ─── HERO ─────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, #0A0A10 0%, #14101E 60%, #0A0A10 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 40px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 6vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--light);
+      max-width: 640px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+    .hero-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ─── LAYOUT ───────────────────────────── */
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .section-intro {
+      font-size: 14px;
+      color: var(--light);
+      max-width: 680px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    /* ─── QUOTE BLOCK ──────────────────────── */
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 16px 24px;
+      background: var(--gold-bg);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 40px;
+      font-style: italic;
+      color: var(--light);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ─── GENERIC LIST ─────────────────────── */
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .check-list li {
+      font-size: 13px;
+      color: var(--light);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .check-list li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .arrow-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .arrow-list li {
+      font-size: 13px;
+      color: var(--light);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .arrow-list li::before {
+      content: '→';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .dot-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dot-list li {
+      font-size: 12.5px;
+      color: var(--light);
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+    .dot-list li::before {
+      content: '•';
+      color: var(--gold);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    /* ─── TWO-COL SPLIT ────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .col-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .col-card-title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .col-card.blue-card  { border-color: rgba(91,142,240,0.3); }
+    .col-card.blue-card  .col-card-title { color: var(--blue); }
+    .col-card.violet-card { border-color: rgba(169,124,240,0.3); }
+    .col-card.violet-card .col-card-title { color: var(--violet); }
+    .col-card.green-card { border-color: rgba(78,203,161,0.3); }
+    .col-card.green-card .col-card-title { color: var(--green); }
+    .col-card.gold-card  { border-color: rgba(245,166,35,0.3); }
+    .col-card.gold-card  .col-card-title { color: var(--gold); }
+
+    /* ─── SONG PACKAGE CARDS ───────────────── */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .pkg-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pkg-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .pkg-card.gold-pkg::before   { background: var(--gold); }
+    .pkg-card.blue-pkg::before   { background: var(--blue); }
+    .pkg-card.violet-pkg::before { background: var(--violet); }
+    .pkg-card.green-pkg::before  { background: var(--green); }
+    .pkg-card.red-pkg::before    { background: var(--red); }
+    .pkg-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .pkg-card.gold-pkg   .pkg-title { color: var(--gold); }
+    .pkg-card.blue-pkg   .pkg-title { color: var(--blue); }
+    .pkg-card.violet-pkg .pkg-title { color: var(--violet); }
+    .pkg-card.green-pkg  .pkg-title { color: var(--green); }
+    .pkg-card.red-pkg    .pkg-title { color: var(--red); }
+    .pkg-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+    }
+    .pkg-songs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .pkg-songs li {
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .song-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .gold-pkg   .song-num { background: var(--gold-bg);   color: var(--gold); }
+    .blue-pkg   .song-num { background: var(--blue-bg);   color: var(--blue); }
+    .violet-pkg .song-num { background: var(--violet-bg); color: var(--violet); }
+    .green-pkg  .song-num { background: var(--green-bg);  color: var(--green); }
+    .red-pkg    .song-num { background: var(--red-bg);    color: var(--red); }
+    .pkg-tests {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .pkg-tests strong { color: var(--light); }
+
+    /* ─── TABLE ────────────────────────────── */
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .styled-table th {
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .styled-table th:first-child { border-radius: 8px 0 0 0; }
+    .styled-table th:last-child  { border-radius: 0 8px 0 0; }
+    .styled-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--light);
+      vertical-align: top;
+    }
+    .styled-table td:first-child { color: var(--text); font-weight: 600; }
+    .styled-table tr:last-child td { border-bottom: none; }
+    .styled-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* ─── RUBRIC TABLE ─────────────────────── */
+    .rubric-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .rubric-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .rubric-row:last-child { border-bottom: none; }
+    .rubric-row.header {
+      background: var(--surface);
+    }
+    .rubric-cat {
+      padding: 13px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+    .rubric-row.header .rubric-cat,
+    .rubric-row.header .rubric-desc {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .rubric-desc {
+      padding: 13px 18px;
+      font-size: 12px;
+      color: var(--light);
+      display: flex;
+      align-items: center;
+    }
+    .rubric-row:hover:not(.header) { background: rgba(255,255,255,0.02); }
+
+    /* ─── INSTRUMENT BLOCKS ────────────────── */
+    .instrument-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+    .instrument-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .instrument-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .instrument-icon.gold-i   { background: var(--gold-bg); }
+    .instrument-icon.blue-i   { background: var(--blue-bg); }
+    .instrument-icon.violet-i { background: var(--violet-bg); }
+    .instrument-icon.green-i  { background: var(--green-bg); }
+    .instrument-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .instrument-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .instrument-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .instrument-section-title {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .highlight-songs {
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: var(--gold-bg);
+      border-radius: 8px;
+      font-size: 11.5px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ─── TIER LIST ────────────────────────── */
+    .tier-list-block {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .tier-list-header {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tier-list-header.a-tier { background: rgba(245,166,35,0.08); border-bottom: 1px solid rgba(245,166,35,0.2); }
+    .tier-list-header.b-tier { background: rgba(91,142,240,0.07); border-bottom: 1px solid rgba(91,142,240,0.2); }
+    .tier-list-header.c-tier { background: rgba(122,122,154,0.07); border-bottom: 1px solid var(--border); }
+    .tier-badge-large {
+      font-size: 18px;
+      font-weight: 900;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .a-tier .tier-badge-large { background: var(--gold-bg); color: var(--gold); }
+    .b-tier .tier-badge-large { background: var(--blue-bg); color: var(--blue); }
+    .c-tier .tier-badge-large { background: rgba(122,122,154,0.15); color: var(--muted); }
+    .tier-list-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .a-tier .tier-list-desc { color: rgba(245,166,35,0.7); }
+    .b-tier .tier-list-desc { color: rgba(91,142,240,0.7); }
+    .tier-list-name {
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .a-tier .tier-list-name { color: var(--gold); }
+    .b-tier .tier-list-name { color: var(--blue); }
+    .c-tier .tier-list-name { color: var(--muted); }
+    .tier-list-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .tier-list-table td {
+      padding: 11px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+      color: var(--light);
+    }
+    .tier-list-table td:first-child { font-weight: 700; color: var(--text); width: 260px; }
+    .tier-list-table tr:last-child td { border-bottom: none; }
+    .tier-list-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* ─── RED FLAGS ────────────────────────── */
+    .red-flag-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .red-flag-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .red-flag-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--red);
+      margin-bottom: 14px;
+      letter-spacing: 0.02em;
+    }
+    .red-flag-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .red-flag-list li {
+      font-size: 12px;
+      color: var(--light);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .red-flag-list li::before {
+      content: '✗';
+      color: var(--red);
+      font-weight: 900;
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    /* ─── INFO BOXES ───────────────────────── */
+    .info-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .info-title {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .info-text {
+      font-size: 13px;
+      color: var(--light);
+      line-height: 1.7;
+    }
+
+    /* ─── OUTCOME CARDS ────────────────────── */
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .outcome-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .outcome-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-bottom: 12px;
+    }
+    .outcome-card:nth-child(1) .outcome-dot { background: var(--green); }
+    .outcome-card:nth-child(2) .outcome-dot { background: var(--blue); }
+    .outcome-card:nth-child(3) .outcome-dot { background: var(--violet); }
+    .outcome-card:nth-child(4) .outcome-dot { background: var(--gold); }
+    .outcome-card:nth-child(5) .outcome-dot { background: var(--muted); }
+    .outcome-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .outcome-desc {
+      font-size: 12px;
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    /* ─── CLOSING CTA ──────────────────────── */
+    .closing {
+      text-align: center;
+      padding: 80px 40px;
+      background: linear-gradient(160deg, #0A0A10 0%, #13101C 60%, #0A0A10 100%);
+    }
+    .closing h2 {
+      font-size: clamp(22px, 4vw, 36px);
+      margin-bottom: 16px;
+    }
+    .closing p {
+      font-size: 15px;
+      color: var(--light);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+    .cta-items {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cta-pill {
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .cta-pill.primary {
+      background: var(--gold);
+      color: #000;
+    }
+    .cta-pill.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--light);
+    }
+
+    /* ─── FOOTER ───────────────────────────── */
+    footer {
+      padding: 28px 40px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    footer strong { color: var(--gold); }
+
+    /* ─── RESPONSIVE ───────────────────────── */
+    @media (max-width: 720px) {
+      .hero { padding: 52px 24px 44px; }
+      .wrap { padding: 0 20px; }
+      section { padding: 48px 0; }
+      .two-col { grid-template-columns: 1fr; }
+      .parts-grid, .red-flag-grid { grid-template-columns: 1fr; }
+      .instrument-body { grid-template-columns: 1fr; }
+      .tier-list-table td:first-child { width: auto; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .rubric-row { grid-template-columns: 1fr; }
+      .rubric-cat { border-right: none; border-bottom: 1px solid var(--border); }
+      .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media print {
+      body { background: #fff; color: #000; }
+      :root { --bg:#fff; --surface:#f5f5f5; --card:#f0f0f0; --border:#ddd; --text:#111; --light:#333; --muted:#666; }
+      .hero { background: #f9f9f9 !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-eyebrow">Orbit Church Worship Ministry</div>
+  <h1>Worship <span>Audition Guide</span></h1>
+  <p class="hero-sub">
+    A complete reference for worship leaders, team members, and anyone preparing to audition —
+    covering song selections, instrument-specific expectations, evaluation rubrics, and more.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Vocalists</span>
+    <span class="tag">Musicians</span>
+    <span class="tag">Worship Leaders</span>
+    <span class="tag">Song Packages</span>
+    <span class="tag">Evaluation Rubric</span>
+    <span class="tag">Tier List</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PHILOSOPHY
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Foundation</div>
+    <h2>What We're Building</h2>
+    <div class="quote-block">
+      Worship ministry is not a platform for performance. It is a place of service.
+    </div>
+    <p class="section-intro">
+      Our goal is not simply to find talented musicians and vocalists. We are building a worship team
+      that helps lead our church to see, trust, and treasure Jesus. That means we are looking for people
+      who are spiritually mature, musically prepared, humble, teachable, consistent, and able to serve
+      the room rather than perform for it.
+    </p>
+
+    <div class="two-col">
+      <div class="col-card gold-card">
+        <div class="col-card-title">What We're Looking For</div>
+        <ul class="check-list">
+          <li>A genuine love for Jesus and a growing walk with God</li>
+          <li>Commitment to Orbit Church — not just showing up to sing</li>
+          <li>Humility and teachability above all</li>
+          <li>Musical preparation and consistent timing/pitch</li>
+          <li>Ability to follow direction without defensiveness</li>
+          <li>Ability to serve a song — not overplay or over-sing</li>
+          <li>Awareness of the congregation you are leading</li>
+          <li>Reliability and follow-through</li>
+          <li>Healthy team presence — low drama, high trust</li>
+        </ul>
+      </div>
+      <div class="col-card blue-card">
+        <div class="col-card-title">The Strongest Team Members</div>
+        <p style="font-size:13px; color:var(--light); line-height:1.8; margin-bottom:14px;">
+          The strongest worship team members are not always the flashiest musicians.
+          They are the ones who are <strong style="color:var(--text)">prepared, humble, consistent,
+          and able to make everyone around them better.</strong>
+        </p>
+        <p style="font-size:13px; color:var(--light); line-height:1.8;">
+          Skill matters. Preparation matters. <strong style="color:var(--blue)">Character matters more.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     WHAT AUDITIONS REVEAL
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Purpose</div>
+    <h2>What Auditions Are Designed to Reveal</h2>
+    <p class="section-intro">
+      The goal is not to audition people only on songs that make them feel something.
+      The goal is to use songs that reveal whether they can serve the room, follow the arrangement,
+      stay in time, blend, and carry worship without making it about themselves.
+    </p>
+
+    <div class="two-col">
+      <div class="col-card blue-card">
+        <div class="col-card-title">For Vocalists</div>
+        <ul class="dot-list">
+          <li>Pitch accuracy and rhythmic stability</li>
+          <li>Dynamic control and range</li>
+          <li>Tone, blend, breath control, diction</li>
+          <li>Ability to follow a click and arrangement cues</li>
+          <li>Musical restraint — knowing when not to sing</li>
+          <li>Congregational sensitivity</li>
+          <li>Spiritual and emotional maturity without performance theatrics</li>
+        </ul>
+      </div>
+      <div class="col-card violet-card">
+        <div class="col-card-title">For Musicians</div>
+        <ul class="dot-list">
+          <li>Pocket, chord accuracy, and subdivision</li>
+          <li>Arrangement awareness and clean transitions</li>
+          <li>Ability to build dynamically — and simplify</li>
+          <li>Ability to follow a click and a band leader</li>
+          <li>Ability to serve the song rather than overplay</li>
+          <li>Awareness of the full band and the room</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     AUDITION FORMAT
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Process</div>
+    <h2>Audition Format</h2>
+    <p class="section-intro">
+      The audition process includes two stages. Both stages are designed to see how you function
+      in a real team environment — not just how you sound alone in a room.
+    </p>
+
+    <div class="two-col" style="margin-bottom:28px;">
+      <div class="col-card gold-card">
+        <div class="col-card-title">Stage One · Video Submission</div>
+        <p style="font-size:13px;color:var(--light);line-height:1.7;margin-bottom:14px;">
+          Submit a video of yourself singing or playing the assigned audition songs. A phone recording is fine —
+          we simply need to clearly hear and see you.
+        </p>
+        <ul class="dot-list">
+          <li>Voice or instrument clearly audible</li>
+          <li>Playing or singing with the original song, a backing track, or a click</li>
+          <li>Room quiet enough for accurate evaluation</li>
+          <li>Video shows enough of you to observe your playing or singing</li>
+          <li>You are prepared and familiar with the arrangement</li>
+        </ul>
+      </div>
+      <div class="col-card blue-card">
+        <div class="col-card-title">Stage Two · Live Audition</div>
+        <p style="font-size:13px;color:var(--light);line-height:1.7;margin-bottom:14px;">
+          If invited forward, you will sing or play selected portions of the audition songs with members
+          of our worship leadership team. We may ask you to:
+        </p>
+        <ul class="dot-list">
+          <li>Start or stop at a specific section</li>
+          <li>Sing melody or harmony on command</li>
+          <li>Adjust dynamics or simplify your part</li>
+          <li>Try a different key or follow new cues</li>
+          <li>Receive feedback and try something again</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box" style="border-left-color: var(--blue);">
+      <div class="info-icon">💡</div>
+      <div class="info-content">
+        <div class="info-title">This is not meant to be intimidating.</div>
+        <div class="info-text">The live audition helps us see how you function in a real team environment. Coming in ready to receive direction — and respond without defensiveness — tells us more than your voice or instrument ever could.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     STANDARD AUDITION SONGS
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Songs</div>
+    <h2>Standard Audition Songs</h2>
+    <p class="section-intro">
+      These are the primary audition songs for each role. Learn them as closely as possible to the arrangement.
+      We are not looking for unnecessary improvisation — the first priority is serving the song faithfully.
+    </p>
+
+    <div class="packages-grid">
+
+      <div class="pkg-card gold-pkg">
+        <div class="pkg-title">Vocalists</div>
+        <div class="pkg-sub">Standard package for most vocal auditions</div>
+        <ol class="pkg-songs">
+          <li><span class="song-num">1</span>King of Kings</li>
+          <li><span class="song-num">2</span>Firm Foundation</li>
+          <li><span class="song-num">3</span>Praise</li>
+        </ol>
+        <div class="pkg-tests">
+          <strong>Tests:</strong> Pitch · Tone · Phrasing · Range · Energy · Blend · Congregational leadership · Rhythm · Emotional maturity
+        </div>
+      </div>
+
+      <div class="pkg-card violet-pkg">
+        <div class="pkg-title">Worship Leaders</div>
+        <div class="pkg-sub">For those who may eventually lead songs</div>
+        <ol class="pkg-songs">
+          <li><span class="song-num">1</span>Firm Foundation</li>
+          <li><span class="song-num">2</span>Living Hope</li>
+          <li><span class="song-num">3</span>Praise</li>
+        </ol>
+        <div class="pkg-tests">
+          <strong>Plus:</strong> "Lead a 30-second transition out of the bridge or final chorus." Watch whether they can pray or speak without rambling or manufacturing a moment.
+        </div>
+      </div>
+
+      <div class="pkg-card blue-pkg">
+        <div class="pkg-title">Musicians</div>
+        <div class="pkg-sub">Full band / instrumentalist audition</div>
+        <ol class="pkg-songs">
+          <li><span class="song-num">1</span>Praise</li>
+          <li><span class="song-num">2</span>See a Victory</li>
+          <li><span class="song-num">3</span>Gratitude</li>
+        </ol>
+        <div class="pkg-tests">
+          <strong>Tests:</strong> Groove · Click · Dynamics · Build · Transitions · Restraint · Tone · Patience
+        </div>
+      </div>
+
+      <div class="pkg-card green-pkg">
+        <div class="pkg-title">Christmas Auditions</div>
+        <div class="pkg-sub">Seasonal team or feature vocal</div>
+        <ol class="pkg-songs">
+          <li><span class="song-num">1</span>O Come All Ye Faithful / His Name Shall Be</li>
+          <li><span class="song-num">2</span>Hark the Herald Angels Sing</li>
+          <li><span class="song-num">3</span>O Holy Night <em style="font-size:10px;color:var(--muted);font-weight:400;">(feature vocals only)</em></li>
+        </ol>
+        <div class="pkg-tests">
+          <strong>Tests:</strong> Classic melody discipline · Range · Pitch · Harmony · Reverence · Blend · Seasonal style
+        </div>
+      </div>
+
+    </div>
+
+    <div class="info-box" style="margin-top:24px; border-left-color:var(--red);">
+      <div class="info-icon">⚠️</div>
+      <div class="info-content">
+        <div class="info-title" style="color:var(--red);">Note on O Holy Night</div>
+        <div class="info-text">O Holy Night should <strong>not</strong> be used as a general worship team audition song. Reserve it for advanced vocalists or feature moments. It heavily tests pitch, breath control, range, and restraint — and it will expose unprepared singers quickly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     BEST SONGS BY TYPE
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Quick Reference</div>
+    <h2>Best Songs by Audition Type</h2>
+    <p class="section-intro">A fast lookup for leaders choosing songs for specific roles or instruments.</p>
+
+    <div class="table-wrap">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Audition Type</th>
+            <th>Best Song</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Female vocalist</td><td>King of Kings</td></tr>
+          <tr><td>Male vocalist</td><td>Firm Foundation</td></tr>
+          <tr><td>Harmony vocalist</td><td>Living Hope</td></tr>
+          <tr><td>Band / full instrumental</td><td>Praise</td></tr>
+          <tr><td>Acoustic guitar</td><td>Gratitude</td></tr>
+          <tr><td>Electric guitar</td><td>See a Victory</td></tr>
+          <tr><td>Keys</td><td>Holy Forever</td></tr>
+          <tr><td>Bass</td><td>I Thank God</td></tr>
+          <tr><td>Drums</td><td>Praise</td></tr>
+          <tr><td>Advanced vocalist / feature</td><td>O Holy Night</td></tr>
+          <tr><td>Christmas vocalist</td><td>O Come All Ye Faithful / His Name Shall Be</td></tr>
+          <tr><td>Beginner-friendly</td><td>Nothing Else</td></tr>
+          <tr><td style="color:var(--red);">Do not use as primary audition</td><td style="color:var(--muted);">Make Room · Silent Night · Worthy of It All</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     AUDITION PACKAGES
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Packages</div>
+    <h2>Recommended Audition Packages</h2>
+    <p class="section-intro">
+      These packages are pre-built combinations tailored to specific roles. Use the whole package or pick
+      from within it depending on time and context.
+    </p>
+
+    <!-- Standard + Worship Leader -->
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="col-card gold-card">
+        <div class="col-card-title">Standard Vocalist Audition</div>
+        <p style="font-size:12px;color:var(--light);line-height:1.7;margin-bottom:12px;">Use this for most vocalists. The strongest overall vocal audition package.</p>
+        <ul class="dot-list">
+          <li>King of Kings — verse + chorus</li>
+          <li>Firm Foundation — chorus + bridge</li>
+          <li>Praise — chorus + bridge</li>
+        </ul>
+      </div>
+      <div class="col-card violet-card">
+        <div class="col-card-title">Worship Leader Audition</div>
+        <p style="font-size:12px;color:var(--light);line-height:1.7;margin-bottom:12px;">For anyone who may lead songs, not just sing BGV.</p>
+        <ul class="dot-list">
+          <li>Firm Foundation</li>
+          <li>Living Hope</li>
+          <li>Praise</li>
+          <li>+ Practical leadership test: 30-second transition</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Female + Male -->
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="col-card green-card">
+        <div class="col-card-title">Female Vocalist Audition</div>
+        <ul class="dot-list">
+          <li>King of Kings</li>
+          <li>What a Beautiful Name</li>
+          <li>Praise <em style="color:var(--muted);">or</em> I Thank God</li>
+          <li>Optional advanced: O Holy Night</li>
+        </ul>
+      </div>
+      <div class="col-card blue-card">
+        <div class="col-card-title">Male Vocalist Audition</div>
+        <ul class="dot-list">
+          <li>Firm Foundation</li>
+          <li>Living Hope</li>
+          <li>Trust in God</li>
+          <li>Optional: Gratitude</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Harmony + Band -->
+    <div class="two-col" style="margin-bottom:24px;">
+      <div class="col-card gold-card">
+        <div class="col-card-title">Harmony Vocalist Audition</div>
+        <ul class="dot-list">
+          <li>Living Hope</li>
+          <li>King of Kings</li>
+          <li>Firm Foundation</li>
+        </ul>
+        <div style="margin-top:14px; padding:12px 14px; background:var(--gold-bg); border-radius:8px; font-size:12px; color:var(--gold); line-height:1.7;">
+          <strong>Harmony Exercise:</strong> Sing melody → lower harmony → upper harmony → harmony while another vocalist sings melody → harmony with only acoustic + click. This reveals whether they can <em>hear</em> parts or just follow the loudest voice.
+        </div>
+      </div>
+      <div class="col-card blue-card">
+        <div class="col-card-title">Full Band Audition</div>
+        <ul class="dot-list">
+          <li>Praise — groove, energy, click, parts</li>
+          <li>See a Victory — dynamics, build, transitions</li>
+          <li>Gratitude — restraint, tone, patience</li>
+        </ul>
+        <div style="margin-top:14px; padding:12px 14px; background:var(--blue-bg); border-radius:8px; font-size:12px; color:var(--blue); line-height:1.7;">
+          The strongest full-band audition set. Each song tests a completely different skill.
+        </div>
+      </div>
+    </div>
+
+    <!-- Christmas -->
+    <div class="col-card green-card" style="max-width:480px;">
+      <div class="col-card-title">Christmas Audition</div>
+      <ul class="dot-list">
+        <li>O Come All Ye Faithful / His Name Shall Be</li>
+        <li>Hark the Herald Angels Sing</li>
+        <li>O Holy Night — only if evaluating feature vocal capacity</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     INSTRUMENT EXPECTATIONS
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">By Instrument</div>
+    <h2>Instrument-Specific Expectations</h2>
+    <p class="section-intro">
+      Every instrument has a different role in a worship context. Here's what we listen for — and what to prepare.
+    </p>
+
+    <!-- Acoustic Guitar -->
+    <div class="instrument-block">
+      <div class="instrument-header">
+        <div class="instrument-icon gold-i">🎸</div>
+        <div>
+          <div class="instrument-name">Acoustic Guitar</div>
+          <div class="instrument-sub">Rhythm anchor · Dynamic sensitivity · Arrangement awareness</div>
+        </div>
+      </div>
+      <div class="instrument-body">
+        <div>
+          <div class="instrument-section-title">What We're Listening For</div>
+          <ul class="dot-list">
+            <li>Steady rhythm and clean chord changes</li>
+            <li>Good strumming patterns and capo/key awareness</li>
+            <li>Ability to follow the arrangement</li>
+            <li>Dynamic sensitivity — pulling back in quiet sections</li>
+            <li>Not rushing choruses or overplaying intros</li>
+            <li>Ability to play with a click</li>
+          </ul>
+        </div>
+        <div>
+          <div class="instrument-section-title">Audition Songs</div>
+          <ul class="dot-list">
+            <li>Firm Foundation</li>
+            <li>Praise</li>
+            <li>I Thank God</li>
+            <li>Gratitude</li>
+            <li>Living Hope</li>
+          </ul>
+          <div class="highlight-songs">Prepare especially: <strong>Praise · Gratitude · Firm Foundation</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Electric Guitar -->
+    <div class="instrument-block">
+      <div class="instrument-header">
+        <div class="instrument-icon blue-i">⚡</div>
+        <div>
+          <div class="instrument-name">Electric Guitar</div>
+          <div class="instrument-sub">Tone · Space · Dynamic build · No noodling</div>
+        </div>
+      </div>
+      <div class="instrument-body">
+        <div>
+          <div class="instrument-section-title">What We're Listening For</div>
+          <ul class="dot-list">
+            <li>Tone quality and part accuracy</li>
+            <li>Rhythm discipline and use of space</li>
+            <li>Ability to play both lead and rhythm parts</li>
+            <li>Good delay/reverb control</li>
+            <li>Dynamic build — knowing when not to play</li>
+            <li>No noodling between phrases</li>
+          </ul>
+        </div>
+        <div>
+          <div class="instrument-section-title">Audition Songs</div>
+          <ul class="dot-list">
+            <li>See a Victory</li>
+            <li>Praise</li>
+            <li>I Thank God</li>
+            <li>Firm Foundation</li>
+            <li>Same God</li>
+          </ul>
+          <div class="highlight-songs">Prepare especially: <strong>See a Victory · Praise · Firm Foundation</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keys -->
+    <div class="instrument-block">
+      <div class="instrument-header">
+        <div class="instrument-icon violet-i">🎹</div>
+        <div>
+          <div class="instrument-name">Keys</div>
+          <div class="instrument-sub">Chord accuracy · Voicings · Supporting the vocalist · Knowing when to disappear</div>
+        </div>
+      </div>
+      <div class="instrument-body">
+        <div>
+          <div class="instrument-section-title">What We're Listening For</div>
+          <ul class="dot-list">
+            <li>Chord accuracy and clean inversions</li>
+            <li>Appropriate voicings — not cluttering the vocal melody</li>
+            <li>Tasteful use of pads and piano</li>
+            <li>Dynamic sensitivity and gradual builds</li>
+            <li>Supporting the vocalist, not competing with them</li>
+            <li>Knowing when piano should disappear into the pad</li>
+          </ul>
+        </div>
+        <div>
+          <div class="instrument-section-title">Audition Songs</div>
+          <ul class="dot-list">
+            <li>Holy Forever</li>
+            <li>King of Kings</li>
+            <li>Living Hope</li>
+            <li>Same God</li>
+            <li>Gratitude</li>
+          </ul>
+          <div class="highlight-songs">Prepare especially: <strong>See a Victory · Gratitude · King of Kings or Holy Forever</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bass -->
+    <div class="instrument-block">
+      <div class="instrument-header">
+        <div class="instrument-icon green-i">🎵</div>
+        <div>
+          <div class="instrument-name">Bass</div>
+          <div class="instrument-sub">Pocket · Drums lock · Simplicity · Consistent subdivision</div>
+        </div>
+      </div>
+      <div class="instrument-body">
+        <div>
+          <div class="instrument-section-title">What We're Listening For</div>
+          <ul class="dot-list">
+            <li>Locking in tight with the drums</li>
+            <li>Strong pocket and solid root movement</li>
+            <li>Clean transitions without clutter</li>
+            <li>Dynamic awareness — not dragging ballads</li>
+            <li>Confidence in simplicity</li>
+            <li>Consistent subdivision throughout</li>
+          </ul>
+        </div>
+        <div>
+          <div class="instrument-section-title">Audition Songs</div>
+          <ul class="dot-list">
+            <li>Praise</li>
+            <li>I Thank God</li>
+            <li>Firm Foundation</li>
+            <li>See a Victory</li>
+            <li>Trust in God</li>
+          </ul>
+          <div class="highlight-songs">Prepare especially: <strong>Praise · See a Victory · Firm Foundation</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drums -->
+    <div class="instrument-block">
+      <div class="instrument-header">
+        <div class="instrument-icon gold-i">🥁</div>
+        <div>
+          <div class="instrument-name">Drums</div>
+          <div class="instrument-sub">Click · Pocket · Dynamic sensitivity · Clean transitions</div>
+        </div>
+      </div>
+      <div class="instrument-body">
+        <div>
+          <div class="instrument-section-title">What We're Listening For</div>
+          <ul class="dot-list">
+            <li>Ability to play with a click — no drifting</li>
+            <li>Strong pocket and consistent tempo</li>
+            <li>Kick/snare stability and controlled fills</li>
+            <li>Dynamic sensitivity and clean transitions</li>
+            <li>Serving the arrangement — not overplaying</li>
+            <li>Not rushing big choruses</li>
+          </ul>
+        </div>
+        <div>
+          <div class="instrument-section-title">Audition Songs</div>
+          <ul class="dot-list">
+            <li>Praise</li>
+            <li>I Thank God</li>
+            <li>Firm Foundation</li>
+            <li>See a Victory</li>
+            <li>Trust in God</li>
+          </ul>
+          <div class="highlight-songs">Prepare especially: <strong>Praise · See a Victory · Gratitude</strong></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     PREPARATION
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Expectations</div>
+    <h2>Preparation &amp; What Not to Do</h2>
+    <p class="section-intro">
+      We are not expecting perfection. We are expecting preparation.
+      A mistake is not automatically a problem. Being unprepared is.
+    </p>
+
+    <div class="two-col">
+      <div class="col-card green-card">
+        <div class="col-card-title">✓ Preparation Means</div>
+        <ul class="check-list">
+          <li>You know the song structure</li>
+          <li>You know your part — and when to come in and drop out</li>
+          <li>You can follow the arrangement</li>
+          <li>You have practiced with the track, not just learned it in your head</li>
+          <li>You are not relying on the audition to learn the song</li>
+          <li>You are ready to receive feedback</li>
+        </ul>
+      </div>
+      <div class="col-card" style="border-color:var(--border);">
+        <div class="col-card-title" style="color:var(--red);">✗ Please Avoid</div>
+        <ul class="red-flag-list">
+          <li>Over-singing or overplaying</li>
+          <li>Changing the arrangement unnecessarily</li>
+          <li>Treating the audition like a performance</li>
+          <li>Adding excessive runs, fills, or solos</li>
+          <li>Ignoring dynamics or playing too loudly</li>
+          <li>Singing without regard for blend</li>
+          <li>Showing up unfamiliar with the song</li>
+          <li>Becoming defensive when given direction</li>
+          <li>Trying to manufacture a spiritual moment</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     EVALUATION RUBRIC
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Scoring</div>
+    <h2>Evaluation Rubric</h2>
+    <p class="section-intro">
+      Use a 1–5 scale in each category. Scores across categories are used to determine tier placement
+      in combination with the harmony check.
+    </p>
+
+    <div class="rubric-grid">
+      <div class="rubric-row header">
+        <div class="rubric-cat">Category</div>
+        <div class="rubric-desc">What We Are Evaluating</div>
+      </div>
+      <div class="rubric-row"><div class="rubric-cat">Preparation</div><div class="rubric-desc">Did you learn the song and arrangement before arriving?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Musical Accuracy</div><div class="rubric-desc">Are the notes, chords, rhythms, and parts correct?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Timing / Click</div><div class="rubric-desc">Can you stay with the click or track throughout?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Tone</div><div class="rubric-desc">Does your voice or instrument fit the song and team?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Dynamics</div><div class="rubric-desc">Can you build and pull back appropriately?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Blend</div><div class="rubric-desc">Can you fit with other vocalists and musicians?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Restraint</div><div class="rubric-desc">Do you know when not to sing or play?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Adaptability</div><div class="rubric-desc">Can you receive feedback and adjust in real time?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Congregational Instinct</div><div class="rubric-desc">Are you serving the room or performing for it?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Worship Instinct</div><div class="rubric-desc">Do you lead with sincerity, clarity, and maturity?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Teachability</div><div class="rubric-desc">Can you receive direction without defensiveness?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Reliability</div><div class="rubric-desc">Can we trust you to prepare and follow through consistently?</div></div>
+      <div class="rubric-row"><div class="rubric-cat">Team Fit</div><div class="rubric-desc">Do you bring a healthy, low-drama presence to the team?</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     RED FLAGS
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Watch For</div>
+    <h2>Red Flags by Role</h2>
+    <p class="section-intro">
+      These are not automatic disqualifiers — but they are signals to address directly before or during
+      the Formation Season. Ignoring them causes larger problems later.
+    </p>
+
+    <div class="red-flag-grid">
+      <div class="red-flag-card">
+        <div class="red-flag-title">Vocalist Red Flags</div>
+        <ul class="red-flag-list">
+          <li>Consistently sharp or flat</li>
+          <li>Cannot sing harmony without being dragged by the melody</li>
+          <li>Over-sings every chorus — no dynamic variation</li>
+          <li>Imitates the recording exactly but cannot adapt</li>
+          <li>Poor diction or swallowed words</li>
+          <li>Emotional intensity without pitch control</li>
+          <li>Cannot follow a click</li>
+          <li>Cannot take correction without embarrassment or defensiveness</li>
+          <li>Treats the audition like a performance</li>
+        </ul>
+      </div>
+      <div class="red-flag-card">
+        <div class="red-flag-title">Musician Red Flags</div>
+        <ul class="red-flag-list">
+          <li>Does not know the arrangement</li>
+          <li>Cannot play to a click</li>
+          <li>Overplays constantly — no dynamic sensitivity</li>
+          <li>Poor tone quality</li>
+          <li>Cannot simplify a part when asked</li>
+          <li>Cannot follow a band leader</li>
+          <li>Does not know song sections</li>
+          <li>Rushes transitions</li>
+          <li>Noodles between sections</li>
+          <li>Acts bored during simple parts</li>
+        </ul>
+      </div>
+      <div class="red-flag-card">
+        <div class="red-flag-title">Worship Leader Red Flags</div>
+        <ul class="red-flag-list">
+          <li>Talks too much between songs</li>
+          <li>Performs spirituality — manufactured moments</li>
+          <li>Cannot give clear band cues</li>
+          <li>Cannot recover gracefully from mistakes</li>
+          <li>Chooses keys that serve themselves, not the congregation</li>
+          <li>Has no awareness of the room's engagement</li>
+          <li>Confuses vocal ability with pastoral leadership</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SONG TIER LIST
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Song Reference</div>
+    <h2>Song Tier List</h2>
+    <p class="section-intro">
+      A complete classification of audition songs by diagnostic value. A-Tier songs reveal the most competencies.
+      B-Tier songs are useful secondaries. C-Tier songs are not bad — they're just weaker diagnostic tools.
+    </p>
+
+    <!-- A-Tier -->
+    <div class="tier-list-block">
+      <div class="tier-list-header a-tier">
+        <div class="tier-badge-large">A</div>
+        <div>
+          <div class="tier-list-name">A-Tier — Strong Audition Songs</div>
+          <div class="tier-list-desc">Best primary audition options. Reveal multiple competencies simultaneously.</div>
+        </div>
+      </div>
+      <table class="tier-list-table">
+        <tbody>
+          <tr><td>Praise</td><td>Best full-band, drum, and bass audition</td></tr>
+          <tr><td>Firm Foundation</td><td>Best general worship-leader song</td></tr>
+          <tr><td>King of Kings</td><td>Best all-around vocal audition</td></tr>
+          <tr><td>Living Hope</td><td>Best vocal and harmony maturity test</td></tr>
+          <tr><td>Holy Forever</td><td>Best worship sensitivity and keys test</td></tr>
+          <tr><td>See a Victory</td><td>Best electric and dynamic build test</td></tr>
+          <tr><td>I Thank God</td><td>Best high-energy rhythm test</td></tr>
+          <tr><td>Trust in God</td><td>Strong full-band and lead vocal test</td></tr>
+          <tr><td>O Come All Ye Faithful / His Name Shall Be</td><td>Best Christmas audition</td></tr>
+          <tr><td>O Holy Night</td><td>Best advanced vocal feature test</td></tr>
+          <tr><td>What a Beautiful Name</td><td>Strong familiar vocal/harmony test</td></tr>
+          <tr><td>Same God</td><td>Strong dynamic and worship sensitivity test</td></tr>
+          <tr><td>Gratitude</td><td>Strong acoustic/vocal restraint test</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- B-Tier -->
+    <div class="tier-list-block">
+      <div class="tier-list-header b-tier">
+        <div class="tier-badge-large">B</div>
+        <div>
+          <div class="tier-list-name">B-Tier — Good Secondary Songs</div>
+          <div class="tier-list-desc">Useful, but should usually be paired with a stronger diagnostic song.</div>
+        </div>
+      </div>
+      <table class="tier-list-table">
+        <tbody>
+          <tr><td>More Than Able</td><td>Full band, vocals, rhythm</td></tr>
+          <tr><td>The Joy</td><td>Upbeat band/vocal energy</td></tr>
+          <tr><td>I Speak Jesus</td><td>Worship-leading sincerity and build</td></tr>
+          <tr><td>Champion</td><td>Vocal confidence, though it can get performative</td></tr>
+          <tr><td>Worthy</td><td>Vocal/worship test depending on arrangement</td></tr>
+          <tr><td>Make Room</td><td>Sincerity/restraint, but limited diagnostic range</td></tr>
+          <tr><td>Nothing Else</td><td>Intimacy/restraint, but narrow</td></tr>
+          <tr><td>Worthy of It All</td><td>Blend/worship sensitivity — not primary</td></tr>
+          <tr><td>Jesus Paid It All</td><td>Hymn tone and reverence</td></tr>
+          <tr><td>Hark the Herald Angels Sing</td><td>Christmas harmony/traditional phrasing</td></tr>
+          <tr><td>Hark Hallelujah</td><td>Christmas energy, if arrangement is known</td></tr>
+          <tr><td>Behold</td><td>Christmas worship sensitivity</td></tr>
+          <tr><td>Angels / Glory to God</td><td>Christmas band/vocal</td></tr>
+          <tr><td>Son of Suffering</td><td>Emotional/theological weight</td></tr>
+          <tr><td>Touch of Heaven</td><td>Atmosphere and vulnerability</td></tr>
+          <tr><td>Center</td><td>Modern worship atmosphere</td></tr>
+          <tr><td>The Blood</td><td>Strong depending on arrangement</td></tr>
+          <tr><td>The Wonderful Blood</td><td>Good thematic worship song</td></tr>
+          <tr><td>Mighty Name of Jesus</td><td>Strong depending on team familiarity</td></tr>
+          <tr><td>Move of God</td><td>Dynamic worship build</td></tr>
+          <tr><td>Prodigal Praise</td><td>Energy and testimony feel</td></tr>
+          <tr><td>Owe You Praise</td><td>Upbeat/groove potential</td></tr>
+          <tr><td>What a God</td><td>Strong contemporary audition option</td></tr>
+          <tr><td>Washed</td><td>Good depending on arrangement</td></tr>
+          <tr><td>Thank God I'm Free</td><td>Energy/groove</td></tr>
+          <tr><td>Yahweh We Love You</td><td>Worship sensitivity</td></tr>
+          <tr><td>How Great Thou Art</td><td>Hymn phrasing and vocal control</td></tr>
+          <tr><td>God Is Among Us</td><td>Worship leader sensitivity</td></tr>
+          <tr><td>Jesus Forever</td><td>Modern worship lead</td></tr>
+          <tr><td>At the Altar</td><td>Ballad worship sensitivity</td></tr>
+          <tr><td>Thank You for the Cross</td><td>Reverence and vocal tone</td></tr>
+          <tr><td>Mercy</td><td>Emotional control</td></tr>
+          <tr><td>Father's House</td><td>Energy and rhythm</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- C-Tier -->
+    <div class="tier-list-block">
+      <div class="tier-list-header c-tier">
+        <div class="tier-badge-large">C</div>
+        <div>
+          <div class="tier-list-name">C-Tier — Use Only for Specific Reasons</div>
+          <div class="tier-list-desc">Not bad songs. Just weaker audition tools — limited diagnostic value or too niche.</div>
+        </div>
+      </div>
+      <table class="tier-list-table">
+        <tbody>
+          <tr><td>Silent Night</td><td>Too simple; good only for tone/blend checks</td></tr>
+          <tr><td>Worthy of It All</td><td>Too repetitive and limited as a primary test</td></tr>
+          <tr><td>Make Room</td><td>More spiritual/emotional than musical diagnostic</td></tr>
+          <tr><td>Nothing Else</td><td>Too narrow; can reward vibes over skill</td></tr>
+          <tr><td>The Dove</td><td>Depends heavily on arrangement; less universal</td></tr>
+          <tr><td>Another One</td><td>Style-specific; may not test broad fundamentals</td></tr>
+          <tr><td>Welcome Resurrection</td><td>Fine, but less standard/diagnostic</td></tr>
+          <tr><td>Lord of My Life</td><td>Depends on arrangement familiarity</td></tr>
+          <tr><td>Goodbye Yesterday</td><td>Better for service energy than audition diagnosis</td></tr>
+          <tr><td>Outnumbered</td><td>Not as universally useful</td></tr>
+          <tr><td>Inhabit</td><td>More atmosphere than diagnostic clarity</td></tr>
+          <tr><td>Known By You</td><td>Too niche unless core to your current setlist</td></tr>
+          <tr><td>Keep On</td><td>Good song, less ideal as a standard audition</td></tr>
+          <tr><td>Slow Me Down</td><td>Too subtle/narrow for general audition use</td></tr>
+          <tr><td>Jesus Be the Name</td><td>Fine, but not the strongest test</td></tr>
+          <tr><td>The Room Is Yours</td><td>Atmosphere-heavy; limited diagnostic range</td></tr>
+          <tr><td>Bless Your Name</td><td>Depends on arrangement</td></tr>
+          <tr><td>I Was But God</td><td>Good thematically, less diagnostic</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     AFTER THE AUDITION
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Next Steps</div>
+    <h2>After the Audition</h2>
+    <p class="section-intro">
+      The worship leadership team will review and follow up with next steps.
+      Not being added to the team immediately does not mean you are not valued —
+      it may simply mean timing, fit, readiness, or role is not yet clear.
+    </p>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-dot"></div>
+        <div class="outcome-title">Joining the Worship Team</div>
+        <div class="outcome-desc">You are ready for the team and your tier has been determined. Formation Season begins.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-dot"></div>
+        <div class="outcome-title">Joining With a Development Plan</div>
+        <div class="outcome-desc">You are on the team with specific growth areas identified and an intentional plan in place.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-dot"></div>
+        <div class="outcome-title">Limited or Specific Role</div>
+        <div class="outcome-desc">Placed in a role that matches your current readiness — which may grow over time.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-dot"></div>
+        <div class="outcome-title">Continue Developing</div>
+        <div class="outcome-desc">You are encouraged to keep growing before the next audition cycle. Feedback will be given.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-dot"></div>
+        <div class="outcome-title">Redirected to Another Role</div>
+        <div class="outcome-desc">We see gifts and heart, but worship team may not be the right fit right now. We'll point you somewhere better.</div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:28px; border-left-color:var(--gold);">
+      <div class="info-icon">🙏</div>
+      <div class="info-content">
+        <div class="info-title">Our Goal Is to Steward Both</div>
+        <div class="info-text">We take seriously our responsibility to steward both the worship ministry and each person. Every decision is made with care — not speed, and not politics.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CLOSING
+═══════════════════════════════════════════ -->
+<section class="closing" style="border-bottom:none;">
+  <div class="section-label" style="color:var(--gold);">Final Word</div>
+  <h2>Come Prepared. Come Humble. Come Ready to Serve.</h2>
+  <p>
+    We are grateful that you are willing to take this step. The worship team exists to serve Jesus,
+    serve the church, and help create space for people to respond to God.
+    We are looking forward to hearing you.
+  </p>
+  <div class="cta-items">
+    <span class="cta-pill primary">Find Peace &amp; Develop Purpose</span>
+    <span class="cta-pill secondary">Revolving Everything Around Jesus</span>
+  </div>
+</section>
+
+<footer>
+  <strong>Orbit Church</strong> &nbsp;·&nbsp; Worship Ministry &nbsp;·&nbsp; Internal Leadership Document
+</footer>
+
+</body>
+</html>

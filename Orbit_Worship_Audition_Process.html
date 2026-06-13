@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbit Worship — Audition Process</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0A0A10;
+      --surface:   #13131C;
+      --card:      #1A1A26;
+      --border:    #2A2A3A;
+      --gold:      #F5A623;
+      --gold-dim:  #C4821A;
+      --gold-bg:   rgba(245,166,35,0.10);
+      --blue:      #5B8EF0;
+      --blue-bg:   rgba(91,142,240,0.12);
+      --violet:    #A97CF0;
+      --violet-bg: rgba(169,124,240,0.12);
+      --green:     #4ECBA1;
+      --green-bg:  rgba(78,203,161,0.12);
+      --red:       #F06060;
+      --text:      #F0F0F8;
+      --muted:     #7A7A9A;
+      --light:     #C8C8E0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ─── HERO ─────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, #0A0A10 0%, #14101E 60%, #0A0A10 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 40px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--light);
+      max-width: 580px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .hero-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* ─── LAYOUT ───────────────────────────── */
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-intro {
+      font-size: 14px;
+      color: var(--light);
+      max-width: 640px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* ─── QUOTE BLOCK ──────────────────────── */
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 16px 24px;
+      background: var(--gold-bg);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 40px;
+      font-style: italic;
+      color: var(--light);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .quote-block cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ─── PROCESS TIMELINE ─────────────────── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px; top: 28px; bottom: 28px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--violet), var(--blue));
+      opacity: 0.4;
+    }
+    .tl-item {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      position: relative;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--gold);
+      background: var(--bg);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .tl-content { flex: 1; }
+    .tl-phase {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .tl-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .tl-desc {
+      font-size: 13px;
+      color: var(--light);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .tl-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+    .tl-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tl-list li {
+      font-size: 13px;
+      color: var(--light);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .tl-list li::before {
+      content: '→';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .tl-note {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: var(--gold-bg);
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ─── INPERSON PARTS ───────────────────── */
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .part-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .part-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .part-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .part-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .part-list li {
+      font-size: 12px;
+      color: var(--light);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .part-list li::before {
+      content: '•';
+      color: var(--gold);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .part-card.blue { border-color: rgba(91,142,240,0.3); }
+    .part-card.blue .part-title { color: var(--blue); }
+    .part-card.violet { border-color: rgba(169,124,240,0.3); }
+    .part-card.violet .part-title { color: var(--violet); }
+    .part-card.green { border-color: rgba(78,203,161,0.3); }
+    .part-card.green .part-title { color: var(--green); }
+
+    /* ─── TIERS ────────────────────────────── */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .tier-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .tier-card.choir::before   { background: var(--blue); }
+    .tier-card.front::before   { background: var(--violet); }
+    .tier-card.lead::before    { background: var(--gold); }
+    .tier-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    .choir .tier-badge  { background: var(--blue-bg);   color: var(--blue); }
+    .front .tier-badge  { background: var(--violet-bg); color: var(--violet); }
+    .lead  .tier-badge  { background: var(--gold-bg);   color: var(--gold); }
+    .tier-name {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .choir .tier-name { color: var(--blue); }
+    .front .tier-name { color: var(--violet); }
+    .lead  .tier-name { color: var(--gold); }
+    .tier-score {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .tier-reqs {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .tier-reqs li {
+      font-size: 12px;
+      color: var(--light);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .tier-reqs li .check {
+      font-size: 11px;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .choir  .check { color: var(--blue); }
+    .front  .check { color: var(--violet); }
+    .lead   .check { color: var(--gold); }
+    .tier-note {
+      margin-top: 16px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .choir .tier-note  { background: var(--blue-bg);   color: var(--blue); }
+    .front .tier-note  { background: var(--violet-bg); color: var(--violet); }
+    .lead  .tier-note  { background: var(--gold-bg);   color: var(--gold); }
+    .tier-not-ready {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 16px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .tier-not-ready .icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .tier-not-ready h4 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+    .tier-not-ready p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── RUBRIC ───────────────────────────── */
+    .rubric-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .rubric-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .rubric-header {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .rubric-header h4 {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .rubric-pts {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      background: var(--gold-bg);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .rubric-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .rubric-row:last-child { border-bottom: none; }
+    .rubric-row.header-row {
+      background: rgba(255,255,255,0.03);
+    }
+    .rubric-cell {
+      padding: 12px 16px;
+      font-size: 12px;
+      line-height: 1.5;
+      border-right: 1px solid var(--border);
+    }
+    .rubric-cell:last-child { border-right: none; }
+    .rubric-row.header-row .rubric-cell {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .rubric-cell.criterion {
+      font-weight: 700;
+      color: var(--text);
+    }
+    .rubric-cell.needs { color: var(--red); }
+    .rubric-cell.solid { color: var(--blue); }
+    .rubric-cell.excel { color: var(--green); }
+
+    /* ─── SCORE THRESHOLDS ─────────────────── */
+    .threshold-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .thresh-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .thresh-score {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .thresh-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .thresh-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .thresh-card.t1 { border-color: rgba(240,96,96,0.3); }
+    .thresh-card.t1 .thresh-score, .thresh-card.t1 .thresh-label { color: var(--red); }
+    .thresh-card.t2 { border-color: rgba(91,142,240,0.3); }
+    .thresh-card.t2 .thresh-score, .thresh-card.t2 .thresh-label { color: var(--blue); }
+    .thresh-card.t3 { border-color: rgba(169,124,240,0.3); }
+    .thresh-card.t3 .thresh-score, .thresh-card.t3 .thresh-label { color: var(--violet); }
+    .thresh-card.t4 { border-color: rgba(245,166,35,0.3); }
+    .thresh-card.t4 .thresh-score, .thresh-card.t4 .thresh-label { color: var(--gold); }
+
+    /* ─── FORMATION SEASON ─────────────────── */
+    .season-timeline {
+      display: flex;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .season-timeline::before {
+      content: '';
+      position: absolute;
+      top: 36px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--blue), var(--violet), var(--gold), var(--green));
+      opacity: 0.4;
+    }
+    .season-step {
+      flex: 1;
+      text-align: center;
+      padding: 0 8px;
+      position: relative;
+    }
+    .season-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      position: relative;
+      z-index: 1;
+      border: 2px solid;
+    }
+    .step1 .season-dot { background: var(--blue);   border-color: var(--blue); }
+    .step2 .season-dot { background: var(--blue);   border-color: var(--blue); }
+    .step3 .season-dot { background: var(--violet); border-color: var(--violet); }
+    .step4 .season-dot { background: var(--violet); border-color: var(--violet); }
+    .step5 .season-dot { background: var(--gold);   border-color: var(--gold); }
+    .step6 .season-dot { background: var(--gold);   border-color: var(--gold); }
+    .step7 .season-dot { background: var(--green);  border-color: var(--green); }
+    .step8 .season-dot { background: var(--green);  border-color: var(--green); }
+    .season-wk {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .season-title {
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .step1 .season-title, .step2 .season-title { color: var(--blue); }
+    .step3 .season-title, .step4 .season-title { color: var(--blue); }
+    .step5 .season-title, .step6 .season-title { color: var(--violet); }
+    .step7 .season-title, .step8 .season-title { color: var(--gold); }
+    .season-desc {
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .season-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+    .season-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 16px;
+    }
+    .season-card h4 {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .season-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .season-card ul li {
+      font-size: 11px;
+      color: var(--light);
+      line-height: 1.5;
+      display: flex;
+      gap: 6px;
+    }
+    .season-card ul li::before {
+      content: '›';
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .season-card.s1 { border-top: 2px solid var(--blue); }
+    .season-card.s1 h4, .season-card.s1 li::before { color: var(--blue); }
+    .season-card.s2 { border-top: 2px solid var(--blue); }
+    .season-card.s2 h4, .season-card.s2 li::before { color: var(--blue); }
+    .season-card.s3 { border-top: 2px solid var(--violet); }
+    .season-card.s3 h4, .season-card.s3 li::before { color: var(--violet); }
+    .season-card.s4 { border-top: 2px solid var(--gold); }
+    .season-card.s4 h4, .season-card.s4 li::before { color: var(--gold); }
+
+    /* ─── CALENDAR ─────────────────────────── */
+    .quarters-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .q-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .q-header {
+      background: var(--gold-bg);
+      border-bottom: 1px solid rgba(245,166,35,0.2);
+      padding: 12px 16px;
+    }
+    .q-header h4 {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .q-body { padding: 14px 16px; }
+    .q-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .q-row:last-child { margin-bottom: 0; }
+    .q-week {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      width: 38px;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+    .q-text {
+      font-size: 11px;
+      color: var(--light);
+      line-height: 1.5;
+    }
+
+    /* ─── ROLES ────────────────────────────── */
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .role-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+    }
+    .role-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .role-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .role-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .role-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .role-list li {
+      font-size: 12px;
+      color: var(--light);
+      line-height: 1.5;
+      display: flex;
+      gap: 8px;
+    }
+    .role-list li::before {
+      content: '–';
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    /* ─── INFO BOX ─────────────────────────── */
+    .info-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .info-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .info-box h4 {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .info-box p {
+      font-size: 12px;
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    /* ─── FOOTER ───────────────────────────── */
+    .footer {
+      padding: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .footer span { color: var(--gold); }
+
+    /* ─── PRINT ────────────────────────────── */
+    @media print {
+      body { background: #fff; color: #111; }
+      .hero { background: #fff; border-bottom: 2px solid #111; padding: 32px; }
+      .hero::before { display: none; }
+      section { padding: 32px 0; page-break-inside: avoid; }
+      .tl-item, .part-card, .tier-card, .rubric-group,
+      .season-card, .q-card, .role-card { break-inside: avoid; }
+    }
+
+    /* ─── RESPONSIVE ───────────────────────── */
+    @media (max-width: 720px) {
+      .parts-grid, .tiers-grid, .season-cards,
+      .quarters-grid, .roles-grid, .threshold-grid { grid-template-columns: 1fr; }
+      .info-row { grid-template-columns: 1fr; }
+      .rubric-row { grid-template-columns: 1fr; }
+      .rubric-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .season-timeline { flex-wrap: wrap; gap: 16px; }
+      .season-timeline::before { display: none; }
+      .hero { padding: 48px 24px; }
+      .wrap { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-eyebrow">Orbit Church — Buckeye, AZ</div>
+  <h1>Worship Vocal<br><span>Audition Process</span></h1>
+  <p class="hero-sub">
+    We are not looking for perfection. We are inviting you into a growth process.
+    This document is your guide — whether you're considering auditioning,
+    helping someone through it, or leading the process.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">Prospects</span>
+    <span class="tag">Volunteers</span>
+    <span class="tag">Worship Leaders</span>
+    <span class="tag">Revised 2026</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     PHILOSOPHY
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Our Foundation</div>
+    <h2>More Than a Voice</h2>
+    <div class="quote-block">
+      "I appeal to you therefore, brothers and sisters, by the mercies of God, to present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship."
+      <cite>Romans 12:1</cite>
+    </div>
+    <p class="section-intro">
+      At Orbit Church, worship is not a performance. What happens on a Sunday platform is simply an overflow of
+      what has already been surrendered Monday through Saturday. This audition process is not designed to find
+      the most impressive voice in the room — it is designed to find faithful people who are growing, teachable,
+      and willing to lead others into genuine encounter with God.
+    </p>
+    <div class="info-row">
+      <div class="info-box">
+        <h4>What We Evaluate</h4>
+        <p>Heart & spiritual posture, vocal ability and potential, commitment to preparation, coachability, and cultural fit with our team values: <strong>Authentic. Excellent. Engaging. Contagious.</strong></p>
+      </div>
+      <div class="info-box">
+        <h4>What We Are Building</h4>
+        <p>A multi-generational team of disciples who serve with skill and humility — including future worship leaders, songwriters, and young musicians discovering their gifts for the first time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     PROCESS OVERVIEW
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">The Journey</div>
+    <h2>Audition Process — Overview</h2>
+    <p class="section-intro">
+      The audition is broken into three phases over 1–3 weeks, depending on scheduling. This allows us to evaluate
+      not just ability, but preparation, heart, and consistency — things you can't always see in a single audition day.
+    </p>
+
+    <div class="timeline">
+
+      <!-- PHASE 1 -->
+      <div class="tl-item">
+        <div class="tl-num">1</div>
+        <div class="tl-content">
+          <div class="tl-phase">Phase One — Week 1</div>
+          <div class="tl-title">Video Audition</div>
+          <div class="tl-desc">
+            Submit a video of yourself singing a cappella in a comfortable key, choosing from our provided song list.
+            The video should be clear in picture and sound, with a clean, distraction-free background.
+            Once submitted, the link is shared with both worship leaders and the designated runner simultaneously.
+          </div>
+          <div class="tl-card">
+            <ul class="tl-list">
+              <li>Head shot or full body, camera facing you — no filters, no studio edits</li>
+              <li>Sing a cappella — wear earbuds and play an instrumental track through your phone if it helps you stay on pitch, but we only want to hear your voice</li>
+              <li>Sing at minimum a verse + chorus. Full song is fine. We just need enough to evaluate your voice.</li>
+              <li>No distracting backgrounds or noise — help the listener focus on your worship</li>
+              <li>On the audition form, indicate which tier you are aiming for: Lead Vocalist / Frontline Harmony / Choir &amp; BGV. You may select more than one. This helps us tailor the feedback and next step.</li>
+              <li>Submit as an unlisted YouTube link. All three leaders (both worship leaders + designated runner) receive the link.</li>
+              <li>Video deadlines open in weeks 1–2 of each quarter — four cycles per year. Deadlines exist for a reason: they give people a reason to act on what they've already been thinking about doing.</li>
+            </ul>
+            <div class="tl-note">
+              <strong>Swift follow-up is non-negotiable.</strong> This is likely one of the most vulnerable things this person has ever done. Response within 24–48 hours. All three leaders are on the link so no one falls through the cracks. People remember their first interaction — make it count.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="tl-item">
+        <div class="tl-num">2</div>
+        <div class="tl-content">
+          <div class="tl-phase">Phase Two — Week 2</div>
+          <div class="tl-title">In-Person Prep &amp; Mics-Off Rehearsal</div>
+          <div class="tl-desc">
+            If invited forward, the vocalist receives a prep sheet from a worship leader — heart &amp; culture questions,
+            experience questions, and the songs we currently do as a church. This gives them time to prepare authentically
+            rather than answer on the spot under pressure. A runner (Anna or Hanna) may facilitate this step.
+          </div>
+          <div class="tl-card">
+            <ul class="tl-list">
+              <li>Worship leader or runner walks the vocalist through the prep sheet in person and explains what to expect</li>
+              <li>Vocalist takes the sheet home, prays over their answers, and prepares their audition song</li>
+              <li>Where possible, invite them to stand with the team at rehearsal — mics off — before the audition</li>
+              <li>Ten minutes in rehearsal will tell you more about posture and engagement than any audition format</li>
+            </ul>
+            <div class="tl-note" style="margin-bottom: 1rem;">
+              <strong>Heart Interview Questions (from prep sheet):</strong> These are not trick questions — frame them as a conversation, not an interrogation.
+            </div>
+            <ul class="tl-list">
+              <li>Share your testimony — how did you come to faith?</li>
+              <li>What does your current spiritual walk look like right now? (Bible, prayer, community)</li>
+              <li>Where do you see yourself in worship ministry in the next 2 years?</li>
+              <li>Looking at our three tiers — which one do you feel best describes where you are right now, and why?</li>
+              <li>Tell us about your previous church background. Have you served on a worship team before?</li>
+              <li>Is there someone from a previous church we could contact as a reference — a pastor, worship leader, or ministry leader who knows your character?</li>
+            </ul>
+            <div class="tl-note">
+              Purpose: Cast the vision and culture. Reduce audition-day nerves so they can worship freely and answer authentically.
+              Showing up prepared demonstrates determination, commitment, and heart. The reference check gives you a window into
+              character you cannot see in a single audition — use it.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="tl-item">
+        <div class="tl-num">3</div>
+        <div class="tl-content">
+          <div class="tl-phase">Phase Three — Week 3</div>
+          <div class="tl-title">In-Person Audition</div>
+          <div class="tl-desc">
+            A structured three-part audition covering heart, practical singing, and a clear next-steps conversation.
+            The singing portion is tailored to the tier the vocalist is pursuing — Lead vocalists get the full
+            band experience at a quarterly rehearsal or Rally; Frontline and Choir are evaluated with piano or
+            guitar only and do not require a stage. At least one worship leader (Isaiah or Brecklyn) must be present.
+            A designated runner (Anna or Hanna) assists.
+          </div>
+
+          <div class="parts-grid">
+            <div class="part-card blue">
+              <div class="part-label">Part 1</div>
+              <div class="part-title">Prayer &amp; Heart</div>
+              <ul class="part-list">
+                <li>Open with prayer together</li>
+                <li>Ice breaker — make them feel welcome, not interrogated</li>
+                <li>Walk through heart &amp; culture questions from the prep sheet</li>
+                <li>Experience background and previous church context</li>
+                <li>Reference check — confirm who we can contact and how</li>
+                <li>Listen carefully; annotate any concerns for leader review</li>
+              </ul>
+            </div>
+            <div class="part-card violet">
+              <div class="part-label">Part 2</div>
+              <div class="part-title">Singing Audition</div>
+              <div style="font-size:.78rem; color:var(--gold); font-weight:700; margin-bottom:.5rem; letter-spacing:.06em; text-transform:uppercase;">Format varies by target tier</div>
+              <ul class="part-list">
+                <li><strong>Choir / BGV:</strong> Melody check only — verse + chorus a cappella or with piano/guitar. No stage needed. Evaluate: pitch center, tone quality, posture.</li>
+                <li><strong>Frontline / Harmony:</strong> Harmony check with piano or acoustic guitar only. Sing the melody, then ask them to find a high harmony and a low harmony. Can they hold it independently?</li>
+                <li><strong>Lead Vocalist:</strong> Full band audition — scheduled at a quarterly rehearsal or Rally. Full song with the team on stage. Evaluate: presence, pitch under stage volume, communication, worship freedom.</li>
+                <li>Across all tiers: evaluate recovery — how do they respond to a missed note or an unexpected change?</li>
+                <li>Confidence check: do they worship freely or do they shut down under observation?</li>
+              </ul>
+            </div>
+            <div class="part-card green">
+              <div class="part-label">Part 3</div>
+              <div class="part-title">Wrap-Up</div>
+              <ul class="part-list">
+                <li>Encouragement first — name at least one specific thing they did well</li>
+                <li>Explain the next steps and timeline for a response (24–48 hrs)</li>
+                <li>Open the floor for their questions</li>
+                <li>Close in prayer if appropriate</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TIER CLASSIFICATION
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Placement</div>
+    <h2>Vocal Tier System</h2>
+    <p class="section-intro">
+      Tiers are not permanent labels — they are starting points. A vocalist placed in Choir can grow into Frontline
+      through the Formation Season and beyond. The rubric score and the harmony check together determine placement.
+    </p>
+
+    <div class="tiers-grid">
+      <div class="tier-card choir">
+        <span class="tier-badge">Tier 1</span>
+        <div class="tier-name">Choir / BGV</div>
+        <div class="tier-score">Score 55–70 · Harmony &lt;3</div>
+        <ul class="tier-reqs">
+          <li><span class="check">✓</span> Strong heart and worship posture</li>
+          <li><span class="check">✓</span> Solid pitch and tone in melody</li>
+          <li><span class="check">✓</span> Harmony not yet consistent</li>
+          <li><span class="check">✓</span> Background or choir-level role</li>
+        </ul>
+        <div class="tier-note">Sings with the choir or background ensemble. Does not carry individual mic lines on stage.</div>
+      </div>
+
+      <div class="tier-card front">
+        <span class="tier-badge">Tier 2</span>
+        <div class="tier-name">Frontline Vocalist</div>
+        <div class="tier-score">Score 55–74 (harmony ≥3) or 75+ (harmony &lt;4)</div>
+        <ul class="tier-reqs">
+          <li><span class="check">✓</span> All Choir criteria, plus…</li>
+          <li><span class="check">✓</span> Can find and hold a harmony (high or low)</li>
+          <li><span class="check">✓</span> Stage presence and blending ability</li>
+          <li><span class="check">✓</span> Supports the lead — not yet leading</li>
+        </ul>
+        <div class="tier-note">On stage with a mic in a support role — harmonies, BGV parts, and response lines.</div>
+      </div>
+
+      <div class="tier-card lead">
+        <span class="tier-badge">Tier 3</span>
+        <div class="tier-name">Lead Vocalist</div>
+        <div class="tier-score">Score 75+ · Pitch ≥4 · Harmony ≥4 · Confidence ≥4</div>
+        <ul class="tier-reqs">
+          <li><span class="check">✓</span> All Frontline criteria, plus…</li>
+          <li><span class="check">✓</span> Worships freely without being prompted</li>
+          <li><span class="check">✓</span> Finds harmony both high and low with ease</li>
+          <li><span class="check">✓</span> Can hold the room when the lead needs support</li>
+        </ul>
+        <div class="tier-note">Carries lead or co-lead vocal lines. Capable of stepping up in a service when needed.</div>
+      </div>
+    </div>
+
+    <div class="tier-not-ready" style="margin-top:20px;">
+      <div class="icon">⟳</div>
+      <div>
+        <h4>Not Ready Yet — Score Under 55</h4>
+        <p>This is not a closed door. The vocalist receives detailed written feedback on specific areas to grow, an encouragement, and an invitation to re-audition in the next quarterly cycle. Our job is to walk with them — not just evaluate them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     RUBRIC
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">For Leaders</div>
+    <h2>Scoring Rubric</h2>
+    <p class="section-intro">
+      Score each criterion 1–5 using the descriptions below. Scores are private — use them to ensure consistency
+      across auditions and to prepare your feedback. Total possible: 100 points.
+    </p>
+
+    <div class="rubric-section">
+
+      <!-- TECHNICAL -->
+      <div class="rubric-group">
+        <div class="rubric-header">
+          <h4>Technical</h4>
+          <span class="rubric-pts">30 pts</span>
+        </div>
+        <div class="rubric-row header-row">
+          <div class="rubric-cell">Criterion</div>
+          <div class="rubric-cell">1–2 · Needs Work</div>
+          <div class="rubric-cell">3 · Solid</div>
+          <div class="rubric-cell">4–5 · Exceptional</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Pitch Accuracy</div>
+          <div class="rubric-cell needs">Frequent pitch issues; hard to follow</div>
+          <div class="rubric-cell solid">Mostly on pitch; minor drift</div>
+          <div class="rubric-cell excel">Consistently on pitch; self-corrects quietly</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Tone Quality</div>
+          <div class="rubric-cell needs">Thin, strained, or uncontrolled</div>
+          <div class="rubric-cell solid">Clear and pleasant; listenable</div>
+          <div class="rubric-cell excel">Full, controlled, and expressive</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Timing &amp; Rhythm</div>
+          <div class="rubric-cell needs">Rushes or drags; loses the track</div>
+          <div class="rubric-cell solid">Locks in; occasional drift</div>
+          <div class="rubric-cell excel">Rhythmically musical — feels the groove</div>
+        </div>
+      </div>
+
+      <!-- MUSICALITY -->
+      <div class="rubric-group">
+        <div class="rubric-header">
+          <h4>Musicality</h4>
+          <span class="rubric-pts">25 pts</span>
+        </div>
+        <div class="rubric-row header-row">
+          <div class="rubric-cell">Criterion</div>
+          <div class="rubric-cell">1–2 · Needs Work</div>
+          <div class="rubric-cell">3 · Solid</div>
+          <div class="rubric-cell">4–5 · Exceptional</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Dynamic Expression</div>
+          <div class="rubric-cell needs">Flat, one volume throughout</div>
+          <div class="rubric-cell solid">Some variation; responsive</div>
+          <div class="rubric-cell excel">Tells the story with dynamics</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Harmony Capability</div>
+          <div class="rubric-cell needs">Cannot find a harmony</div>
+          <div class="rubric-cell solid">Finds one direction (high or low)</div>
+          <div class="rubric-cell excel">Finds both high and low; blends naturally</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Recovery Under Pressure</div>
+          <div class="rubric-cell needs">Falls apart on mistake; loses confidence</div>
+          <div class="rubric-cell solid">Recovers but visibly shaken</div>
+          <div class="rubric-cell excel">Stays composed; barely misses a beat</div>
+        </div>
+      </div>
+
+      <!-- HEART -->
+      <div class="rubric-group">
+        <div class="rubric-header">
+          <h4>Heart &amp; Character</h4>
+          <span class="rubric-pts">25 pts</span>
+        </div>
+        <div class="rubric-row header-row">
+          <div class="rubric-cell">Criterion</div>
+          <div class="rubric-cell">1–2 · Needs Work</div>
+          <div class="rubric-cell">3 · Solid</div>
+          <div class="rubric-cell">4–5 · Exceptional</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Worship Posture</div>
+          <div class="rubric-cell needs">Performing, visibly self-focused</div>
+          <div class="rubric-cell solid">Mix of worship and nerves</div>
+          <div class="rubric-cell excel">Clearly leading others into God's presence</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Culture/Heart Responses</div>
+          <div class="rubric-cell needs">Vague, surface-level, or misaligned</div>
+          <div class="rubric-cell solid">Generally aligned; growing understanding</div>
+          <div class="rubric-cell excel">Deeply aligned; thoughtful, grounded answers</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Coachability</div>
+          <div class="rubric-cell needs">Defensive or resistant to feedback</div>
+          <div class="rubric-cell solid">Open and tries corrections</div>
+          <div class="rubric-cell excel">Receives correction and immediately applies it</div>
+        </div>
+      </div>
+
+      <!-- COMMITMENT -->
+      <div class="rubric-group">
+        <div class="rubric-header">
+          <h4>Preparation &amp; Commitment</h4>
+          <span class="rubric-pts">20 pts</span>
+        </div>
+        <div class="rubric-row header-row">
+          <div class="rubric-cell">Criterion</div>
+          <div class="rubric-cell">1–2 · Needs Work</div>
+          <div class="rubric-cell">3 · Solid</div>
+          <div class="rubric-cell">4–5 · Exceptional</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Song Preparation</div>
+          <div class="rubric-cell needs">Unprepared; rough or uncertain</div>
+          <div class="rubric-cell solid">Mostly learned; some gaps</div>
+          <div class="rubric-cell excel">Clearly practiced; knows it well</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Punctuality &amp; Professionalism</div>
+          <div class="rubric-cell needs">Late, disorganized, or dismissive</div>
+          <div class="rubric-cell solid">On time, mostly ready</div>
+          <div class="rubric-cell excel">Early, prepared, communicates clearly</div>
+        </div>
+        <div class="rubric-row">
+          <div class="rubric-cell criterion">Stage Confidence</div>
+          <div class="rubric-cell needs">Timid; locked up; refuses to open up</div>
+          <div class="rubric-cell solid">Present but reserved</div>
+          <div class="rubric-cell excel">Worships freely; invites others in</div>
+        </div>
+      </div>
+
+    </div><!-- /rubric-section -->
+
+    <!-- SCORE THRESHOLDS -->
+    <div class="threshold-grid">
+      <div class="thresh-card t1">
+        <div class="thresh-score">&lt;55</div>
+        <div class="thresh-label">Not Ready Yet</div>
+        <div class="thresh-desc">Written feedback. Re-audition next quarter.</div>
+      </div>
+      <div class="thresh-card t2">
+        <div class="thresh-score">55–70</div>
+        <div class="thresh-label">Choir / BGV</div>
+        <div class="thresh-desc">Strong heart. Harmony score under 3.</div>
+      </div>
+      <div class="thresh-card t3">
+        <div class="thresh-score">55–74</div>
+        <div class="thresh-label">Frontline</div>
+        <div class="thresh-desc">Harmony ≥3. Can carry a part on stage.</div>
+      </div>
+      <div class="thresh-card t4">
+        <div class="thresh-score">75+</div>
+        <div class="thresh-label">Lead Capable</div>
+        <div class="thresh-desc">Pitch, harmony, and confidence all ≥4.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FORMATION SEASON
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Next Step</div>
+    <h2>Formation Season — 8 Weeks</h2>
+    <p class="section-intro">
+      Acceptance into the team begins a Formation Season — not a probationary period, but a season of intentional
+      growth and belonging. We are not just adding a voice to a playlist. We are welcoming someone into a family.
+    </p>
+
+    <div class="season-cards">
+      <div class="season-card s1">
+        <h4>Weeks 1–2 · Observe &amp; Belong</h4>
+        <ul>
+          <li>Attend all rehearsals — no microphone</li>
+          <li>Stand with the team on stage during service</li>
+          <li>Learn the culture, the rhythms, the people</li>
+          <li>No pressure to perform — just be present</li>
+        </ul>
+      </div>
+      <div class="season-card s2">
+        <h4>Weeks 3–4 · Rehearsal Mic On</h4>
+        <ul>
+          <li>Full participation in rehearsals with mic</li>
+          <li>Mics-off on stage during service</li>
+          <li>One intentional piece of feedback per week from worship leader</li>
+          <li>Begin building trust with the team</li>
+        </ul>
+      </div>
+      <div class="season-card s3">
+        <h4>Weeks 5–6 · Service Mic On</h4>
+        <ul>
+          <li>Sing in their tier role on Sundays</li>
+          <li>Support role — not leading yet</li>
+          <li>Worship leader observes: punctuality, posture, team engagement</li>
+          <li>How do they handle a hard Sunday?</li>
+        </ul>
+      </div>
+      <div class="season-card s4">
+        <h4>Weeks 7–8 · Evaluation</h4>
+        <ul>
+          <li>Brief 1:1 with worship leader — affirm growth</li>
+          <li>Identify their next step and any growth areas</li>
+          <li>Decision: full membership, extend season, or redirect</li>
+          <li>Celebrate regardless of outcome</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-row" style="margin-top:24px;">
+      <div class="info-box">
+        <h4>What We Watch During Formation</h4>
+        <p>Attendance consistency · Coachability and growth · How the team experiences them · Whether they are the same person in week 1 as in week 8. Missed rehearsals extend the season — they do not automatically disqualify.</p>
+      </div>
+      <div class="info-box">
+        <h4>Tier Growth Is Possible</h4>
+        <p>A vocalist who enters as Choir / BGV can grow into Frontline or Lead during or after Formation Season. There is no ceiling — only the next step. The worship leader team reviews tier placements at the end of each quarterly cycle.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     QUARTERLY CALENDAR
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Scheduling</div>
+    <h2>Quarterly Audition Calendar</h2>
+    <p class="section-intro">
+      Auditions run four times per year, aligned to the church calendar quarters.
+      Video deadlines open in the first two weeks of each quarter.
+      From there, the worship leaders work with each person individually.
+    </p>
+
+    <div class="quarters-grid">
+      <div class="q-card">
+        <div class="q-header"><h4>Q1 · Jan–Mar</h4></div>
+        <div class="q-body">
+          <div class="q-row"><div class="q-week">Wk 1–2</div><div class="q-text">Video audition deadline</div></div>
+          <div class="q-row"><div class="q-week">Wk 3–4</div><div class="q-text">Video review &amp; invitations</div></div>
+          <div class="q-row"><div class="q-week">Wk 5–6</div><div class="q-text">Prep sheets distributed</div></div>
+          <div class="q-row"><div class="q-week">Wk 7–8</div><div class="q-text">In-person auditions</div></div>
+          <div class="q-row"><div class="q-week">Wk 9+</div><div class="q-text">Formation Season begins</div></div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-header"><h4>Q2 · Apr–Jun</h4></div>
+        <div class="q-body">
+          <div class="q-row"><div class="q-week">Wk 1–2</div><div class="q-text">Video audition deadline</div></div>
+          <div class="q-row"><div class="q-week">Wk 3–4</div><div class="q-text">Video review &amp; invitations</div></div>
+          <div class="q-row"><div class="q-week">Wk 5–6</div><div class="q-text">Prep sheets distributed</div></div>
+          <div class="q-row"><div class="q-week">Wk 7–8</div><div class="q-text">In-person auditions</div></div>
+          <div class="q-row"><div class="q-week">Wk 9+</div><div class="q-text">Formation Season begins</div></div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-header"><h4>Q3 · Jul–Sep</h4></div>
+        <div class="q-body">
+          <div class="q-row"><div class="q-week">Wk 1–2</div><div class="q-text">Video audition deadline</div></div>
+          <div class="q-row"><div class="q-week">Wk 3–4</div><div class="q-text">Video review &amp; invitations</div></div>
+          <div class="q-row"><div class="q-week">Wk 5–6</div><div class="q-text">Prep sheets distributed</div></div>
+          <div class="q-row"><div class="q-week">Wk 7–8</div><div class="q-text">In-person auditions</div></div>
+          <div class="q-row"><div class="q-week">Wk 9+</div><div class="q-text">Formation Season begins</div></div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-header"><h4>Q4 · Oct–Dec</h4></div>
+        <div class="q-body">
+          <div class="q-row"><div class="q-week">Wk 1–2</div><div class="q-text">Video audition deadline</div></div>
+          <div class="q-row"><div class="q-week">Wk 3–4</div><div class="q-text">Video review &amp; invitations</div></div>
+          <div class="q-row"><div class="q-week">Wk 5–6</div><div class="q-text">Prep sheets distributed</div></div>
+          <div class="q-row"><div class="q-week">Wk 7–8</div><div class="q-text">In-person auditions</div></div>
+          <div class="q-row"><div class="q-week">Wk 9+</div><div class="q-text">Formation Season begins</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     LEADERSHIP RHYTHMS
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Ongoing</div>
+    <h2>Leadership Rhythms</h2>
+    <p class="section-intro">
+      The audition process is only as healthy as the team running it. These rhythms keep leadership aligned,
+      ensure nothing falls through the cracks, and give the team a regular space to process and improve.
+    </p>
+
+    <div class="q-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+
+      <div class="info-box" style="border-color: var(--gold);">
+        <div class="info-icon">📅</div>
+        <div class="info-content">
+          <div class="info-title">Monthly Leadership Check-In</div>
+          <div class="info-text">
+            First Saturday of every month — worship leadership team meets together. This is not a rehearsal.
+            It is a temperature check: who is thriving, who is struggling, what's coming up on the calendar,
+            and whether any audition follow-up is needed. Consistent. Non-negotiable.
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="border-color: var(--blue);">
+        <div class="info-icon">🎙️</div>
+        <div class="info-content">
+          <div class="info-title">Quarterly Audition Review</div>
+          <div class="info-text">
+            At the close of each audition cycle, the full leadership team (Isaiah, Brecklyn, Anna, Hanna)
+            debriefs the process: What worked? What didn't? Any rubric calibration needed? Any Formation Season
+            members ready to advance? Keep the process improving.
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="border-color: var(--violet);">
+        <div class="info-icon">🤝</div>
+        <div class="info-content">
+          <div class="info-title">Formation Season Check-Ins</div>
+          <div class="info-text">
+            Every volunteer in Formation Season should have intentional touchpoints — not just when something
+            goes wrong. A quick check-in at week 4 and a formal evaluation conversation at week 8. Make it
+            feel like investment, not inspection.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TEAM ROLES
+═══════════════════════════════════════════ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Who Does What</div>
+    <h2>Audition Team Roles</h2>
+    <p class="section-intro">
+      Every audition should have at least a worship leader present and a designated runner. No single person
+      carries the whole process.
+    </p>
+
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="role-icon">🎤</div>
+        <div class="role-title">Worship Leaders</div>
+        <div class="role-sub">Isaiah &amp; Brecklyn</div>
+        <ul class="role-list">
+          <li>Own and oversee the entire audition process</li>
+          <li>Conduct or attend the in-person audition</li>
+          <li>Make final tier placement decisions</li>
+          <li>Deliver feedback to all applicants (accepted or not)</li>
+          <li>Lead Formation Season check-ins and evaluations</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">📋</div>
+        <div class="role-title">Runners / Helpers</div>
+        <div class="role-sub">Anna &amp; Hanna</div>
+        <ul class="role-list">
+          <li>Receive and organize video audition links</li>
+          <li>Schedule in-person auditions and send reminders</li>
+          <li>Distribute and collect prep sheets</li>
+          <li>Take notes during in-person auditions</li>
+          <li>Handle follow-up communications</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🎵</div>
+        <div class="role-title">Prospective Members</div>
+        <div class="role-sub">That's You</div>
+        <ul class="role-list">
+          <li>Submit video before the quarterly deadline</li>
+          <li>Come to each step prepared and prayerful</li>
+          <li>Be honest and authentic — not impressive</li>
+          <li>Ask questions when you don't understand something</li>
+          <li>Trust the process, even if it takes more than one try</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CLOSING WORD
+═══════════════════════════════════════════ -->
+<section style="border-bottom:none;">
+  <div class="wrap" style="text-align:center; max-width:600px;">
+    <div class="section-label">A Word Before You Begin</div>
+    <h2 style="margin-bottom:20px;">We Are Rooting For You</h2>
+    <p style="font-size:14px; color:var(--light); line-height:1.8; margin-bottom:28px;">
+      Whether you are brand new to singing or have been doing this for years, we want you to know that
+      this process is not about filtering people out. It's about finding the right place for every person
+      who wants to serve — and then walking with them as they grow into it.
+    </p>
+    <p style="font-size:14px; color:var(--light); line-height:1.8; margin-bottom:28px;">
+      If you feel something stirring in you — take the step. The worst thing that happens is you grow.
+      We look forward to hearing your heart, and your sound.
+    </p>
+    <div style="display:inline-block; padding:12px 28px; border:1px solid var(--gold); border-radius:100px; font-size:12px; font-weight:800; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold);">
+      Revolving Everything Around Jesus
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Orbit Church</span> — Buckeye, AZ · orbitchurch.org · Worship Vocal Audition Process · 2026
+</div>
+
+</body>
+</html>
