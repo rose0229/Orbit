@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orbit Worship · Audition Tracks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0A0A0A;--surface:#141414;--card:#1A1A1A;
+  --border:#282828;--border2:#333333;
+  --accent:#DBCAAE;--accent-dim:#C4B69A;
+  --accent-bg:rgba(219,202,174,0.08);--accent-bg2:rgba(219,202,174,0.14);
+  --text:#FFFFFF;--light:#BBBBBB;--muted:#666666;
+  --font:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100;}
+.logo{font-size:13px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);}
+.manage-btn{background:none;border:1px solid var(--border2);border-radius:3px;color:var(--muted);font-family:var(--font);font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:7px 14px;cursor:pointer;transition:all 0.15s;}
+.manage-btn:hover{border-color:var(--accent);color:var(--accent);}
+.hero{padding:64px 32px 48px;max-width:760px;}
+.hero-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(219,202,174,0.3);border-radius:2px;padding:4px 10px;margin-bottom:24px;}
+.hero h1{font-size:clamp(36px,6vw,60px);font-weight:900;line-height:1.0;letter-spacing:-0.02em;margin-bottom:20px;}
+.hero h1 em{color:var(--accent);font-style:normal;}
+.hero p{font-size:16px;color:var(--light);line-height:1.65;max-width:560px;}
+.process-strip{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.process-step{flex:1;padding:24px 32px;border-right:1px solid var(--border);}
+.process-step:last-child{border-right:none;}
+.step-num{font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;}
+.step-title{font-size:14px;font-weight:700;margin-bottom:4px;}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.role-nav-wrap{border-bottom:1px solid var(--border);padding:0 24px;overflow-x:auto;}
+.role-nav{display:flex;gap:2px;padding:12px 0;}
+.role-btn{background:none;border:none;border-radius:3px;color:var(--muted);font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:9px 16px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.role-btn:hover{color:var(--light);background:var(--accent-bg);}
+.role-btn.active{background:var(--accent-bg2);color:var(--accent);}
+.role-panels{padding:40px 32px;max-width:960px;}
+.role-panel{display:none;}
+.role-panel.active{display:block;}
+.panel-header{margin-bottom:32px;}
+.panel-title{font-size:28px;font-weight:800;letter-spacing:-0.01em;margin-bottom:12px;}
+.panel-desc{font-size:15px;color:var(--light);line-height:1.65;max-width:600px;}
+.subrole-tabs{display:flex;gap:6px;margin-bottom:28px;}
+.subrole-btn{background:var(--card);border:1px solid var(--border);border-radius:3px;color:var(--muted);font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:9px 18px;cursor:pointer;transition:all 0.15s;}
+.subrole-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-bg);}
+.subrole-panel{display:none;}
+.subrole-panel.active{display:block;}
+.song-group{margin-bottom:4px;}
+.song-card{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--border);border-radius:4px 4px 0 0;padding:14px 18px;gap:16px;flex-wrap:wrap;}
+.song-info{min-width:0;}
+.song-title-text{font-size:14px;font-weight:700;}
+.song-artist-text{font-size:12px;color:var(--muted);margin-top:2px;}
+.key-strip{display:flex;gap:4px;flex-wrap:wrap;}
+.key-btn{background:var(--surface);border:1px solid var(--border2);border-radius:3px;color:var(--light);font-family:var(--font);font-size:11px;font-weight:700;padding:5px 11px;cursor:pointer;transition:all 0.12s;}
+.key-btn:hover{border-color:var(--accent-dim);color:var(--accent);}
+.key-btn.active{border-color:var(--accent);background:var(--accent-bg);color:var(--accent);}
+.track-panel{display:none;background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 4px 4px;padding:16px 18px;margin-bottom:16px;}
+.track-placeholder{color:var(--muted);font-size:13px;font-style:italic;}
+audio{width:100%;accent-color:var(--accent);}
+.instr-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;margin-bottom:24px;}
+.instr-section-title{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.dot-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.dot-list li{font-size:14px;color:var(--light);line-height:1.5;padding-left:16px;position:relative;}
+.dot-list li::before{content:'·';position:absolute;left:0;color:var(--accent);font-weight:700;}
+.highlight-box{background:var(--accent-bg);border:1px solid rgba(219,202,174,0.2);border-radius:3px;padding:14px 18px;margin-top:16px;font-size:13px;color:var(--light);}
+.highlight-box strong{color:var(--accent);}
+.tip-box{background:var(--surface);border:1px solid var(--border2);border-radius:4px;padding:18px;margin-top:24px;}
+.tip-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.tip-text{font-size:13px;color:var(--light);line-height:1.6;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:640px){.two-col{grid-template-columns:1fr;}}
+.section-wrap{padding:40px 32px;max-width:960px;border-top:1px solid var(--border);}
+.section-header{margin-bottom:32px;}
+.section-title{font-size:22px;font-weight:800;margin-bottom:10px;}
+.section-desc{font-size:15px;color:var(--light);line-height:1.65;max-width:580px;}
+.rubric-wrap{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.rubric-table{width:100%;border-collapse:collapse;}
+.rubric-table th{text-align:left;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:10px 16px;border-bottom:1px solid var(--border);}
+.rubric-table td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5;}
+.rubric-table td:first-child{color:var(--accent);font-weight:600;width:30%;}
+.rubric-table td:last-child{color:var(--light);}
+.rubric-table tr:last-child td{border-bottom:none;}
+.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:700px){.tiers-grid{grid-template-columns:1fr;}}
+.tier-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;}
+.tier-name{font-size:13px;font-weight:800;letter-spacing:0.04em;margin-bottom:10px;color:var(--accent);}
+.tier-desc{font-size:13px;color:var(--light);line-height:1.6;}
+.cta-section{padding:64px 32px;border-top:1px solid var(--border);}
+.cta-section h2{font-size:28px;font-weight:900;letter-spacing:-0.01em;margin-bottom:14px;}
+.cta-section p{font-size:15px;color:var(--light);line-height:1.65;max-width:500px;margin-bottom:28px;}
+.apply-btn{display:inline-block;background:var(--accent);color:#000;font-family:var(--font);font-size:13px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;border-radius:3px;text-decoration:none;transition:background 0.15s;}
+.apply-btn:hover{background:var(--accent-dim);}
+.site-footer{padding:24px 32px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);}
+/* ADMIN */
+.admin-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:20px;}
+.admin-modal{background:var(--surface);border:1px solid var(--border2);border-radius:6px;width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:column;}
+.admin-modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.admin-modal-title{font-size:14px;font-weight:700;}
+.admin-close{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px;line-height:1;}
+.admin-close:hover{color:var(--text);}
+.admin-pin-screen{padding:48px 32px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.pin-prompt{font-size:15px;font-weight:600;color:var(--light);}
+.pin-sub{font-size:13px;color:var(--muted);margin-top:-8px;}
+.pin-input{background:var(--card);border:1px solid var(--border2);border-radius:4px;color:var(--text);font-family:var(--font);font-size:20px;letter-spacing:0.2em;text-align:center;padding:12px 24px;width:200px;outline:none;transition:border-color 0.15s;}
+.pin-input:focus{border-color:var(--accent);}
+.pin-input.shake{animation:shake 0.4s;}
+.pin-unlock-btn{background:var(--accent);border:none;border-radius:3px;color:#000;font-family:var(--font);font-size:12px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;padding:11px 28px;cursor:pointer;}
+.pin-unlock-btn:hover{background:var(--accent-dim);}
+.pin-error{font-size:12px;color:#e05252;display:none;}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.admin-panels{display:none;flex-direction:column;flex:1;min-height:0;}
+.admin-tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);flex-shrink:0;}
+.admin-tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;cursor:pointer;transition:all 0.15s;}
+.admin-tab-btn.active{border-bottom-color:var(--accent);color:var(--accent);}
+.admin-body{overflow-y:auto;padding:24px;flex:1;min-height:0;}
+.admin-footer{display:flex;gap:8px;justify-content:flex-end;padding:16px 24px;border-top:1px solid var(--border);flex-shrink:0;}
+.admin-btn{background:var(--card);border:1px solid var(--border2);border-radius:3px;color:var(--light);font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:9px 16px;cursor:pointer;transition:all 0.15s;}
+.admin-btn:hover{border-color:var(--accent);color:var(--accent);}
+.admin-btn-primary{background:var(--accent);border-color:var(--accent);color:#000;}
+.admin-btn-primary:hover{background:var(--accent-dim);border-color:var(--accent-dim);color:#000;}
+.admin-btn-publish{background:#1a2a1a;border-color:#3a5a3a;color:#7ac97a;}
+.admin-btn-publish:hover{background:#1f351f;border-color:#4a7a4a;color:#8fd98f;}
+.track-instructions{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
+.track-group{margin-bottom:24px;}
+.track-group-title{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.track-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.track-key-label{font-size:12px;font-weight:700;color:var(--muted);width:56px;flex-shrink:0;}
+.track-input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:3px;color:var(--light);font-family:var(--font);font-size:12px;padding:8px 12px;outline:none;transition:border-color 0.15s;}
+.track-input:focus{border-color:var(--accent);}
+.track-linked{font-size:11px;font-weight:700;color:#7ac97a;flex-shrink:0;}
+.content-section{border:1px solid var(--border);border-radius:4px;margin-bottom:8px;overflow:hidden;}
+.content-section-title{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);padding:12px 16px;cursor:pointer;background:var(--card);list-style:none;display:flex;align-items:center;justify-content:space-between;}
+.content-section-title::after{content:'▸';font-size:10px;color:var(--muted);}
+details[open] .content-section-title::after{content:'▾';}
+.content-section-body{padding:16px;display:flex;flex-direction:column;gap:14px;background:var(--surface);}
+.content-field{display:flex;flex-direction:column;gap:5px;}
+.content-label{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0.03em;}
+.content-input{background:var(--card);border:1px solid var(--border);border-radius:3px;color:var(--light);font-family:var(--font);font-size:13px;padding:8px 12px;outline:none;resize:vertical;transition:border-color 0.15s;width:100%;}
+.content-input:focus{border-color:var(--accent);}
+.content-hint{font-size:11px;color:var(--muted);}
+.publish-fallback{display:none;background:var(--card);border:1px solid #3a5a3a;border-radius:4px;padding:18px;margin-top:16px;}
+.publish-fallback h4{font-size:13px;font-weight:700;color:#7ac97a;margin-bottom:10px;}
+.publish-fallback p,.publish-fallback li{font-size:13px;color:var(--light);line-height:1.6;}
+.publish-fallback ol{padding-left:18px;display:flex;flex-direction:column;gap:4px;margin:8px 0;}
+.publish-fallback em{color:var(--muted);font-size:12px;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--border2);border-radius:4px;color:var(--light);font-size:13px;font-weight:500;padding:12px 22px;transition:transform 0.3s;z-index:2000;white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Orbit Worship</div>
+  <button class="manage-btn" onclick="openAdmin()">⚙ Manage</button>
+</header>
+
+<section class="hero">
+  <div class="hero-label" data-content-key="hero-label">Worship Team Auditions</div>
+  <h1 data-content-key="hero-title">Every Role.<br><em>One Place.</em></h1>
+  <p data-content-key="hero-desc">Everything you need to prepare your audition video — backing tracks in your key, what we're listening for, and how we evaluate every role on the team.</p>
+</section>
+
+<div class="process-strip">
+  <div class="process-step">
+    <div class="step-num">Step 1</div>
+    <div class="step-title" data-content-key="step1-title">Pick Your Role</div>
+    <div class="step-desc" data-content-key="step1-desc">Select the tab for the role you're auditioning for below.</div>
+  </div>
+  <div class="process-step">
+    <div class="step-num">Step 2</div>
+    <div class="step-title" data-content-key="step2-title">Record Your Video</div>
+    <div class="step-desc" data-content-key="step2-desc">Use the backing track in your key. Film yourself clearly — audio quality matters.</div>
+  </div>
+  <div class="process-step">
+    <div class="step-num">Step 3</div>
+    <div class="step-title" data-content-key="step3-title">Submit the Form</div>
+    <div class="step-desc" data-content-key="step3-desc">Upload your video and fill out the audition form linked at the bottom of this page.</div>
+  </div>
+</div>
+
+<div class="role-nav-wrap">
+  <nav class="role-nav">
+    <button class="role-btn active" onclick="switchRole(this,'wl')">Worship Leader</button>
+    <button class="role-btn" onclick="switchRole(this,'vocalist')">Vocalist</button>
+    <button class="role-btn" onclick="switchRole(this,'acoustic')">Acoustic Guitar</button>
+    <button class="role-btn" onclick="switchRole(this,'electric')">Electric Guitar</button>
+    <button class="role-btn" onclick="switchRole(this,'keys')">Keys</button>
+    <button class="role-btn" onclick="switchRole(this,'bass')">Bass</button>
+    <button class="role-btn" onclick="switchRole(this,'drums')">Drums</button>
+  </nav>
+</div>
+
+<div class="role-panels">
+
+<!-- WORSHIP LEADER -->
+<div class="role-panel active" id="panel-wl">
+  <div class="panel-header">
+    <div class="panel-title" data-content-key="wl-title">Leading the Room</div>
+    <p class="panel-desc" data-content-key="wl-desc">Worship Leaders at Orbit don't just sing — they shepherd. We're looking for people who can hold the room spiritually and musically, make real-time decisions under pressure, and lead from a place of genuine overflow. Pick the key that fits your voice and sing the track straight through as if you're leading a room.</p>
+  </div>
+  <div class="subrole-tabs">
+    <button class="subrole-btn active" onclick="switchSubRole(this,'wl','men')">Men</button>
+    <button class="subrole-btn" onclick="switchSubRole(this,'wl','women')">Women</button>
+  </div>
+  <div class="subrole-panel active" id="wl-men">
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Firm Foundation</div><div class="song-artist-text">Cody Carnes</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'ff-e')">E</button><button class="key-btn" onclick="switchKey(this,'ff-fs')">F#</button><button class="key-btn" onclick="switchKey(this,'ff-g')">G</button><button class="key-btn" onclick="switchKey(this,'ff-a')">A</button></div></div><div class="track-panel" data-track="ff-e"></div><div class="track-panel" data-track="ff-fs"></div><div class="track-panel" data-track="ff-g"></div><div class="track-panel" data-track="ff-a"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Living Hope</div><div class="song-artist-text">Phil Wickham</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'lh-fs')">F#</button><button class="key-btn" onclick="switchKey(this,'lh-g')">G</button><button class="key-btn" onclick="switchKey(this,'lh-a')">A</button><button class="key-btn" onclick="switchKey(this,'lh-bb')">Bb</button></div></div><div class="track-panel" data-track="lh-fs"></div><div class="track-panel" data-track="lh-g"></div><div class="track-panel" data-track="lh-a"></div><div class="track-panel" data-track="lh-bb"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">King of Kings</div><div class="song-artist-text">Hillsong Worship</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'kk-ab')">Ab</button><button class="key-btn" onclick="switchKey(this,'kk-a')">A</button><button class="key-btn" onclick="switchKey(this,'kk-bb')">Bb</button><button class="key-btn" onclick="switchKey(this,'kk-b')">B</button></div></div><div class="track-panel" data-track="kk-ab"></div><div class="track-panel" data-track="kk-a"></div><div class="track-panel" data-track="kk-bb"></div><div class="track-panel" data-track="kk-b"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">What a Beautiful Name</div><div class="song-artist-text">Hillsong Worship</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'wabn-c')">C</button><button class="key-btn" onclick="switchKey(this,'wabn-db')">Db</button><button class="key-btn" onclick="switchKey(this,'wabn-d')">D</button><button class="key-btn" onclick="switchKey(this,'wabn-eb')">Eb</button></div></div><div class="track-panel" data-track="wabn-c"></div><div class="track-panel" data-track="wabn-db"></div><div class="track-panel" data-track="wabn-d"></div><div class="track-panel" data-track="wabn-eb"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Praise</div><div class="song-artist-text">Brandon Lake</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'pr-m-ab')">Ab</button><button class="key-btn" onclick="switchKey(this,'pr-m-bb')">Bb</button><button class="key-btn" onclick="switchKey(this,'pr-m-b')">B</button><button class="key-btn" onclick="switchKey(this,'pr-m-c')">C</button></div></div><div class="track-panel" data-track="pr-m-ab"></div><div class="track-panel" data-track="pr-m-bb"></div><div class="track-panel" data-track="pr-m-b"></div><div class="track-panel" data-track="pr-m-c"></div></div>
+    <div class="tip-box"><div class="tip-label">Practical Leadership Test</div><div class="tip-text" data-content-key="wl-tip">After singing your song, stay on camera and speak for 60–90 seconds as if you're transitioning the room into a time of prayer. Don't script it. We want to hear how you naturally lead and communicate in the moment.</div></div>
+  </div>
+  <div class="subrole-panel" id="wl-women">
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Firm Foundation</div><div class="song-artist-text">Cody Carnes</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'ff-g')">G</button><button class="key-btn" onclick="switchKey(this,'ff-a')">A</button></div></div><div class="track-panel" data-track="ff-g"></div><div class="track-panel" data-track="ff-a"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Living Hope</div><div class="song-artist-text">Phil Wickham</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'lh-a')">A</button><button class="key-btn" onclick="switchKey(this,'lh-bb')">Bb</button></div></div><div class="track-panel" data-track="lh-a"></div><div class="track-panel" data-track="lh-bb"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">King of Kings</div><div class="song-artist-text">Hillsong Worship</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'kk-bb')">Bb</button><button class="key-btn" onclick="switchKey(this,'kk-b')">B</button></div></div><div class="track-panel" data-track="kk-bb"></div><div class="track-panel" data-track="kk-b"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">What a Beautiful Name</div><div class="song-artist-text">Hillsong Worship</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'wabn-d')">D</button><button class="key-btn" onclick="switchKey(this,'wabn-eb')">Eb</button></div></div><div class="track-panel" data-track="wabn-d"></div><div class="track-panel" data-track="wabn-eb"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Praise</div><div class="song-artist-text">Brandon Lake</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'pr-w-eb')">Eb</button><button class="key-btn" onclick="switchKey(this,'pr-w-f')">F</button><button class="key-btn" onclick="switchKey(this,'pr-w-fs')">F#/Gb</button><button class="key-btn" onclick="switchKey(this,'pr-w-g')">G</button></div></div><div class="track-panel" data-track="pr-w-eb"></div><div class="track-panel" data-track="pr-w-f"></div><div class="track-panel" data-track="pr-w-fs"></div><div class="track-panel" data-track="pr-w-g"></div></div>
+    <div class="tip-box"><div class="tip-label">Practical Leadership Test</div><div class="tip-text" data-content-key="wl-tip">After singing your song, stay on camera and speak for 60–90 seconds as if you're transitioning the room into a time of prayer. Don't script it. We want to hear how you naturally lead and communicate in the moment.</div></div>
+  </div>
+</div>
+
+<!-- VOCALIST -->
+<div class="role-panel" id="panel-vocalist">
+  <div class="panel-header">
+    <div class="panel-title" data-content-key="vocalist-title">Singing Into the Room</div>
+    <p class="panel-desc" data-content-key="vocalist-desc">Vocalists at Orbit hold the harmonic and emotional core of our worship. We're listening for pitch accuracy, blend instinct, and the ability to support without overplaying. Pick the key that fits your range and sing the full song as a background vocalist — harmonize if you can.</p>
+  </div>
+  <div class="subrole-tabs">
+    <button class="subrole-btn active" onclick="switchSubRole(this,'vocalist','women')">Women</button>
+    <button class="subrole-btn" onclick="switchSubRole(this,'vocalist','men')">Men</button>
+  </div>
+  <div class="subrole-panel active" id="vocalist-women">
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Firm Foundation</div><div class="song-artist-text">Cody Carnes</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'ff-g')">G</button><button class="key-btn" onclick="switchKey(this,'ff-a')">A</button></div></div><div class="track-panel" data-track="ff-g"></div><div class="track-panel" data-track="ff-a"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Living Hope</div><div class="song-artist-text">Phil Wickham</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'lh-a')">A</button><button class="key-btn" onclick="switchKey(this,'lh-bb')">Bb</button></div></div><div class="track-panel" data-track="lh-a"></div><div class="track-panel" data-track="lh-bb"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">What a Beautiful Name</div><div class="song-artist-text">Hillsong Worship</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'wabn-d')">D</button><button class="key-btn" onclick="switchKey(this,'wabn-eb')">Eb</button></div></div><div class="track-panel" data-track="wabn-d"></div><div class="track-panel" data-track="wabn-eb"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Praise</div><div class="song-artist-text">Brandon Lake</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'pr-w-eb')">Eb</button><button class="key-btn" onclick="switchKey(this,'pr-w-f')">F</button><button class="key-btn" onclick="switchKey(this,'pr-w-fs')">F#/Gb</button><button class="key-btn" onclick="switchKey(this,'pr-w-g')">G</button></div></div><div class="track-panel" data-track="pr-w-eb"></div><div class="track-panel" data-track="pr-w-f"></div><div class="track-panel" data-track="pr-w-fs"></div><div class="track-panel" data-track="pr-w-g"></div></div>
+  </div>
+  <div class="subrole-panel" id="vocalist-men">
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Firm Foundation</div><div class="song-artist-text">Cody Carnes</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'ff-e')">E</button><button class="key-btn" onclick="switchKey(this,'ff-fs')">F#</button><button class="key-btn" onclick="switchKey(this,'ff-g')">G</button></div></div><div class="track-panel" data-track="ff-e"></div><div class="track-panel" data-track="ff-fs"></div><div class="track-panel" data-track="ff-g"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Living Hope</div><div class="song-artist-text">Phil Wickham</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'lh-fs')">F#</button><button class="key-btn" onclick="switchKey(this,'lh-g')">G</button><button class="key-btn" onclick="switchKey(this,'lh-a')">A</button></div></div><div class="track-panel" data-track="lh-fs"></div><div class="track-panel" data-track="lh-g"></div><div class="track-panel" data-track="lh-a"></div></div>
+    <div class="song-group"><div class="song-card"><div class="song-info"><div class="song-title-text">Praise</div><div class="song-artist-text">Brandon Lake</div></div><div class="key-strip"><button class="key-btn" onclick="switchKey(this,'pr-m-ab')">Ab</button><button class="key-btn" onclick="switchKey(this,'pr-m-bb')">Bb</button><button class="key-btn" onclick="switchKey(this,'pr-m-b')">B</button></div></div><div class="track-panel" data-track="pr-m-ab"></div><div class="track-panel" data-track="pr-m-bb"></div><div class="track-panel" data-track="pr-m-b"></div></div>
+  </div>
+</div>
+
+<!-- ACOUSTIC -->
+<div class="role-panel" id="panel-acoustic">
+  <div class="panel-header">
+    <div class="panel-title" data-content-key="acoustic-title">Acoustic Guitar</div>
+    <p class="panel-desc" data-content-key="acoustic-desc">Acoustic players are the rhythmic and harmonic anchor of our band. We're looking for players who lock in with the groove, make tasteful chord choices, and support the song without overplaying. Record yourself playing one song from start to finish.</p>
+  </div>
+  <div class="two-col">
+    <div class="instr-card">
+      <div class="instr-section-title">What We're Listening For</div>
+      <ul class="dot-list" data-content-key="acoustic-criteria" data-content-type="list">
+        <li>Consistent, locked-in strumming rhythm</li>
+        <li>Clean chord transitions with no buzz or muted strings</li>
+        <li>Dynamics — soft in verses, full in choruses</li>
+        <li>Capo usage and alternative voicings when appropriate</li>
+        <li>Musical restraint — serving the song, not showcasing</li>
+      </ul>
+    </div>
+    <div class="instr-card">
+      <div class="instr-section-title">Songs to Prepare</div>
+      <ul class="dot-list" data-content-key="acoustic-songs" data-content-type="list">
+        <li>Firm Foundation — Cody Carnes</li>
+        <li>Living Hope — Phil Wickham</li>
+        <li>King of Kings — Hillsong Worship</li>
+        <li>What a Beautiful Name — Hillsong Worship</li>
+        <li>Praise — Brandon Lake</li>
+      </ul>
+      <div class="highlight-box"><strong>Priority:</strong> <span data-content-key="acoustic-priority">Firm Foundation · Living Hope · Praise</span></div>
+    </div>
+  </div>
+  <div class="tip-box"><div class="tip-label">Video Tip</div><div class="tip-text" data-content-key="acoustic-tip">Film from an angle that shows both your strumming and fretting hand. Good lighting and dry audio make it easier for us to evaluate. One song, straight through — no stopping mid-take.</div></div>
+</div>
+
+<!-- ELECTRIC -->
+<div class="role-panel" id="panel-electric">
+  <div class="panel-header">
+    <div class="panel-title" data-content-key="electric-title">Electric Guitar</div>
+    <p class="panel-desc" data-content-key="electric-desc">Electric players at Orbit define the texture of our sound — from clean shimmer to driven grit. We want players who know when to fill and when to sit still. Record one song using your actual rig: amp, pedals, and the tone you'd actually bring to rehearsal.</p>
+  </div>
+  <div class="two-col">
+    <div class="instr-card">
+      <div class="instr-section-title">What We're Listening For</div>
+      <ul class="dot-list" data-content-key="electric-criteria" data-content-type="list">
+        <li>Tone quality — clean, controlled, intentional</li>
+        <li>Timing and pocket — do you lock with the song?</li>
+        <li>Arrangement awareness — fills, swells, and space</li>
+        <li>Pedal board organization and sound transitions</li>
+        <li>Ability to play minimally when the song calls for it</li>
+      </ul>
+    </div>
+    <div class="instr-card">
+      <div class="instr-section-title">Songs to Prepare</div>
+      <ul class="dot-list" data-content-key="electric-songs" data-content-type="list">
+        <li>Firm Foundation — Cody Carnes</li>
+        <li>Living Hope — Phil Wickham</li>
+        <li>King of Kings — Hillsong Worship</li>
+        <li>What a Beautiful Name — Hillsong Worship</li>
+        <li>Praise — Brandon Lake</li>
+      </ul>
+      <div class="highlight-box"><strong>Priority:</strong> <span data-content-key="electric-priority">King of Kings · What a Beautiful Name · Praise</span></div>
+    </div>
+  </div>
+  <div class="tip-box"><div class="tip-label">Video Tip</div><div class="tip-text" data-content-key="electric-tip">DI or audio interface preferred — we need to hear your actual tone. Show your pedal board at the start. Play the song as if you're in rehearsal: no showboating, just serve the song.</div></div>
+</div>
+
+<!-- KEYS -->
+<div class="role-panel" id="panel-keys">
+  <div class="panel-header">
+    <div class="panel-title" data-content-key="keys-title">Keys</div>
+    <p class="panel-desc" data-content-key="keys-desc">Keys players at Orbit carry huge sonic real estate — from pad textures under the whole song to melodic piano moments that define a section. We're looking for players who understand arrangement, know when to hold back, and can read a room. Record one song on any keyboard rig you have.</p>
+  </div>
+  <div class="two-col">
+    <div class="instr-card">
+      <div class="instr-section-title">What We're Listening For</div>
+      <ul class="dot-list" data-content-key="keys-criteria" data-content-type="list">
+        <li>Pad layering — sustain, swell, and release control</li>
+        <li>Piano voicings — open, spacious chords that support vocalists</li>
+        <li>Left-hand bass awareness when no bass is present</li>
+        <li>Sound selection — appropriate patch choices per section</li>
+        <li>Musical sensitivity — less is often more</li>
+      </ul>
+    </div>
+    <div class="instr-card">
+      <div class="instr-section-title">Songs to Prepare</div>
+      <ul class="dot-list" data-content-key="keys-songs" data-content-type="list">
+        <li>Firm Foundation — Cody Carnes</li>
+        <li>Living Hope — Phil Wickham</li>
+        <li>King of Kings — Hillsong Worship</li>
+        <li>What a Beautiful Name — Hillsong Worship</li>
+        <li>Praise — Brandon Lake</li>
+      </ul>
+      <div class="highlight-box"><strong>Priority:</strong> <span data-content-key="keys-priority">What a Beautiful Name · Firm Foundation · Living Hope</span></div>
+    </div>
+  </div>
+  <div class="tip-box"><div class="tip-label">Video Tip</div><div class="tip-text" data-content-key="keys-tip">Record with a direct audio feed if possible — we want to hear the actual patches you're using. Show your keyboard setup at the start. Play the full song: intro, verse, chorus, bridge, outro.</div></div>
+</div>
+
+<!-- BASS -->
+<div class="role-panel" id="panel-bass">
+  <div class="panel-header">
+    <div class="panel-title" data-content-key="bass-title">Bass</div>
+    <p class="panel-desc" data-content-key="bass-desc">Bass players are the rhythmic and harmonic foundation of the entire band. If you don't lock with the kick drum, nothing else works. We want players who are solid first, creative second. Record one song DI — no amp mic if you can help it.</p>
+  </div>
+  <div class="two-col">
+    <div class="instr-card">
+      <div class="instr-section-title">What We're Listening For</div>
+      <ul class="dot-list" data-content-key="bass-criteria" data-content-type="list">
+        <li>Locked-in pocket with the kick drum pattern</li>
+        <li>Clean tone — no excess buzz, muting, or finger noise</li>
+        <li>Root movement and harmonic awareness</li>
+        <li>Restraint — does the bass serve the song?</li>
+        <li>Fills that resolve, not fills that wander</li>
+      </ul>
+    </div>
+    <div class="instr-card">
+      <div class="instr-section-title">Songs to Prepare</div>
+      <ul class="dot-list" data-content-key="bass-songs" data-content-type="list">
+        <li>Firm Foundation — Cody Carnes</li>
+        <li>Living Hope — Phil Wickham</li>
+        <li>King of Kings — Hillsong Worship</li>
+        <li>What a Beautiful Name — Hillsong Worship</li>
+        <li>Praise — Brandon Lake</li>
+      </ul>
+      <div class="highlight-box"><strong>Priority:</strong> <span data-content-key="bass-priority">Praise · King of Kings · Living Hope</span></div>
+    </div>
+  </div>
+  <div class="tip-box"><div class="tip-label">Video Tip</div><div class="tip-text" data-content-key="bass-tip">DI direct is preferred — plug straight into your interface or a DI box. Film your hands clearly so we can see your picking/plucking style. One song, full take.</div></div>
+</div>
+
+<!-- DRUMS -->
+<div class="role-panel" id="panel-drums">
+  <div class="panel-header">
+    <div class="panel-title" data-content-key="drums-title">Drums</div>
+    <p class="panel-desc" data-content-key="drums-desc">Drums set the entire energy of worship. We're looking for players who feel the song, not just keep time. Groove, ghost notes, dynamic sensitivity, and click-lock are all on the table. Set up a camera and play one full song to a reference track or click.</p>
+  </div>
+  <div class="two-col">
+    <div class="instr-card">
+      <div class="instr-section-title">What We're Listening For</div>
+      <ul class="dot-list" data-content-key="drums-criteria" data-content-type="list">
+        <li>Click-track consistency — locked all the way through</li>
+        <li>Dynamic range — soft verses, full choruses, controlled transitions</li>
+        <li>Kick and snare tone and placement accuracy</li>
+        <li>Ghost note sensitivity and hi-hat color</li>
+        <li>Musical taste — when to build, when to strip back</li>
+      </ul>
+    </div>
+    <div class="instr-card">
+      <div class="instr-section-title">Songs to Prepare</div>
+      <ul class="dot-list" data-content-key="drums-songs" data-content-type="list">
+        <li>Firm Foundation — Cody Carnes</li>
+        <li>Living Hope — Phil Wickham</li>
+        <li>King of Kings — Hillsong Worship</li>
+        <li>What a Beautiful Name — Hillsong Worship</li>
+        <li>Praise — Brandon Lake</li>
+      </ul>
+      <div class="highlight-box"><strong>Priority:</strong> <span data-content-key="drums-priority">Praise · Firm Foundation · King of Kings</span></div>
+    </div>
+  </div>
+  <div class="tip-box"><div class="tip-label">Video Tip</div><div class="tip-text" data-content-key="drums-tip">Play to a reference recording or click track. Overhead angle or wide front shot showing the full kit is ideal. Use IEM or headphones so the click doesn't bleed into your recording. One full song, no breaks.</div></div>
+</div>
+
+</div><!-- /role-panels -->
+
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-title">How We Evaluate</div>
+    <p class="section-desc" data-content-key="eval-desc">Every audition is reviewed by Isaiah, Brecklyn, and Matt. We score across five dimensions and give every person written feedback regardless of the outcome.</p>
+  </div>
+  <div class="rubric-wrap">
+    <table class="rubric-table">
+      <thead><tr><th>Category</th><th>What We're Measuring</th></tr></thead>
+      <tbody>
+        <tr><td>Pitch &amp; Tone</td><td>Are you consistently in tune? Is your tone controlled and intentional across the full range of the song?</td></tr>
+        <tr><td>Timing &amp; Groove</td><td>Do you lock with the track? Does your feel match the style of the song — not just the notes, but the pocket?</td></tr>
+        <tr><td>Dynamics</td><td>Can you play or sing softly in a verse and fully in a chorus? Do you respond to the song's energy?</td></tr>
+        <tr><td>Musicality</td><td>Do you make musical decisions, or are you just playing the notes? Do you serve the song?</td></tr>
+        <tr><td>Team Fit</td><td>Based on your video and form, would you thrive in a collaborative, servant-hearted team environment?</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-title">Team Tiers</div>
+    <p class="section-desc" data-content-key="tiers-desc">Orbit Worship runs a tiered team structure. Your audition determines where you start — and tiers are reviewed quarterly based on growth, availability, and team needs.</p>
+  </div>
+  <div class="tiers-grid">
+    <div class="tier-card">
+      <div class="tier-name" data-content-key="tier1-name">Tier 1 — Choir / BGV</div>
+      <div class="tier-desc" data-content-key="tier1-desc">You serve in the choir or as a background vocalist in larger ensemble settings. Strong pitch and blend, still developing song familiarity or stage presence. A great entry point and a vital part of our sound.</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name" data-content-key="tier2-name">Tier 2 — Frontline</div>
+      <div class="tier-desc" data-content-key="tier2-desc">You serve on the front line as a featured background vocalist or supporting musician. Consistent, reliable, and able to handle microphone responsibilities with maturity.</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name" data-content-key="tier3-name">Tier 3 — Lead Vocalist / WL</div>
+      <div class="tier-desc" data-content-key="tier3-desc">You lead songs or carry primary vocal responsibility. This tier requires a full-band Phase 2 audition and pastoral recommendation in addition to the video submission.</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2 data-content-key="cta-title">Ready to Audition?</h2>
+  <p data-content-key="cta-desc">Record your video, then submit the form below. We review all submissions within two weeks and send written feedback to everyone — whether you make the team or not.</p>
+  <a href="https://orbitchurch.churchcenter.com/people/forms/560967" class="apply-btn" target="_blank">Submit Your Audition →</a>
+</div>
+
+<footer class="site-footer">© Orbit Church · Worship Team Auditions</footer>
+
+<!-- ADMIN OVERLAY -->
+<div class="admin-overlay" id="adminOverlay" onclick="if(event.target===this)closeAdmin()">
+  <div class="admin-modal">
+    <div class="admin-modal-header">
+      <span class="admin-modal-title">Orbit Worship · Manage</span>
+      <button class="admin-close" onclick="closeAdmin()">×</button>
+    </div>
+    <div class="admin-pin-screen" id="adminPinScreen">
+      <p class="pin-prompt">Admin Access Required</p>
+      <p class="pin-sub">Enter your PIN to manage this page</p>
+      <input type="password" class="pin-input" id="pinInput" placeholder="••••" maxlength="20" onkeydown="if(event.key==='Enter')checkPin()">
+      <p class="pin-error" id="pinError">Incorrect PIN — try again</p>
+      <button class="pin-unlock-btn" onclick="checkPin()">Unlock</button>
+    </div>
+    <div class="admin-panels" id="adminPanels">
+      <div class="admin-tab-bar">
+        <button class="admin-tab-btn active" onclick="showAdminTab('tracks',this)">🎵 Backing Tracks</button>
+        <button class="admin-tab-btn" onclick="showAdminTab('content',this)">✏️ Edit Text</button>
+      </div>
+      <div class="admin-body">
+        <div id="adminTabTracks"></div>
+        <div id="adminTabContent" style="display:none"></div>
+        <div class="publish-fallback" id="publishFallback">
+          <h4>📋 How to Share Your Changes</h4>
+          <p>The Publish button works when this page is hosted on a website. Since you're opening a local file, here's how to share updates:</p>
+          <ol>
+            <li>Close this dialog</li>
+            <li>Press <strong>Cmd+S</strong> (Mac) or <strong>Ctrl+S</strong> (Windows)</li>
+            <li>Save as <strong>Web Page, HTML Only</strong> (.html)</li>
+            <li>Upload that file to Google Drive, replacing the previous version</li>
+            <li>Everyone with your shared link will see the updated content</li>
+          </ol>
+          <p><em>Tip: host this file on Google Sites or any web server for one-click publishing.</em></p>
+        </div>
+      </div>
+      <div class="admin-footer">
+        <button class="admin-btn" onclick="clearCurrentTab()">Reset Tab</button>
+        <button class="admin-btn admin-btn-publish" onclick="publishPage()">⬇ Publish &amp; Download</button>
+        <button class="admin-btn admin-btn-primary" onclick="saveAll()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CHANGE YOUR PIN HERE ─────────────────────────────────────────────────────
+var ADMIN_PIN = 'orbit2024';
+
+// ── PUBLISHED DATA (auto-filled when you click Publish & Download) ────────────
+var PUBLISHED_TRACKS = {};
+var PUBLISHED_CONTENT = {};
+
+var TRACK_STORE   = 'orbit_tracks_v2';
+var CONTENT_STORE = 'orbit_content_v2';
+
+var TRACKS = [
+  {id:'ff-e',    label:'E',      group:'Firm Foundation'},
+  {id:'ff-fs',   label:'F#',     group:'Firm Foundation'},
+  {id:'ff-g',    label:'G',      group:'Firm Foundation'},
+  {id:'ff-a',    label:'A',      group:'Firm Foundation'},
+  {id:'lh-fs',   label:'F#',     group:'Living Hope'},
+  {id:'lh-g',    label:'G',      group:'Living Hope'},
+  {id:'lh-a',    label:'A',      group:'Living Hope'},
+  {id:'lh-bb',   label:'Bb',     group:'Living Hope'},
+  {id:'kk-ab',   label:'Ab',     group:'King of Kings'},
+  {id:'kk-a',    label:'A',      group:'King of Kings'},
+  {id:'kk-bb',   label:'Bb',     group:'King of Kings'},
+  {id:'kk-b',    label:'B',      group:'King of Kings'},
+  {id:'wabn-c',  label:'C',      group:'What a Beautiful Name'},
+  {id:'wabn-db', label:'Db',     group:'What a Beautiful Name'},
+  {id:'wabn-d',  label:'D',      group:'What a Beautiful Name'},
+  {id:'wabn-eb', label:'Eb',     group:'What a Beautiful Name'},
+  {id:'pr-m-ab', label:'Ab',     group:"Praise (Men's)"},
+  {id:'pr-m-bb', label:'Bb',     group:"Praise (Men's)"},
+  {id:'pr-m-b',  label:'B',      group:"Praise (Men's)"},
+  {id:'pr-m-c',  label:'C',      group:"Praise (Men's)"},
+  {id:'pr-w-eb', label:'Eb',     group:"Praise (Women's)"},
+  {id:'pr-w-f',  label:'F',      group:"Praise (Women's)"},
+  {id:'pr-w-fs', label:'F#/Gb',  group:"Praise (Women's)"},
+  {id:'pr-w-g',  label:'G',      group:"Praise (Women's)"},
+];
+
+var CONTENT_KEYS = [
+  {section:'Homepage',items:[
+    {key:'hero-label',  label:'Page label chip',  type:'text'},
+    {key:'hero-title',  label:'Main headline',    type:'text'},
+    {key:'hero-desc',   label:'Intro paragraph',  type:'textarea'},
+  ]},
+  {section:'Process Steps',items:[
+    {key:'step1-title', label:'Step 1 — title',        type:'text'},
+    {key:'step1-desc',  label:'Step 1 — description',  type:'text'},
+    {key:'step2-title', label:'Step 2 — title',        type:'text'},
+    {key:'step2-desc',  label:'Step 2 — description',  type:'text'},
+    {key:'step3-title', label:'Step 3 — title',        type:'text'},
+    {key:'step3-desc',  label:'Step 3 — description',  type:'text'},
+  ]},
+  {section:'Worship Leader',items:[
+    {key:'wl-title', label:'Section heading',      type:'text'},
+    {key:'wl-desc',  label:'Description',          type:'textarea'},
+    {key:'wl-tip',   label:'Leadership test note', type:'textarea'},
+  ]},
+  {section:'Vocalist',items:[
+    {key:'vocalist-title', label:'Section heading', type:'text'},
+    {key:'vocalist-desc',  label:'Description',     type:'textarea'},
+  ]},
+  {section:'Acoustic Guitar',items:[
+    {key:'acoustic-title',    label:'Section heading',                             type:'text'},
+    {key:'acoustic-desc',     label:'Description',                                 type:'textarea'},
+    {key:'acoustic-criteria', label:"What We're Listening For (one item per line)",type:'list'},
+    {key:'acoustic-songs',    label:'Songs to Prepare (one per line)',             type:'list'},
+    {key:'acoustic-priority', label:'Priority songs',                              type:'text'},
+    {key:'acoustic-tip',      label:'Video tip',                                   type:'textarea'},
+  ]},
+  {section:'Electric Guitar',items:[
+    {key:'electric-title',    label:'Section heading',                             type:'text'},
+    {key:'electric-desc',     label:'Description',                                 type:'textarea'},
+    {key:'electric-criteria', label:"What We're Listening For (one item per line)",type:'list'},
+    {key:'electric-songs',    label:'Songs to Prepare (one per line)',             type:'list'},
+    {key:'electric-priority', label:'Priority songs',                              type:'text'},
+    {key:'electric-tip',      label:'Video tip',                                   type:'textarea'},
+  ]},
+  {section:'Keys',items:[
+    {key:'keys-title',    label:'Section heading',                                 type:'text'},
+    {key:'keys-desc',     label:'Description',                                     type:'textarea'},
+    {key:'keys-criteria', label:"What We're Listening For (one item per line)",    type:'list'},
+    {key:'keys-songs',    label:'Songs to Prepare (one per line)',                 type:'list'},
+    {key:'keys-priority', label:'Priority songs',                                  type:'text'},
+    {key:'keys-tip',      label:'Video tip',                                       type:'textarea'},
+  ]},
+  {section:'Bass',items:[
+    {key:'bass-title',    label:'Section heading',                                 type:'text'},
+    {key:'bass-desc',     label:'Description',                                     type:'textarea'},
+    {key:'bass-criteria', label:"What We're Listening For (one item per line)",    type:'list'},
+    {key:'bass-songs',    label:'Songs to Prepare (one per line)',                 type:'list'},
+    {key:'bass-priority', label:'Priority songs',                                  type:'text'},
+    {key:'bass-tip',      label:'Video tip',                                       type:'textarea'},
+  ]},
+  {section:'Drums',items:[
+    {key:'drums-title',    label:'Section heading',                                type:'text'},
+    {key:'drums-desc',     label:'Description',                                    type:'textarea'},
+    {key:'drums-criteria', label:"What We're Listening For (one item per line)",   type:'list'},
+    {key:'drums-songs',    label:'Songs to Prepare (one per line)',                type:'list'},
+    {key:'drums-priority', label:'Priority songs',                                 type:'text'},
+    {key:'drums-tip',      label:'Video tip',                                      type:'textarea'},
+  ]},
+  {section:'Evaluation & Tiers',items:[
+    {key:'eval-desc',   label:'Evaluation intro paragraph', type:'textarea'},
+    {key:'tiers-desc',  label:'Tiers intro paragraph',      type:'textarea'},
+    {key:'tier1-name',  label:'Tier 1 name',                type:'text'},
+    {key:'tier1-desc',  label:'Tier 1 description',         type:'textarea'},
+    {key:'tier2-name',  label:'Tier 2 name',                type:'text'},
+    {key:'tier2-desc',  label:'Tier 2 description',         type:'textarea'},
+    {key:'tier3-name',  label:'Tier 3 name',                type:'text'},
+    {key:'tier3-desc',  label:'Tier 3 description',         type:'textarea'},
+  ]},
+  {section:'Submit Section',items:[
+    {key:'cta-title', label:'Headline',    type:'text'},
+    {key:'cta-desc',  label:'Description', type:'textarea'},
+  ]},
+];
+
+function driveToStream(u){if(!u)return null;u=u.trim();if(u.includes('uc?')||u.includes('export=view')||u.includes('export=download'))return u;var m=u.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);if(m)return'https://drive.google.com/uc?export=view&id='+m[1];var m2=u.match(/[?&]id=([a-zA-Z0-9_-]+)/);if(m2)return'https://drive.google.com/uc?export=view&id='+m2[1];return u;}
+function loadTracks(){try{return JSON.parse(localStorage.getItem(TRACK_STORE)||'{}');}catch(e){return{};}}
+function loadContent(){try{return JSON.parse(localStorage.getItem(CONTENT_STORE)||'{}');}catch(e){return{};}}
+function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function escA(s){return String(s).replace(/"/g,'&quot;');}
+
+function getDefaultValue(key){
+  var el=document.querySelector('[data-content-key="'+key+'"]');
+  if(!el)return'';
+  if(el.getAttribute('data-content-type')==='list'){
+    return Array.from(el.querySelectorAll('li')).map(function(li){return li.textContent.trim();}).join('\n');
+  }
+  return el.textContent.trim();
+}
+
+function applyTracks(data){
+  document.querySelectorAll('.track-panel[data-track]').forEach(function(panel){
+    var id=panel.getAttribute('data-track');
+    var url=data[id]?driveToStream(data[id]):null;
+    panel.innerHTML=url
+      ?'<audio controls preload="none"><source src="'+escA(url)+'" type="audio/mpeg">Your browser does not support audio.</audio>'
+      :'<div class="track-placeholder">No track linked yet — add a Google Drive link in the Manage panel.</div>';
+  });
+}
+
+function applyContent(data){
+  Object.keys(data).forEach(function(key){
+    if(!data[key])return;
+    document.querySelectorAll('[data-content-key="'+key+'"]').forEach(function(el){
+      if(el.getAttribute('data-content-type')==='list'){
+        var lines=data[key].split('\n').filter(function(l){return l.trim();});
+        el.innerHTML=lines.map(function(l){return'<li>'+escH(l.trim())+'</li>';}).join('');
+      } else {
+        el.textContent=data[key];
+      }
+    });
+  });
+}
+
+var adminUnlocked=false;
+var currentAdminTab='tracks';
+
+function openAdmin(){
+  document.getElementById('adminOverlay').style.display='flex';
+  if(!adminUnlocked){
+    document.getElementById('adminPinScreen').style.display='flex';
+    document.getElementById('adminPanels').style.display='none';
+    setTimeout(function(){document.getElementById('pinInput').focus();},100);
+  } else {
+    document.getElementById('adminPinScreen').style.display='none';
+    document.getElementById('adminPanels').style.display='flex';
+    buildTrackForm(); buildContentForm();
+  }
+}
+function closeAdmin(){
+  document.getElementById('adminOverlay').style.display='none';
+  document.getElementById('publishFallback').style.display='none';
+}
+function checkPin(){
+  if(document.getElementById('pinInput').value===ADMIN_PIN){
+    adminUnlocked=true;
+    document.getElementById('adminPinScreen').style.display='none';
+    document.getElementById('adminPanels').style.display='flex';
+    buildTrackForm(); buildContentForm();
+  } else {
+    document.getElementById('pinError').style.display='block';
+    var inp=document.getElementById('pinInput');
+    inp.value=''; inp.classList.add('shake');
+    setTimeout(function(){inp.classList.remove('shake');},450);
+  }
+}
+function showAdminTab(tab,btn){
+  currentAdminTab=tab;
+  document.getElementById('adminTabTracks').style.display=(tab==='tracks')?'block':'none';
+  document.getElementById('adminTabContent').style.display=(tab==='content')?'block':'none';
+  document.getElementById('publishFallback').style.display='none';
+  document.querySelectorAll('.admin-tab-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+function buildTrackForm(){
+  var data=Object.assign({},PUBLISHED_TRACKS,loadTracks());
+  var groups={},order=[];
+  TRACKS.forEach(function(t){if(!groups[t.group]){groups[t.group]=[];order.push(t.group);}groups[t.group].push(t);});
+  var h='<p class="track-instructions">Paste a Google Drive share link next to each key. Click "Publish &amp; Download" to bake the links into a shareable file.</p>';
+  order.forEach(function(g){
+    h+='<div class="track-group"><div class="track-group-title">'+escH(g)+'</div>';
+    groups[g].forEach(function(t){
+      var v=data[t.id]||'';
+      h+='<div class="track-row"><span class="track-key-label">'+escH(t.label)+'</span>';
+      h+='<input class="track-input" data-track-id="'+escA(t.id)+'" value="'+escA(v)+'" placeholder="Paste Google Drive link…">';
+      if(v)h+='<span class="track-linked">✓ Linked</span>';
+      h+='</div>';
+    });
+    h+='</div>';
+  });
+  document.getElementById('adminTabTracks').innerHTML=h;
+}
+function buildContentForm(){
+  var data=Object.assign({},PUBLISHED_CONTENT,loadContent());
+  var h='';
+  CONTENT_KEYS.forEach(function(section){
+    h+='<details class="content-section"><summary class="content-section-title">'+escH(section.section)+'</summary><div class="content-section-body">';
+    section.items.forEach(function(item){
+      var val=data[item.key]!==undefined?data[item.key]:getDefaultValue(item.key);
+      h+='<div class="content-field"><label class="content-label">'+escH(item.label)+'</label>';
+      if(item.type==='list'){
+        h+='<textarea class="content-input" data-key="'+escA(item.key)+'" rows="5">'+escH(val)+'</textarea>';
+        h+='<small class="content-hint">One bullet point per line. Blank lines are ignored.</small>';
+      } else if(item.type==='textarea'){
+        h+='<textarea class="content-input" data-key="'+escA(item.key)+'" rows="3">'+escH(val)+'</textarea>';
+      } else {
+        h+='<input class="content-input" data-key="'+escA(item.key)+'" value="'+escA(val)+'">';
+      }
+      h+='</div>';
+    });
+    h+='</div></details>';
+  });
+  document.getElementById('adminTabContent').innerHTML=h;
+}
+function saveAll(){
+  var td=Object.assign({},PUBLISHED_TRACKS,loadTracks());
+  document.querySelectorAll('.track-input[data-track-id]').forEach(function(inp){
+    var id=inp.getAttribute('data-track-id'),v=inp.value.trim();
+    if(v)td[id]=v; else delete td[id];
+  });
+  localStorage.setItem(TRACK_STORE,JSON.stringify(td));
+  var cd=Object.assign({},PUBLISHED_CONTENT,loadContent());
+  document.querySelectorAll('.content-input[data-key]').forEach(function(inp){
+    var k=inp.getAttribute('data-key'),v=inp.value.trim();
+    if(v)cd[k]=v; else delete cd[k];
+  });
+  localStorage.setItem(CONTENT_STORE,JSON.stringify(cd));
+  applyTracks(Object.assign({},PUBLISHED_TRACKS,loadTracks()));
+  applyContent(Object.assign({},PUBLISHED_CONTENT,loadContent()));
+  showToast('Changes saved!');
+  closeAdmin();
+}
+function clearCurrentTab(){
+  if(!confirm('Clear all '+currentAdminTab+' data? This cannot be undone.'))return;
+  if(currentAdminTab==='tracks'){localStorage.removeItem(TRACK_STORE);applyTracks(Object.assign({},PUBLISHED_TRACKS));buildTrackForm();}
+  else{localStorage.removeItem(CONTENT_STORE);applyContent(Object.assign({},PUBLISHED_CONTENT));buildContentForm();}
+  showToast('Cleared.');
+}
+function publishPage(){
+  saveAll();
+  openAdmin();
+  var td=Object.assign({},PUBLISHED_TRACKS,loadTracks());
+  var cd=Object.assign({},PUBLISHED_CONTENT,loadContent());
+  fetch(window.location.href)
+    .then(function(r){return r.text();})
+    .then(function(html){
+      html=html.replace('var PUBLISHED_TRACKS = {};','var PUBLISHED_TRACKS = '+JSON.stringify(td)+';');
+      html=html.replace('var PUBLISHED_CONTENT = {};','var PUBLISHED_CONTENT = '+JSON.stringify(cd)+';');
+      var blob=new Blob([html],{type:'text/html'});
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url; a.download='Orbit_Worship_Audition_Tracks.html';
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a); URL.revokeObjectURL(url);
+      showToast('Downloaded! Upload this file to Google Drive to publish your changes.');
+    })
+    .catch(function(){
+      document.getElementById('publishFallback').style.display='block';
+    });
+}
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3500);
+}
+function switchRole(btn,id){
+  document.querySelectorAll('.role-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.role-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  var p=document.getElementById('panel-'+id);
+  if(p)p.classList.add('active');
+}
+function switchSubRole(btn,role,sub){
+  var panel=document.getElementById('panel-'+role);
+  panel.querySelectorAll('.subrole-btn').forEach(function(b){b.classList.remove('active');});
+  panel.querySelectorAll('.subrole-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  var sp=document.getElementById(role+'-'+sub);
+  if(sp)sp.classList.add('active');
+}
+function switchKey(btn,trackId){
+  var group=btn.closest('.song-group');
+  group.querySelectorAll('.key-btn').forEach(function(b){b.classList.remove('active');});
+  group.querySelectorAll('.track-panel').forEach(function(p){p.style.display='none';});
+  btn.classList.add('active');
+  var tp=group.querySelector('.track-panel[data-track="'+trackId+'"]');
+  if(tp)tp.style.display='block';
+}
+(function(){
+  var t=Object.assign({},PUBLISHED_TRACKS,loadTracks());
+  var c=Object.assign({},PUBLISHED_CONTENT,loadContent());
+  applyTracks(t); applyContent(c);
+})();
+</script>
+</body>
+</html>
