@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orbit Church — Giving Snapshot 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --base-bg: #0a0a0a;
+    --alt-bg: #191919;
+    --card-bg: #141414;
+    --card-bg-light: #222222;
+    --accent: #DBCAAE;
+    --accent-dark: #b0a28c;
+    --accent-light: #e3d5bf;
+    --text: #ffffff;
+    --text-muted: #888888;
+    --text-subtle: #555555;
+    --border: #2a2a2a;
+    --border-accent: rgba(219,202,174,0.25);
+    --risk-red: #e05252;
+    --risk-yellow: #d4a843;
+    --risk-green: #4caf7d;
+    --font: 'Montserrat', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    background: var(--base-bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.95);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 2rem;
+    height: 56px;
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-size: 13px; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); white-space: nowrap;
+  }
+  .nav-links {
+    display: flex; gap: 0; overflow-x: auto; scrollbar-width: none;
+    flex: 1;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 11px;
+    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0 14px; height: 56px; display: flex; align-items: center;
+    white-space: nowrap; border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .nav-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .nav-date { font-size: 11px; color: var(--text-subtle); white-space: nowrap; }
+
+  /* LAYOUT */
+  main { padding-top: 56px; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: 2.2rem; font-weight: 800; line-height: 1.1;
+    text-transform: uppercase; letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  .section-subtitle {
+    font-size: 1rem; color: var(--text-muted); max-width: 640px;
+    margin-bottom: 3rem; line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--base-bg);
+    padding: 6rem 0 5rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(219,202,174,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 32px; height: 1px; background: var(--accent); display: block;
+  }
+  .hero-title {
+    font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900;
+    text-transform: uppercase; line-height: 0.95; letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+  }
+  .hero-title span { color: var(--accent); }
+  .hero-mission {
+    font-size: 1rem; color: var(--text-muted); max-width: 540px;
+    border-left: 2px solid var(--accent); padding-left: 1.25rem;
+    font-style: italic; line-height: 1.7; margin-bottom: 3rem;
+  }
+  .hero-meta {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+  }
+  .hero-meta-item label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-subtle); display: block; margin-bottom: 4px;
+  }
+  .hero-meta-item span {
+    font-size: 14px; font-weight: 600; color: var(--text-muted);
+  }
+
+  /* METRIC CARDS */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 3rem; }
+  .metric-card {
+    background: var(--card-bg); padding: 1.5rem;
+  }
+  .metric-card .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-subtle); margin-bottom: 8px;
+  }
+  .metric-card .value {
+    font-size: 1.75rem; font-weight: 800; color: var(--text); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-card .value.accent { color: var(--accent); }
+  .metric-card .sub {
+    font-size: 11px; color: var(--text-muted);
+  }
+
+  /* RISK BADGE */
+  .risk { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; }
+  .risk-red { background: rgba(224,82,82,0.12); color: var(--risk-red); border: 1px solid rgba(224,82,82,0.3); }
+  .risk-yellow { background: rgba(212,168,67,0.12); color: var(--risk-yellow); border: 1px solid rgba(212,168,67,0.3); }
+  .risk-green { background: rgba(76,175,125,0.12); color: var(--risk-green); border: 1px solid rgba(76,175,125,0.3); }
+
+  /* DATA BADGES */
+  .badge-data { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; background: rgba(219,202,174,0.1); color: var(--accent); border: 1px solid rgba(219,202,174,0.2); margin-right: 4px; }
+  .badge-inf { background: rgba(120,140,220,0.1); color: #8899ee; border: 1px solid rgba(120,140,220,0.2); }
+  .badge-past { background: rgba(100,180,130,0.1); color: #5aaa80; border: 1px solid rgba(100,180,130,0.2); }
+
+  /* SCORECARD */
+  .scorecard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .score-item { background: var(--card-bg); padding: 1.25rem 1.5rem; }
+  .score-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .score-name { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+  .score-num { font-size: 1.5rem; font-weight: 900; color: var(--accent); }
+  .score-bar-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
+  .score-bar-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+  .score-text { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    background: var(--alt-bg); color: var(--text-subtle);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 10px 14px; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: rgba(219,202,174,0.03); }
+
+  /* SEGMENT CARDS */
+  .segment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 2rem; }
+  .segment-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-top: 3px solid var(--accent); padding: 1.5rem; border-radius: 4px;
+  }
+  .segment-card h3 {
+    font-size: 13px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--accent); margin-bottom: 6px;
+  }
+  .segment-count { font-size: 2rem; font-weight: 900; color: var(--text); margin-bottom: 12px; }
+  .segment-body { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+  .segment-action { background: var(--alt-bg); border-radius: 3px; padding: 10px 14px; font-size: 12px; color: var(--text-muted); }
+  .segment-action strong { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+
+  /* CONCENTRATION BAR */
+  .concentration-item { margin-bottom: 1.5rem; }
+  .conc-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .conc-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .conc-value { font-size: 12px; font-weight: 700; }
+  .conc-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; position: relative; }
+  .conc-fill { height: 100%; border-radius: 3px; }
+  .conc-benchmark { position: absolute; top: -4px; bottom: -4px; width: 1px; background: rgba(219,202,174,0.5); }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    border-left: 3px solid var(--accent); background: rgba(219,202,174,0.05);
+    padding: 1.25rem 1.5rem; margin: 2rem 0; border-radius: 0 4px 4px 0;
+  }
+  .highlight-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .highlight p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  .highlight strong { color: var(--text); }
+
+  /* ACTION GRID */
+  .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .action-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
+  .action-card h3 {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .action-period {
+    background: rgba(219,202,174,0.1); padding: 2px 8px;
+    border-radius: 2px; font-size: 10px; color: var(--accent-dark);
+  }
+  .action-card ul { list-style: none; }
+  .action-card ul li {
+    font-size: 13px; color: var(--text-muted); padding: 6px 0;
+    border-bottom: 1px solid var(--border); display: flex; gap: 10px;
+  }
+  .action-card ul li:last-child { border-bottom: none; }
+  .action-card ul li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; font-size: 12px; margin-top: 2px; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 2rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .timeline-period { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .timeline-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .timeline-body { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* FUND BAR */
+  .fund-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .fund-name { font-size: 12px; color: var(--text-muted); width: 220px; flex-shrink: 0; }
+  .fund-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .fund-bar { height: 100%; border-radius: 3px; }
+  .fund-amount { font-size: 12px; font-weight: 700; color: var(--text); min-width: 100px; text-align: right; }
+  .fund-pct { font-size: 11px; color: var(--text-muted); min-width: 40px; text-align: right; }
+
+  /* EXEC FINDING */
+  .finding { display: flex; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+  .finding:last-child { border-bottom: none; }
+  .finding-num { font-size: 2.5rem; font-weight: 900; color: var(--border); line-height: 1; flex-shrink: 0; width: 48px; text-align: right; padding-top: 2px; }
+  .finding-body h3 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text); margin-bottom: 6px; }
+  .finding-body p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+  .finding-body p strong { color: var(--accent); font-weight: 700; }
+
+  /* COMM CARD */
+  .comm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .comm-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
+  .comm-card h3 { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .comm-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 10px; }
+  .comm-card blockquote { border-left: 2px solid var(--border-accent); padding-left: 14px; font-size: 13px; color: var(--text-muted); font-style: italic; line-height: 1.65; }
+
+  /* CONFIDENTIALITY TABLE */
+  .conf-table td:first-child { color: var(--accent); font-weight: 600; font-size: 12px; }
+
+  /* SYSTEM TABLE */
+  .sys-priority-high { color: #e05252; font-weight: 700; font-size: 11px; }
+  .sys-priority-med { color: var(--risk-yellow); font-weight: 700; font-size: 11px; }
+  .sys-priority-low { color: var(--risk-green); font-weight: 700; font-size: 11px; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 2.5rem 0; }
+
+  /* PRINT */
+  @media print {
+    nav { display: none; }
+    main { padding-top: 0; }
+    .section { page-break-inside: avoid; }
+    body { background: white; color: #111; }
+    .metric-card, .score-item, .segment-card { background: #f8f8f8; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Orbit Church</div>
+  <div class="nav-links">
+    <a href="#exec">Summary</a>
+    <a href="#scorecard">Scorecard</a>
+    <a href="#trends">Trends</a>
+    <a href="#segments">Segments</a>
+    <a href="#concentration">Risk</a>
+    <a href="#diagnosis">Diagnosis</a>
+    <a href="#plan">Growth Plan</a>
+    <a href="#communication">Communication</a>
+    <a href="#pastoral">Discipleship</a>
+    <a href="#systems">Systems</a>
+    <a href="#actions">Actions</a>
+    <a href="#integrations">Integrations</a>
+  </div>
+  <div class="nav-date">June 15, 2026</div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Confidential — Elder Level</div>
+    <h1 class="hero-title">Giving<br><span>Snapshot</span><br>2026</h1>
+    <p class="hero-mission">"We exist so people will FIND PEACE and DEVELOP PURPOSE by revolving everything around JESUS."</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><label>Data Source</label><span>Planning Center Giving API</span></div>
+      <div class="hero-meta-item"><label>Data Range</label><span>Aug 2022 – June 2026</span></div>
+      <div class="hero-meta-item"><label>Total Transactions</label><span>6,412 Donations</span></div>
+      <div class="hero-meta-item"><label>Location</label><span>Buckeye, AZ</span></div>
+      <div class="hero-meta-item"><label>Weekly Attendance</label><span>360–430</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY METRICS STRIP -->
+<div style="background: var(--alt-bg); border-bottom: 1px solid var(--border); padding: 0;">
+  <div class="container" style="padding-top: 0; padding-bottom: 0;">
+    <div class="metric-grid" style="border: none; border-radius: 0; margin-bottom: 0;">
+      <div class="metric-card">
+        <div class="label">All-Time Giving</div>
+        <div class="value accent">$1,899,076</div>
+        <div class="sub">Since Aug 2022</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Monthly Average</div>
+        <div class="value">$40,406</div>
+        <div class="sub">Full history avg</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">2025–26 Run Rate</div>
+        <div class="value">$40–43K</div>
+        <div class="sub">Steady-state months</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Unique Givers</div>
+        <div class="value">626</div>
+        <div class="sub">Identified + 140 anon gifts</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Active (90 days)</div>
+        <div class="value">163</div>
+        <div class="sub">26% of total givers</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Formal Recurring</div>
+        <div class="value" style="color: var(--risk-yellow);">31</div>
+        <div class="sub">$7,824/mo run rate</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Lapsed 365+ Days</div>
+        <div class="value" style="color: var(--risk-red);">281</div>
+        <div class="sub">Reactivation opportunity</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: EXEC SUMMARY -->
+<section class="section" id="exec">
+  <div class="container">
+    <div class="section-label">Section 01</div>
+    <h2 class="section-title">Executive Summary</h2>
+    <p class="section-subtitle">The 10 findings that matter most — evidence-backed, no filler.</p>
+
+    <div class="finding">
+      <div class="finding-num">01</div>
+      <div class="finding-body">
+        <h3>Healthy giving church — with significant concentration risk</h3>
+        <p>Total all-time giving: <strong>$1,899,076</strong> since August 2022. Monthly giving runs <strong>$37,000–$49,000</strong> in normal months — strong for a church plant your size. But your top 5 givers represent <strong>24.4% of all giving</strong> and your top 20 represent <strong>50.6%</strong>. Two or three household changes in your top tier would meaningfully impact your monthly budget. <span class="badge-data">Data</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">02</div>
+      <div class="finding-body">
+        <h3>Your formal recurring base is weaker than it looks</h3>
+        <p>You report approximately <strong>$14,000/month in recurring giving.</strong> PCO data shows only <strong>31 active formal recurring schedules</strong> generating <strong>$7,824/month.</strong> The remaining ~$6,200/month comes from people who give consistently but manually — they are not automated. One missed Sunday, one life change, one distraction — and it stops. <span class="badge-data">Data</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">03</div>
+      <div class="finding-body">
+        <h3>271 people gave once and never came back</h3>
+        <p><strong>43% of all identified givers</strong> gave exactly once and stopped. That is 271 households who said yes — and then went quiet. At an average gift of $300, converting even 20% to repeat givers adds over <strong>$16,000/year.</strong> A simple 7-day personal follow-up system can double your conversion rate. <span class="badge-data">Data</span> <span class="badge-inf">Inference</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">04</div>
+      <div class="finding-body">
+        <h3>281 lapsed givers are waiting to be reactivated</h3>
+        <p>These are not strangers — <strong>281 people gave at some point and haven't given in over a year.</strong> Before spending energy acquiring new givers, build a reactivation pathway. A personal pastoral check-in (not a fundraising ask) can reactivate 10–20% of them, recovering <strong>$15,000–$30,000/year.</strong> <span class="badge-data">Data</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">05</div>
+      <div class="finding-body">
+        <h3>Your year-end giving culture is genuinely excellent</h3>
+        <p>December is your largest month every year without exception: $27,941 (2022), $170,798 (2023), $83,574 (2024), $120,365 (2025). Your campaigns — IYKYK, Don't Settle — work. They are named well, vision-forward, and they generate real results. <strong>Build the rest of the year around this same energy.</strong> <span class="badge-data">Data</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">06</div>
+      <div class="finding-body">
+        <h3>The Orbit Advancement Fund raised $634,309 — remarkable for a church plant</h3>
+        <p><strong>33.4% of all Orbit giving</strong> went to the Advancement Fund, not general operations. Your stated $35–45K/month includes campaign contributions. True operating giving (General T&O) has historically averaged closer to <strong>$23,000–$28,000/month</strong> in many periods. This matters for budgeting and what you tell elders. <span class="badge-data">Data</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">07</div>
+      <div class="finding-body">
+        <h3>Only 41% of your attendance gave in the last 90 days</h3>
+        <p><strong>163 people gave in the last 90 days</strong> — approximately 41% of your weekly crowd. That is actually above the national average (25–30% in most studies). But it means 59% of your weekly attendees have not given recently. The opportunity for discipleship into generosity is massive. <span class="badge-data">Data</span> <span class="badge-inf">Inference</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">08</div>
+      <div class="finding-body">
+        <h3>New giver acquisition is slowing in 2026</h3>
+        <p>You added <strong>60 new givers in Q1 2024, 63 in Q4 2024, 57 in Q4 2025.</strong> Q1 2026: 40 new givers. Q2 2026 is tracking ~38. That is a 33% decline from your peak quarters. You are not replacing departing givers fast enough. Worth investigating whether this reflects attendance trends, outreach, or follow-up gaps. <span class="badge-data">Data</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">09</div>
+      <div class="finding-body">
+        <h3>Median gift of $102.50 tells the real story</h3>
+        <p>Median transaction: <strong>$102.50.</strong> Average transaction: <strong>$301.00.</strong> The gap is caused by a small number of very large gifts pulling the average up. Your everyday giving culture sits around $100/transaction — meaning most people are giving occasionally, not weekly. This is a formation opportunity, not a failure. <span class="badge-data">Data</span></p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-num">10</div>
+      <div class="finding-body">
+        <h3>The raw materials for a world-class generosity culture are here</h3>
+        <p>The campaigns are working. The heart is there. The congregation responds when vision is clear. What is missing: <strong>systematic first-time giver follow-up, a recurring giving invitation cadence, a lapsed giver reactivation strategy,</strong> and a pastoral discipleship pathway that normalizes generosity as formation — not fundraising. <span class="badge-inf">Inference</span> <span class="badge-past">Pastoral</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: SCORECARD -->
+<section class="section" id="scorecard" style="background: var(--alt-bg);">
+  <div class="container">
+    <div class="section-label">Section 02</div>
+    <h2 class="section-title">Generosity Health Scorecard</h2>
+    <p class="section-subtitle">Each category scored 1–10 with the reasoning behind the score.</p>
+
+    <div class="scorecard-grid">
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">Total Giving Health</span><span class="score-num">7</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:70%; background: var(--accent);"></div></div>
+        <p class="score-text">$40K/month average is solid for your size. Advancement Fund skews the headline. Base operating giving is lower. Campaign dependency is a mild concern.</p>
+      </div>
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">Giver Base Health</span><span class="score-num">5</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:50%; background: var(--risk-yellow);"></div></div>
+        <p class="score-text">626 identified givers, but only 163 active in 90 days. 43% one-time givers. Retention and depth are the primary weaknesses holding this score down.</p>
+      </div>
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">Recurring Giving Health</span><span class="score-num">4</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:40%; background: var(--risk-red);"></div></div>
+        <p class="score-text">Only 31 active formal recurring schedules ($7,824/month). Far below where a healthy church your size should be. Significant fragility. Urgent priority.</p>
+      </div>
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">Donor Retention</span><span class="score-num">5</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:50%; background: var(--risk-yellow);"></div></div>
+        <p class="score-text">55% gave in the last 365 days. 281 lapsed 365+ days. Industry benchmark for recurring givers is 80–90% retention. You are well below that.</p>
+      </div>
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">New Giver Pipeline</span><span class="score-num">6</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:60%; background: var(--accent);"></div></div>
+        <p class="score-text">Consistent 40–63 new givers per quarter in 2024–2025, but declining in early 2026. No formal first-time follow-up pathway visible in the data.</p>
+      </div>
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">Concentration Risk</span><span class="score-num">3</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:30%; background: var(--risk-red);"></div></div>
+        <p class="score-text">Top 5 = 24.4%. Top 20 = 50.6%. Top 20% = 90.2%. This is HIGH concentration. A church plant at your stage needs broader base urgently.</p>
+      </div>
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">Communication Clarity</span><span class="score-num">6</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:60%; background: var(--accent);"></div></div>
+        <p class="score-text">Year-end campaigns are strong. Evidence of vision-based giving culture. No visible systematic giver communication cadence year-round.</p>
+      </div>
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">Systems Maturity</span><span class="score-num">5</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:50%; background: var(--risk-yellow);"></div></div>
+        <p class="score-text">PCO Giving is functional. Funds are organized. Recurring is underutilized. No automated follow-up workflows. No monthly dashboard cadence visible.</p>
+      </div>
+      <div class="score-item">
+        <div class="score-header"><span class="score-name">Pastoral Discipleship</span><span class="score-num">6</span></div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:60%; background: var(--accent);"></div></div>
+        <p class="score-text">Church plant DNA suggests high pastoral intentionality. Campaign names show discipleship language. No formal generosity formation pathway visible yet.</p>
+      </div>
+    </div>
+
+    <div class="highlight" style="margin-top: 2rem;">
+      <div class="highlight-label">Overall Score</div>
+      <p><strong>5.2 / 10</strong> — Promising foundation with urgent gaps in recurring giving, retention, and concentration risk. The score will rise quickly with the right 90-day actions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: TRENDS -->
+<section class="section" id="trends">
+  <div class="container">
+    <div class="section-label">Section 03</div>
+    <h2 class="section-title">Trend Analysis</h2>
+    <p class="section-subtitle">Full giving history, seasonality patterns, and what the numbers mean over time.</p>
+
+    <div style="position: relative; height: 320px; margin-bottom: 1rem;">
+      <canvas id="monthlyChart" role="img" aria-label="Monthly giving chart for Orbit Church 2024–2026. December months spike significantly. Steady-state months run $37,000–$49,000.">Monthly giving data from 2024 to 2026.</canvas>
+    </div>
+    <p style="font-size: 11px; color: var(--text-subtle); margin-bottom: 3rem; text-align: center;">Monthly giving 2024–June 2026 (partial). Spikes reflect year-end campaigns and Advancement Fund activity.</p>
+
+    <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem;">Fund Breakdown — All Time</h3>
+    <div style="margin-bottom: 2.5rem;">
+      <div class="fund-row">
+        <div class="fund-name">General Tithes & Offerings</div>
+        <div class="fund-bar-wrap"><div class="fund-bar" style="width:56.9%; background: var(--accent);"></div></div>
+        <div class="fund-amount">$1,081,202</div>
+        <div class="fund-pct">56.9%</div>
+      </div>
+      <div class="fund-row">
+        <div class="fund-name">Orbit Advancement Fund</div>
+        <div class="fund-bar-wrap"><div class="fund-bar" style="width:33.4%; background: #888;"></div></div>
+        <div class="fund-amount">$634,309</div>
+        <div class="fund-pct">33.4%</div>
+      </div>
+      <div class="fund-row">
+        <div class="fund-name">Don't Settle (2025 Year-End)</div>
+        <div class="fund-bar-wrap"><div class="fund-bar" style="width:3.9%; background: #555;"></div></div>
+        <div class="fund-amount">$73,696</div>
+        <div class="fund-pct">3.9%</div>
+      </div>
+      <div class="fund-row">
+        <div class="fund-name">IYKYK (2024 Year-End)</div>
+        <div class="fund-bar-wrap"><div class="fund-bar" style="width:3%; background: #444;"></div></div>
+        <div class="fund-amount">$57,033</div>
+        <div class="fund-pct">3.0%</div>
+      </div>
+      <div class="fund-row">
+        <div class="fund-name">Designated / Missionary Gifts</div>
+        <div class="fund-bar-wrap"><div class="fund-bar" style="width:2.7%; background: #333;"></div></div>
+        <div class="fund-amount">$51,836</div>
+        <div class="fund-pct">2.7%</div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <div class="highlight-label">Key Finding</div>
+      <p>The Orbit Advancement Fund represents <strong>$634,309 — one-third of all giving in your history.</strong> This is a capital/campaign fund, not recurring operations. Your true operating base (General T&O) averages closer to <strong>$23,000–$28,000/month</strong> across the full history. Recent months (2025–2026) are running higher as the general fund has grown.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1.5rem;">Seasonality Pattern</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Period</th><th>Pattern</th><th>2025 Range</th></tr></thead>
+        <tbody>
+          <tr><td>January</td><td>High — year-end campaign carryover</td><td>$69–73K</td></tr>
+          <tr><td>February – March</td><td>Moderate, settling</td><td>$43–48K</td></tr>
+          <tr><td>April</td><td>Historically high — campaign activity window</td><td>$42K</td></tr>
+          <tr><td>May – June</td><td>Moderate</td><td>$41–46K</td></tr>
+          <tr><td>July – August</td><td>Moderate, slight summer softness</td><td>$42–49K</td></tr>
+          <tr><td>September</td><td>Softest month of the year</td><td>$34K</td></tr>
+          <tr><td>October – November</td><td>Recovery ahead of year-end</td><td>$36–49K</td></tr>
+          <tr><td>December</td><td style="color: var(--accent); font-weight: 700;">Largest month — every year, by a wide margin</td><td>$120K</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: SEGMENTS -->
+<section class="section" id="segments" style="background: var(--alt-bg);">
+  <div class="container">
+    <div class="section-label">Section 04</div>
+    <h2 class="section-title">Giver Segmentation</h2>
+    <p class="section-subtitle">Actionable segments — what each group needs strategically and pastorally.</p>
+
+    <div class="metric-grid" style="margin-bottom: 3rem;">
+      <div class="metric-card">
+        <div class="label">One-Time Givers</div>
+        <div class="value" style="color: var(--risk-red);">271</div>
+        <div class="sub">43% of all givers — gave once, stopped</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Repeat Givers</div>
+        <div class="value" style="color: var(--accent);">355</div>
+        <div class="sub">57% gave 2 or more times</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Frequent Givers</div>
+        <div class="value" style="color: var(--accent);">203</div>
+        <div class="sub">32% gave 6 or more times</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Lapsed (180–365 days)</div>
+        <div class="value" style="color: var(--risk-yellow);">123</div>
+        <div class="sub">Warm — worth reactivating</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Lapsed (365+ days)</div>
+        <div class="value" style="color: var(--risk-red);">281</div>
+        <div class="sub">Cold — pastoral check-in first</div>
+      </div>
+      <div class="metric-card">
+        <div class="label">Formal Recurring</div>
+        <div class="value" style="color: var(--risk-yellow);">31</div>
+        <div class="sub">Active automated schedules</div>
+      </div>
+    </div>
+
+    <div class="segment-grid">
+      <div class="segment-card">
+        <h3>Faithful Recurring Givers</h3>
+        <div class="segment-count">31</div>
+        <p class="segment-body">Your financial bedrock. They give regardless of Sunday attendance, weather, or how compelling the offering moment was. Average recurring: $252/month. Monthly run rate: $7,824. Recurring givers retain at 80–90% annually vs. 45% for one-time donors.</p>
+        <div class="segment-action">
+          <strong>Next Step</strong>
+          Send a personal thank-you from the pastor quarterly. Share one specific story their giving funded. Do not ask for more — ask them to invite someone else into giving.
+        </div>
+      </div>
+
+      <div class="segment-card" style="border-top-color: var(--risk-red);">
+        <h3>High-Capacity Givers</h3>
+        <div class="segment-count">~15–25</div>
+        <p class="segment-body">Top givers representing disproportionate giving. Your top 5 alone: $459,732 all-time. These are not just financial supporters — they are almost certainly your most mission-aligned people. They deserve real relationship, not a transaction.</p>
+        <div class="segment-action">
+          <strong>Next Step</strong>
+          Identify each by name (pastor + lead elder only). Ensure each has a real pastoral relationship. Schedule annual vision conversations — not asks, alignment meetings.
+        </div>
+      </div>
+
+      <div class="segment-card" style="border-top-color: var(--risk-yellow);">
+        <h3>One-Time Givers</h3>
+        <div class="segment-count">271</div>
+        <p class="segment-body">Gave exactly once — then stopped. Some gave at events. Some gave on their first Sunday. Some are still attending every week. Without follow-up, only 19% will give again (FEP 2024). With a strong follow-up system, that rises to 40–50%.</p>
+        <div class="segment-action">
+          <strong>Next Step</strong>
+          First-gift follow-up within 7 days — personal, from the pastor, vision-focused, no second ask. Then 30-day story email. Then 60-day recurring invitation.
+        </div>
+      </div>
+
+      <div class="segment-card" style="border-top-color: var(--risk-yellow);">
+        <h3>Lapsed (180–365 days)</h3>
+        <div class="segment-count">123</div>
+        <p class="segment-body">Gave recently enough that the relationship is warm. May still be attending. May be in a financial hardship season. A personal outreach to a lapsed giver is often a pastoral check-in opportunity, not a fundraising call.</p>
+        <div class="segment-action">
+          <strong>Next Step</strong>
+          Cross-reference against attendance data. For those still attending: host or pastor check-in — about belonging, not giving. The generosity conversation follows naturally.
+        </div>
+      </div>
+
+      <div class="segment-card" style="border-top-color: var(--risk-red);">
+        <h3>Lapsed (365+ days)</h3>
+        <div class="segment-count">281</div>
+        <p class="segment-body">Some are permanently gone. Others are in your building weekly. Knowing the difference is critical — pastorally and strategically. This list deserves prayer before strategy.</p>
+        <div class="segment-action">
+          <strong>Next Step</strong>
+          Export list. Cross-reference attendance check-in data. Anyone who attended in last 90 days but hasn't given in 365+ days = highest-priority pastoral conversation.
+        </div>
+      </div>
+
+      <div class="segment-card">
+        <h3>Informal Recurring Givers</h3>
+        <div class="segment-count">Est. 50–80</div>
+        <p class="segment-body">People who give consistently every month but haven't set up automated recurring. They account for ~$6,000–$6,500/month of your "recurring" income. One distraction away from stopping — and they will not get a PCO alert when they do.</p>
+        <div class="segment-action">
+          <strong>Next Step</strong>
+          Identify by transaction pattern. Invite them specifically: "If you give most months, setting it up automatically is the most faithful and stress-free way to do it."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: CONCENTRATION RISK -->
+<section class="section" id="concentration">
+  <div class="container">
+    <div class="section-label">Section 05</div>
+    <h2 class="section-title">Concentration &amp; Risk</h2>
+    <p class="section-subtitle">How dependent Orbit is on a small number of givers — and what that means for financial health.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+      <div>
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.5rem;">Giving Concentration</h3>
+
+        <div class="concentration-item">
+          <div class="conc-header">
+            <span class="conc-label">Top 5 Givers</span>
+            <span class="conc-value" style="color: var(--risk-red);">24.4% <span class="risk risk-red">High Risk</span></span>
+          </div>
+          <div class="conc-track">
+            <div class="conc-fill" style="width:24.4%; background: var(--risk-red);"></div>
+            <div class="conc-benchmark" style="left:15%;"><span style="position:absolute; top:-16px; left:4px; font-size:9px; color:var(--text-subtle); white-space:nowrap;">Benchmark 15%</span></div>
+          </div>
+        </div>
+
+        <div class="concentration-item">
+          <div class="conc-header">
+            <span class="conc-label">Top 10 Givers</span>
+            <span class="conc-value" style="color: var(--risk-red);">36.6% <span class="risk risk-red">High Risk</span></span>
+          </div>
+          <div class="conc-track">
+            <div class="conc-fill" style="width:36.6%; background: var(--risk-red);"></div>
+            <div class="conc-benchmark" style="left:25%;"><span style="position:absolute; top:-16px; left:4px; font-size:9px; color:var(--text-subtle); white-space:nowrap;">Benchmark 25%</span></div>
+          </div>
+        </div>
+
+        <div class="concentration-item">
+          <div class="conc-header">
+            <span class="conc-label">Top 20 Givers</span>
+            <span class="conc-value" style="color: var(--risk-red);">50.6% <span class="risk risk-red">High Risk</span></span>
+          </div>
+          <div class="conc-track">
+            <div class="conc-fill" style="width:50.6%; background: var(--risk-red);"></div>
+            <div class="conc-benchmark" style="left:35%;"><span style="position:absolute; top:-16px; left:4px; font-size:9px; color:var(--text-subtle); white-space:nowrap;">Benchmark 35%</span></div>
+          </div>
+        </div>
+
+        <div class="concentration-item">
+          <div class="conc-header">
+            <span class="conc-label">Top 20% of Givers (125 people)</span>
+            <span class="conc-value" style="color: var(--risk-yellow);">90.2% <span class="risk risk-yellow">Watch</span></span>
+          </div>
+          <div class="conc-track">
+            <div class="conc-fill" style="width:90.2%; background: var(--risk-yellow);"></div>
+            <div class="conc-benchmark" style="left:80%;"><span style="position:absolute; top:-16px; left:4px; font-size:9px; color:var(--text-subtle); white-space:nowrap;">~80% common</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.5rem;">Scenario Modeling</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Scenario</th><th>Est. Monthly Impact</th></tr></thead>
+            <tbody>
+              <tr><td>Top 3 givers stop giving</td><td style="color: var(--risk-red); font-weight: 700;">−$8,000–$15,000</td></tr>
+              <tr><td>Top 5 givers stop giving</td><td style="color: var(--risk-red); font-weight: 700;">−$12,000–$22,000</td></tr>
+              <tr><td>Top 10 reduce giving by 50%</td><td style="color: var(--risk-yellow); font-weight: 700;">−$7,000–$12,000</td></tr>
+              <tr><td>Top 10 reduce giving by 25%</td><td style="color: var(--risk-yellow); font-weight: 700;">−$3,500–$6,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="highlight" style="margin-top: 1.5rem;">
+          <div class="highlight-label">The Response</div>
+          <p>Concentration risk is reduced one way: <strong>broaden the giver base without shrinking the top.</strong> The goal is not to discourage large givers — it is to grow the number so no single person determines your financial health.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem;">Gift Size Distribution</h3>
+    <div style="position: relative; height: 260px; margin-bottom: 2rem;">
+      <canvas id="giftChart" role="img" aria-label="Distribution of gift transaction sizes at Orbit Church. Largest category is $100-249 at 30.9%.">Gift size distribution: under $25 = 17.3%, $25-49 = 11.1%, $50-99 = 12.3%, $100-249 = 30.9%, $250-499 = 16.7%, $500-999 = 6.6%, $1K-4.9K = 4.6%, $5K+ = 0.7%.</canvas>
+    </div>
+    <p style="font-size: 12px; color: var(--text-muted); text-align: center;">Median gift: $102.50 &nbsp;|&nbsp; Average gift: $301.00 &nbsp;|&nbsp; Total transactions analyzed: 6,272 (excluding anonymous)</p>
+  </div>
+</section>
+
+<!-- SECTION 6: DIAGNOSIS -->
+<section class="section" id="diagnosis" style="background: var(--alt-bg);">
+  <div class="container">
+    <div class="section-label">Section 06</div>
+    <h2 class="section-title">Strategic Diagnosis</h2>
+    <p class="section-subtitle">The honest read beneath the numbers — strengths, weaknesses, exposure, and the greatest opportunities.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+      <div>
+        <h3 style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--risk-green); margin-bottom: 1rem;">Where You Are Strong</h3>
+        <ul style="list-style: none;">
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green); font-weight: 700;">✓</span>Vision-responsive congregation — people give when they understand why</li>
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green); font-weight: 700;">✓</span>Campaign capability — $634K Advancement Fund is remarkable for a church plant</li>
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green); font-weight: 700;">✓</span>Healthy middle tier — 30.9% of gifts in the $100–249 range</li>
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green); font-weight: 700;">✓</span>Growing giver base — 40–63 new givers per quarter in 2024–2025</li>
+          <li style="padding: 10px 0; font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green); font-weight: 700;">✓</span>Year-end giving culture — December participation grew from 22 to 138 donors</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--risk-red); margin-bottom: 1rem;">Where You Are Weak</h3>
+        <ul style="list-style: none;">
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red); font-weight: 700;">✗</span>Formal recurring is severely underdeveloped — 31 schedules at your size is very low</li>
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red); font-weight: 700;">✗</span>First-time giver follow-up is likely non-existent — 271 one-time givers is the evidence</li>
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red); font-weight: 700;">✗</span>No systematic lapsed giver reactivation — 404 lapsed households, no visible outreach</li>
+          <li style="padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red); font-weight: 700;">✗</span>Operating base is narrower than total giving suggests — Advancement Fund inflates headline</li>
+          <li style="padding: 10px 0; font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red); font-weight: 700;">✗</span>New giver acquisition slowing in 2026 — 33% decline from peak quarters</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <div class="highlight-label">The Greatest Opportunity</div>
+      <p><strong>Formal recurring conversion</strong> is the single highest-ROI action available. Every person moved from manual to automated recurring improves retention from ~45% to ~80–90%. Recruiting 40 new recurring givers at an average $150/month adds <strong>$6,000/month in stable, protected revenue.</strong> This is the first priority.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: GROWTH PLAN -->
+<section class="section" id="plan">
+  <div class="container">
+    <div class="section-label">Section 07</div>
+    <h2 class="section-title">12-Month Generosity Growth Plan</h2>
+    <p class="section-subtitle">Practical, prioritized, and tied to real numbers — not aspirational frameworks.</p>
+
+    <div class="metric-grid" style="margin-bottom: 3rem;">
+      <div class="metric-card"><div class="label">Monthly Giving Target</div><div class="value">$48–58K</div><div class="sub">vs. $40–43K today</div></div>
+      <div class="metric-card"><div class="label">Active Givers Target</div><div class="value">250+</div><div class="sub">vs. 163 today</div></div>
+      <div class="metric-card"><div class="label">Formal Recurring Target</div><div class="value">80+</div><div class="sub">vs. 31 today</div></div>
+      <div class="metric-card"><div class="label">Recurring Run Rate Target</div><div class="value">$15K+/mo</div><div class="sub">vs. $7,824 today</div></div>
+      <div class="metric-card"><div class="label">1st-to-2nd Conversion</div><div class="value">45%+</div><div class="sub">vs. est. 20–30% today</div></div>
+      <div class="metric-card"><div class="label">Lapsed Reactivated</div><div class="value">60+</div><div class="sub">vs. 0 system today</div></div>
+    </div>
+
+    <div class="action-grid">
+      <div class="action-card">
+        <h3><span class="action-period">30 Days</span> By July 15</h3>
+        <ul>
+          <li>Pull top 20 giver list — print, pray, meet with lead elder</li>
+          <li>Audit all 31 recurring schedules in PCO — verify each is correct</li>
+          <li>Export one-time giver list — keep confidential, plan follow-up</li>
+          <li>Write this Sunday's offering moment script — one sentence of vision</li>
+          <li>Regenerate your PCO Personal Access Token (shared in session)</li>
+        </ul>
+      </div>
+      <div class="action-card">
+        <h3><span class="action-period">60 Days</span> By Aug 15</h3>
+        <ul>
+          <li>Set up First-Time Giver Workflow in PCO — trigger → notify pastor → email</li>
+          <li>Launch "Set It and Forget It" recurring giving campaign — goal 15 new recurring givers</li>
+          <li>Begin lapsed giver pastoral outreach for attendees — not about giving, about belonging</li>
+          <li>Build monthly giving dashboard — run it every 1st of the month</li>
+          <li>Consolidate PCO fund structure — deactivate unused funds</li>
+        </ul>
+      </div>
+      <div class="action-card">
+        <h3><span class="action-period">90 Days</span> By Sep 15</h3>
+        <ul>
+          <li>Cross-reference volunteers + group members vs. giving database</li>
+          <li>Build a generosity story bank — 4–6 specific ministry outcomes</li>
+          <li>Train offering moment leaders — 12 rotating scripts, no more apology</li>
+          <li>Plan fall generosity campaign or series for September/October</li>
+        </ul>
+      </div>
+      <div class="action-card">
+        <h3><span class="action-period">6 Months</span> By Dec 31</h3>
+        <ul>
+          <li>Launch year-end campaign — goal $130K+ in December</li>
+          <li>Brief top 20 givers personally before public announcement</li>
+          <li>Reach 60 formal recurring givers</li>
+          <li>Conduct Advancement Fund status conversation with elders</li>
+          <li>Produce year-end giving transparency report for congregation</li>
+        </ul>
+      </div>
+      <div class="action-card">
+        <h3><span class="action-period">12 Months</span> By Jun 2027</h3>
+        <ul>
+          <li>Achieve 80+ active formal recurring givers at $15K+/month</li>
+          <li>Achieve 250+ active givers (gave in last 90 days)</li>
+          <li>Launch next generosity campaign — Phase 2 vision</li>
+          <li>Annual full giving health review with elder team</li>
+          <li>Consider launching a Generosity Council (3–5 high-capacity advisors)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: COMMUNICATION -->
+<section class="section" id="communication" style="background: var(--alt-bg);">
+  <div class="container">
+    <div class="section-label">Section 08</div>
+    <h2 class="section-title">Communication Strategy</h2>
+    <p class="section-subtitle">Pastoral, clear, compelling — not manipulative. Every touchpoint designed for discipleship, not extraction.</p>
+
+    <div class="comm-grid">
+      <div class="comm-card">
+        <h3>Weekly Offering Moment</h3>
+        <p>Lead with vision, not apology. A rotating set of 30–60 second scripts — one per month, pre-written, vision-forward. The person leading it should never apologize for the moment.</p>
+        <blockquote>"Giving is one of the ways we participate in the mission together. If Orbit has been meaningful to you, giving is a way to say — yes, I want more people to find this."</blockquote>
+      </div>
+      <div class="comm-card">
+        <h3>First-Time Giver Follow-Up</h3>
+        <p>Day 1: automated receipt. Day 3–5: personal email from the pastor — vision-focused, no ask. Day 30: story email if no second gift. Day 60: gentle recurring invitation.</p>
+        <blockquote>"[Name], I noticed you gave for the first time recently. I just wanted to say — thank you. Your generosity is part of what makes Orbit possible."</blockquote>
+      </div>
+      <div class="comm-card">
+        <h3>Recurring Giving Invitation</h3>
+        <p>Quarterly — not a desperate ask. Frame it as an invitation to a better way of giving. Lead with the ease, not the obligation.</p>
+        <blockquote>"If you give most months anyway, recurring giving just removes the friction. It keeps your commitment consistent even when life gets busy."</blockquote>
+      </div>
+      <div class="comm-card">
+        <h3>Lapsed Giver Reactivation</h3>
+        <p>First contact is never about giving. It is pastoral. Check in. Ask how they are doing. The gift conversation follows the relationship — or it doesn't, and that's okay too.</p>
+        <blockquote>"[Name] — I was thinking about you. How are you doing? We miss you. Is there anything Orbit can do to serve you or your family right now?"</blockquote>
+      </div>
+      <div class="comm-card">
+        <h3>Year-End Campaign Arc</h3>
+        <p>Early November: vision email. Mid-November: brief top 20 givers personally. First December Sunday: campaign launch. Dec 15: story + one week left. Dec 28–31: final push. Jan 5: thank-you + impact.</p>
+        <blockquote>Campaign names: short, vision-forward, specific. IYKYK and Don't Settle worked. Find the next one that fits the chapter God is writing.</blockquote>
+      </div>
+      <div class="comm-card">
+        <h3>Financial Transparency</h3>
+        <p>Quarterly aggregate update to all attenders. Annual year-end summary. Total given, how it was used, vision for next year. Not a financial report — a celebration of stewardship.</p>
+        <blockquote>"Here's what you gave. Here's what it built. Here's what's next." Make it a one-pager. Make it visual. Make it proud.</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: PASTORAL -->
+<section class="section" id="pastoral">
+  <div class="container">
+    <div class="section-label">Section 09</div>
+    <h2 class="section-title">Pastoral Discipleship Strategy</h2>
+    <p class="section-subtitle">Generosity at Orbit is not a funding mechanism — it is a formation practice. This shapes everything.</p>
+
+    <div class="highlight">
+      <div class="highlight-label">Core Conviction</div>
+      <p>When someone gives, they are not just paying for ministry. They are <strong>practicing surrender, trust, and participation in God's mission.</strong> This distinction must shape how you talk about it, when you talk about it, and how you respond when people don't.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+      <div>
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem;">How Often to Teach It</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Frequency</th><th>Format</th></tr></thead>
+            <tbody>
+              <tr><td style="font-weight: 700; color: var(--accent);">Weekly</td><td>Offering moment — 30–60 seconds, vision-forward</td></tr>
+              <tr><td style="font-weight: 700; color: var(--accent);">Monthly</td><td>One email or video — generosity story or giving impact</td></tr>
+              <tr><td style="font-weight: 700; color: var(--accent);">Quarterly</td><td>A Sunday segment on stewardship or mission funding</td></tr>
+              <tr><td style="font-weight: 700; color: var(--accent);">Annually</td><td>Full 2–4 week series on biblical stewardship</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1rem;">Language That Works</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="background: var(--card-bg); padding: 10px 14px; border-radius: 3px; font-size: 12px;">
+            <span style="color: var(--risk-red); text-decoration: line-through; font-size: 10px; display: block; margin-bottom: 3px;">DON'T: "Sign up for auto-pay"</span>
+            <span style="color: var(--risk-green);">DO: "Set up automated generosity"</span>
+          </div>
+          <div style="background: var(--card-bg); padding: 10px 14px; border-radius: 3px; font-size: 12px;">
+            <span style="color: var(--risk-red); text-decoration: line-through; font-size: 10px; display: block; margin-bottom: 3px;">DON'T: "Give online"</span>
+            <span style="color: var(--risk-green);">DO: "Give from anywhere"</span>
+          </div>
+          <div style="background: var(--card-bg); padding: 10px 14px; border-radius: 3px; font-size: 12px;">
+            <span style="color: var(--risk-red); text-decoration: line-through; font-size: 10px; display: block; margin-bottom: 3px;">DON'T: "We need your tithe"</span>
+            <span style="color: var(--risk-green);">DO: "This is how we participate in what God is building"</span>
+          </div>
+          <div style="background: var(--card-bg); padding: 10px 14px; border-radius: 3px; font-size: 12px;">
+            <span style="color: var(--risk-red); text-decoration: line-through; font-size: 10px; display: block; margin-bottom: 3px;">DON'T: "If you don't give, we can't pay our bills"</span>
+            <span style="color: var(--risk-green);">DO: "Your generosity makes [specific outcome] possible"</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem;">New Believer Pathway Into Generosity</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-period">At Salvation / Commitment</div>
+        <div class="timeline-title">Introduce generosity as formation — not a rule, a rhythm</div>
+        <div class="timeline-body">"As you grow in faith, you'll find that generosity is one of the most transformative practices." Frame it as invitation, not obligation.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">First Month</div>
+        <div class="timeline-title">Encourage any giving — even $5 matters as a practice</div>
+        <div class="timeline-body">The amount is less important than establishing the habit. Generosity starts with the decision to participate, not the size of the gift.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">90 Days</div>
+        <div class="timeline-title">Begin the tithe conversation — as invitation, not demand</div>
+        <div class="timeline-body">Tithing is an ancient and tested practice. Introduce it as "what many of our most grounded people have found — a starting point, not a ceiling."</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">6 Months</div>
+        <div class="timeline-title">Invite to recurring giving — make faithfulness sustainable</div>
+        <div class="timeline-body">"This is how many of us maintain our giving commitment even when life gets busy. It removes the friction and keeps the practice."</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">1 Year</div>
+        <div class="timeline-title">Invite to a First Fruits class or stewardship experience</div>
+        <div class="timeline-body">A 4-week formation experience for anyone wanting to go deeper in stewardship. Not a pledge drive — a discipleship journey.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: SYSTEMS -->
+<section class="section" id="systems" style="background: var(--alt-bg);">
+  <div class="container">
+    <div class="section-label">Section 10</div>
+    <h2 class="section-title">Systems Recommendations</h2>
+    <p class="section-subtitle">PCO setup, automation, reporting cadence, dashboards, and confidentiality structure.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+      <div>
+        <h3 style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem;">Immediate PCO Fixes</h3>
+        <ul style="list-style: none;">
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Deactivate "Orbit Church Giving" fund ($2.00 total — unused)</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Evaluate "Monthly Offering" vs. "General T&O" — likely duplicates</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Enable First-Time Giver Workflow in PCO Workflows</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Set up recurring cancellation alert → admin notification within 48 hours</li>
+          <li style="padding: 8px 0; font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Link all anonymous cash/check gifts to a person record where possible</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem;">Reporting Cadence</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Report</th><th>Frequency</th><th>Who Sees It</th></tr></thead>
+            <tbody>
+              <tr><td>Monthly Giving by Fund</td><td>Monthly</td><td>Pastor + Admin + Elders</td></tr>
+              <tr><td>Active / New / Lapsed Count</td><td>Monthly</td><td>Pastor + Admin</td></tr>
+              <tr><td>Recurring Health</td><td>Monthly</td><td>Pastor + Admin</td></tr>
+              <tr><td>Top 20 Givers YTD</td><td>Quarterly</td><td>Pastor + Lead Elder only</td></tr>
+              <tr><td>Full Giving Health Review</td><td>Annually</td><td>Full elder team</td></tr>
+              <tr><td>Year-End Summary</td><td>Annually</td><td>Congregation (aggregate)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem;">Confidentiality Boundaries</h3>
+    <div class="table-wrap">
+      <table class="conf-table">
+        <thead><tr><th>Data Level</th><th>Who Has Access</th><th>Where It Lives</th></tr></thead>
+        <tbody>
+          <tr><td>Individual giver amounts</td><td>Pastor + Admin only</td><td>PCO Giving — not shared outside</td></tr>
+          <tr><td>Household giver totals (top 20)</td><td>Pastor + Lead Elder only</td><td>Private document, pastor's use</td></tr>
+          <tr><td>Monthly total giving</td><td>Full elder team</td><td>Elder dashboard / report email</td></tr>
+          <tr><td>Year-end summary (aggregate)</td><td>Congregation</td><td>Sunday announcement + email</td></tr>
+          <tr><td>API keys / credentials</td><td>Pastor + Admin only</td><td>Password manager — never in chat/email</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: NEXT ACTIONS -->
+<section class="section" id="actions">
+  <div class="container">
+    <div class="section-label">Section 11</div>
+    <h2 class="section-title">Specific Next Actions</h2>
+    <p class="section-subtitle">What to do this week, this month, what to stop, and what conversations to have.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+      <div>
+        <h3 style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;">This Week — By June 22</h3>
+        <ul style="list-style: none;">
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 1px;">1</span>Pull top 20 giver list from PCO. Print. Meet with lead elder. Pray over each name.</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 1px;">2</span>Check all 31 recurring schedules in PCO — verify amount, frequency, linked person.</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 1px;">3</span>Export one-time giver list. Keep confidential. This is your follow-up project.</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px; align-items: flex-start;"><span style="color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 1px;">4</span>Write this Sunday's offering moment script. One sentence of vision. Use it. Evaluate.</li>
+          <li style="padding: 8px 0; font-size: 13px; color: var(--text-muted); display: flex; gap: 10px; align-items: flex-start;"><span style="color: var(--risk-red); flex-shrink: 0; font-weight: 700; margin-top: 1px;">!</span><strong style="color: var(--risk-red);">Regenerate your PCO Personal Access Token.</strong> The token used to build this document appeared in a chat session. Rotate it at api.planningcenteronline.com/oauth/applications — takes 2 minutes.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;">This Month — By July 15</h3>
+        <ul style="list-style: none;">
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Set up First-Time Giver Workflow in PCO. Test it. Assign follow-up email owner.</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Pick 5 lapsed givers — call or text personally. Not about giving. About belonging.</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Create monthly giving dashboard. Google Sheet or PCO report. Run it every 1st.</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Design recurring giving invitation. Plan the Sunday moment + email for August.</li>
+          <li style="padding: 8px 0; font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--accent);">→</span> Deactivate unused PCO funds. Evaluate Monthly Offering vs. General T&O overlap.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div>
+        <h3 style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--risk-red); margin-bottom: 1rem;">What to Stop Doing</h3>
+        <ul style="list-style: none;">
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red);">✗</span> Taking an offering without a sentence of vision</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red);">✗</span> Treating recurring givers as "handled" — they need vision too</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red);">✗</span> Waiting for a "right moment" to talk about generosity</li>
+          <li style="padding: 8px 0; font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-red);">✗</span> Letting first-time givers receive only an automated receipt</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--risk-green); margin-bottom: 1rem;">Conversations to Have</h3>
+        <ul style="list-style: none;">
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green);">→</span> Elder team: "Who are our top 10 givers and does each have a pastoral relationship?"</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green);">→</span> Admin: "Can we get recurring follow-up automated in PCO in 30 days?"</li>
+          <li style="padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green);">→</span> Comms team: "Can we build a 12-month generosity communication calendar?"</li>
+          <li style="padding: 8px 0; font-size: 13px; color: var(--text-muted); display: flex; gap: 10px;"><span style="color: var(--risk-green);">→</span> Top 3 givers (personal): "I wanted to thank you face to face."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 12: INTEGRATIONS -->
+<section class="section" id="integrations" style="background: var(--alt-bg);">
+  <div class="container">
+    <div class="section-label">Section 12</div>
+    <h2 class="section-title">Systems &amp; Integration Map</h2>
+    <p class="section-subtitle">Every platform Orbit likely uses — what data it holds, how to access it, and whether it belongs in your generosity dashboard.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Key Data</th>
+            <th>Access Method</th>
+            <th>Dashboard?</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: var(--accent);">Planning Center Giving</td>
+            <td>Donations, recurring, funds, donors</td>
+            <td>API (Personal Access Token) ✅ Live</td>
+            <td style="color: var(--risk-green);">✓ Primary</td>
+            <td><span class="sys-priority-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: var(--accent);">Planning Center People</td>
+            <td>Profiles, households, custom fields</td>
+            <td>API — same PAT ✅ Live</td>
+            <td style="color: var(--accent);">✓ Supplement</td>
+            <td><span class="sys-priority-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: var(--accent);">Planning Center Check-Ins</td>
+            <td>Attendance, headcounts, service records</td>
+            <td>API — same PAT</td>
+            <td style="color: var(--accent);">✓ Supplement</td>
+            <td><span class="sys-priority-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Planning Center Services</td>
+            <td>Volunteer rosters, team scheduling</td>
+            <td>API — same PAT</td>
+            <td style="color: var(--accent);">✓ Supplement</td>
+            <td><span class="sys-priority-med">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Planning Center Groups</td>
+            <td>Group rosters, attendance</td>
+            <td>API — same PAT</td>
+            <td style="color: var(--accent);">✓ Supplement</td>
+            <td><span class="sys-priority-med">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Google Workspace / Sheets</td>
+            <td>Custom dashboards, budget tracking</td>
+            <td>Manual + Sheets API</td>
+            <td style="color: var(--risk-green);">✓ Dashboard home</td>
+            <td><span class="sys-priority-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Mailchimp</td>
+            <td>Email engagement, open/click rates</td>
+            <td>API (Mailchimp API Key)</td>
+            <td style="color: var(--text-muted);">Supplement</td>
+            <td><span class="sys-priority-med">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>GivFlow</td>
+            <td>Additional giving platform (if active)</td>
+            <td>CSV export or API</td>
+            <td style="color: var(--text-muted);">If primary only</td>
+            <td><span class="sys-priority-med">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td>Gloo</td>
+            <td>SMS/texting engagement</td>
+            <td>Manual export or limited API</td>
+            <td style="color: var(--text-subtle);">No</td>
+            <td><span class="sys-priority-low">LOW</span></td>
+          </tr>
+          <tr>
+            <td>Accounting System</td>
+            <td>Expenses, budget, payroll</td>
+            <td>Manual export only</td>
+            <td style="color: var(--risk-red);">❌ Manual only</td>
+            <td><span class="sys-priority-med">MEDIUM — manual</span></td>
+          </tr>
+          <tr>
+            <td>Meta / Instagram</td>
+            <td>Reach, ad performance</td>
+            <td>Meta Business Suite export</td>
+            <td style="color: var(--text-subtle);">No</td>
+            <td><span class="sys-priority-low">LOW</span></td>
+          </tr>
+          <tr>
+            <td>YouTube</td>
+            <td>Sermon views, retention</td>
+            <td>YouTube Studio export</td>
+            <td style="color: var(--text-subtle);">No</td>
+            <td><span class="sys-priority-low">LOW</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight" style="margin-top: 2rem;">
+      <div class="highlight-label">Security Rule</div>
+      <p>Individual giver amounts: <strong>never in shared dashboards, never in Slack, never in email.</strong> Aggregate totals only in any shared system. API keys: password manager only — rotate annually. The PCO Personal Access Token in this build should be regenerated immediately (it was visible in this chat session).</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: var(--base-bg); border-top: 1px solid var(--border); padding: 3rem 0;">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 2rem;">
+      <div>
+        <div style="font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 4px;">Orbit Church</div>
+        <div style="font-size: 12px; color: var(--text-subtle);">Buckeye, AZ &nbsp;·&nbsp; orbitchurch.org</div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 12px; color: var(--text-subtle);">Giving Snapshot — Prepared June 15, 2026</div>
+        <div style="font-size: 11px; color: var(--text-subtle); margin-top: 4px;">Data source: Planning Center Giving API (live pull) &nbsp;·&nbsp; Elder-level confidential</div>
+      </div>
+    </div>
+    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-subtle); line-height: 1.7;">
+      Research sources: Fundraising Effectiveness Project 2024 · Giving USA 2025 · Blackbaud Institute 2025 Trends in Giving · Barna Group · Christian Stewardship Network 2024 Generosity Report · Lake Institute on Faith & Giving · Vanco Payments / Fellowship Development Church Giving Statistics 2025–2026 · CareyNieuwhof.com Church Giving Statistics 2025
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+const accentColor = '#DBCAAE';
+const darkBg = '#191919';
+const borderColor = '#2a2a2a';
+const textMuted = '#666666';
+
+const monthlyLabels = ['Jan 24','Feb 24','Mar 24','Apr 24','May 24','Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26','May 26'];
+const monthlyData = [76190,38940,49516,93367,41764,36789,50866,29732,32288,41743,29701,83574,72886,44264,48248,41989,41725,46428,42069,48704,34623,36410,48655,120365,69441,43351,43278,37956,40624];
+
+const ctx1 = document.getElementById('monthlyChart');
+new Chart(ctx1, {
+  type: 'bar',
+  data: {
+    labels: monthlyLabels,
+    datasets: [{
+      label: 'Monthly Giving',
+      data: monthlyData,
+      backgroundColor: monthlyData.map(v => v > 70000 ? accentColor : v > 50000 ? 'rgba(219,202,174,0.55)' : 'rgba(219,202,174,0.3)'),
+      borderRadius: 2,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#111',
+        borderColor: borderColor,
+        borderWidth: 1,
+        titleColor: accentColor,
+        bodyColor: '#aaa',
+        callbacks: {
+          label: ctx => '$' + ctx.parsed.y.toLocaleString()
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(255,255,255,0.04)' },
+        ticks: { color: textMuted, font: { family: 'Montserrat', size: 10, weight: '600' }, maxRotation: 45, autoSkip: false },
+        border: { color: borderColor }
+      },
+      y: {
+        grid: { color: 'rgba(255,255,255,0.06)' },
+        ticks: { color: textMuted, font: { family: 'Montserrat', size: 10 }, callback: v => '$' + (v/1000).toFixed(0) + 'K' },
+        border: { color: borderColor }
+      }
+    }
+  }
+});
+
+const ctx2 = document.getElementById('giftChart');
+new Chart(ctx2, {
+  type: 'bar',
+  data: {
+    labels: ['<$25','$25–49','$50–99','$100–249','$250–499','$500–999','$1K–4.9K','$5K+'],
+    datasets: [{
+      label: 'Transactions',
+      data: [1083,694,773,1936,1045,411,288,42],
+      backgroundColor: ['rgba(219,202,174,0.25)','rgba(219,202,174,0.3)','rgba(219,202,174,0.35)','rgba(219,202,174,0.7)','rgba(219,202,174,0.55)','rgba(219,202,174,0.45)','rgba(219,202,174,0.35)','rgba(219,202,174,0.25)'],
+      borderRadius: 2,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: 'x',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#111',
+        borderColor: borderColor,
+        borderWidth: 1,
+        titleColor: accentColor,
+        bodyColor: '#aaa',
+        callbacks: {
+          label: ctx => ctx.parsed.y.toLocaleString() + ' transactions (' + (ctx.parsed.y/6272*100).toFixed(1) + '%)'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: textMuted, font: { family: 'Montserrat', size: 11, weight: '600' } },
+        border: { color: borderColor }
+      },
+      y: {
+        grid: { color: 'rgba(255,255,255,0.06)' },
+        ticks: { color: textMuted, font: { family: 'Montserrat', size: 10 } },
+        border: { color: borderColor }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
