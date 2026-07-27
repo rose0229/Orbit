@@ -1,0 +1,739 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worship &amp; Production Handbook — Orbit Church</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink:#141413; --charcoal:#313334; --sand:#dbcaad; --sand-soft:#ece1c9;
+    --paper:#f6f2ea; --white:#ffffff; --mid:#6f6a61;
+    --line:rgba(20,20,19,0.12); --line-strong:rgba(20,20,19,0.28);
+  }
+  html { font-size:16px; scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { background:var(--paper); color:var(--ink); font-family:'Montserrat',sans-serif; font-weight:400; line-height:1.72; letter-spacing:0.005em; }
+  .wrap { max-width:860px; margin:0 auto; padding:0 40px; }
+  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:0.66rem; font-weight:500; letter-spacing:0.32em; text-transform:uppercase; color:var(--mid); }
+  .mono { font-family:'JetBrains Mono',monospace; }
+  p { margin-bottom:1.05rem; } p:last-child { margin-bottom:0; }
+  strong { font-weight:700; } em { font-style:italic; }
+
+  /* COVER */
+  .cover { background:var(--ink); color:var(--paper); position:relative; overflow:hidden; padding:92px 0 74px; }
+  .cover .wrap { position:relative; z-index:2; }
+  .cover .eyebrow { color:var(--sand); }
+  .cover-ambient { position:absolute; top:50%; right:-180px; transform:translateY(-50%); width:620px; height:620px; z-index:1; opacity:0.9; pointer-events:none; }
+  .cover-ambient circle { fill:none; stroke:rgba(219,202,173,0.16); }
+  .cover-ambient .ring-live { stroke:rgba(219,202,173,0.4); }
+  .cover-ambient .core { fill:var(--sand); stroke:none; }
+  .cover h1 { font-weight:200; font-size:clamp(2.9rem,8vw,5.3rem); line-height:0.98; letter-spacing:-0.02em; margin:26px 0 0; }
+  .cover h1 strong { font-weight:700; }
+  .cover .sub { font-size:1.06rem; font-weight:300; color:rgba(246,242,234,0.82); max-width:36ch; margin-top:26px; line-height:1.55; }
+  .cover-meta { margin-top:54px; padding-top:24px; border-top:1px solid rgba(219,202,173,0.28); display:flex; flex-wrap:wrap; gap:38px; }
+  .cover-meta .k { font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--sand); }
+  .cover-meta .v { font-size:0.9rem; color:var(--paper); }
+
+  /* CONTENTS */
+  .contents { background:var(--charcoal); color:var(--paper); padding:44px 0; }
+  .contents .eyebrow { color:var(--sand); margin-bottom:20px; display:block; }
+  .toc-tier { margin-bottom:18px; }
+  .toc-tier:last-child { margin-bottom:0; }
+  .toc-tier > a { display:flex; align-items:baseline; gap:12px; color:var(--paper); text-decoration:none; padding:6px 0; border-bottom:1px solid rgba(246,242,234,0.14); }
+  .toc-tier > a:hover { color:var(--sand); }
+  .toc-tier .rn { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--sand); width:2.4rem; }
+  .toc-tier .tt { font-size:1rem; font-weight:600; letter-spacing:0.02em; }
+  .toc-sub { display:flex; flex-wrap:wrap; gap:6px 18px; padding:10px 0 0 3.4rem; }
+  .toc-sub a { color:rgba(246,242,234,0.7); text-decoration:none; font-size:0.82rem; }
+  .toc-sub a:hover { color:var(--sand); }
+
+  /* TIER BANDS */
+  .tier { background:var(--ink); color:var(--paper); padding:58px 0; }
+  .tier .wrap { display:flex; align-items:center; gap:32px; }
+  .tier .pyr { flex-shrink:0; }
+  .tier .pyr polygon { fill:none; stroke:rgba(219,202,173,0.5); stroke-width:1.2; }
+  .tier .pyr .on { fill:var(--sand); stroke:var(--sand); }
+  .tier .tlabel { font-family:'JetBrains Mono',monospace; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--sand); }
+  .tier h2 { font-weight:200; font-size:clamp(2rem,6vw,3.2rem); line-height:1.02; letter-spacing:-0.02em; margin:10px 0 12px; }
+  .tier h2 strong { font-weight:700; }
+  .tier .tsum { font-size:1rem; font-weight:300; color:rgba(246,242,234,0.8); max-width:52ch; }
+
+  /* SECTIONS */
+  section.block { padding:56px 0; border-bottom:1px solid var(--line); }
+  .lead { font-size:1.08rem; font-weight:300; line-height:1.6; margin-bottom:1.4rem; }
+  .lead strong { font-weight:600; }
+  h3 { font-size:0.82rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; margin:2.2rem 0 0.9rem; }
+  h3:first-child { margin-top:0; }
+  h4.sub { font-family:'JetBrains Mono',monospace; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--white); background:var(--charcoal); display:inline-block; padding:5px 12px; margin:2rem 0 1rem; }
+  .domain-title { display:flex; align-items:baseline; gap:14px; margin:0 0 4px; }
+  .domain-title .dn { font-family:'JetBrains Mono',monospace; font-size:1.1rem; color:var(--ink); }
+  .domain-title h3 { margin:0; font-size:1.15rem; letter-spacing:-0.01em; text-transform:none; }
+  .serves { font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--mid); border-left:2px solid var(--sand); padding:2px 0 2px 10px; margin:0 0 18px; }
+  .serves b { color:var(--charcoal); font-weight:700; }
+  .pc-note { font-family:'JetBrains Mono',monospace; font-size:0.72rem; line-height:1.5; color:var(--mid); background:var(--sand-soft); border:1px solid var(--line); padding:10px 14px; margin:16px 0; }
+  .pc-note b { color:var(--ink); }
+
+  .conviction { background:var(--ink); color:var(--paper); padding:32px 36px; margin:28px 0; }
+  .conviction p { font-weight:300; font-size:1.14rem; line-height:1.5; }
+  .conviction strong { color:var(--sand); font-weight:700; }
+  .conviction .eyebrow { color:var(--sand); margin-bottom:12px; display:block; }
+
+  .quote-mission { border-left:3px solid var(--sand); padding:6px 0 6px 22px; margin:22px 0; font-weight:300; font-size:1.16rem; line-height:1.45; }
+  .quote-mission span { font-family:'JetBrains Mono',monospace; display:block; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--mid); margin-top:10px; font-weight:400; }
+
+  .cards { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:22px 0; }
+  .card { background:var(--white); border:1px solid var(--line); border-top:3px solid var(--sand); padding:20px 22px; }
+  .card .lbl { font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mid); margin-bottom:8px; }
+  .card h4 { font-size:0.98rem; font-weight:700; margin-bottom:6px; }
+  .card p { font-size:0.85rem; line-height:1.5; color:var(--charcoal); margin:0; }
+  .card .from { display:block; margin-top:9px; font-family:'JetBrains Mono',monospace; font-size:0.58rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--mid); }
+
+  /* ORG CHART */
+  .org { margin:26px 0 10px; }
+  .org-tier { display:flex; justify-content:center; }
+  .node { background:var(--white); border:1px solid var(--line-strong); border-top:3px solid var(--sand); padding:11px 18px; text-align:center; min-width:170px; }
+  .node .role { font-weight:700; font-size:0.9rem; line-height:1.2; }
+  .node span { display:block; font-family:'JetBrains Mono',monospace; font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); margin-top:5px; }
+  .node.lead { background:transparent; border:1px dashed var(--line-strong); }
+  .node.head { background:var(--ink); color:var(--paper); border-top-color:var(--sand); min-width:230px; }
+  .node.head span { color:var(--sand); }
+  .rail { width:1px; height:20px; background:var(--line-strong); margin:0 auto; }
+  .org-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; position:relative; margin-top:0; }
+  .org-row::before { content:''; position:absolute; top:-20px; left:12.5%; right:12.5%; height:1px; background:var(--line-strong); }
+  .branch { display:flex; flex-direction:column; align-items:center; }
+  .branch .rail { height:20px; }
+  .branch .node { min-width:0; width:100%; }
+  .branch ul { list-style:none; margin:8px 0 0; padding:0; text-align:center; }
+  .branch ul li { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--charcoal); padding:2px 0; line-height:1.3; }
+  .org-cap { font-size:0.82rem; color:var(--mid); text-align:center; margin-top:16px; font-style:italic; }
+
+  .people { margin:18px 0; border-top:1px solid var(--line-strong); }
+  .person { display:grid; grid-template-columns:200px 1fr; gap:24px; padding:14px 0; border-bottom:1px solid var(--line); }
+  .person .who { font-weight:700; font-size:0.93rem; }
+  .person .who span { display:block; font-family:'JetBrains Mono',monospace; font-weight:400; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); margin-top:3px; }
+  .person .what { font-size:0.88rem; color:var(--charcoal); line-height:1.5; }
+
+  .roles { margin:14px 0 8px; }
+  .role { background:var(--white); border:1px solid var(--line); border-left:3px solid var(--sand); padding:16px 20px; margin-bottom:12px; }
+  .role .rtop { display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .role .rname { font-weight:700; font-size:1rem; }
+  .role .rrep { font-family:'JetBrains Mono',monospace; font-size:0.57rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); white-space:nowrap; }
+  .role .rpurpose { font-size:0.9rem; color:var(--charcoal); margin:7px 0 11px; line-height:1.5; }
+  .role .rlabel { font-family:'JetBrains Mono',monospace; font-size:0.57rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mid); margin-bottom:5px; }
+  .role ul { list-style:none; margin:0; padding:0; }
+  .role ul li { position:relative; padding:3px 0 3px 16px; font-size:0.85rem; line-height:1.45; color:var(--charcoal); }
+  .role ul li::before { content:''; position:absolute; left:2px; top:11px; width:5px; height:5px; background:var(--sand); border-radius:50%; }
+  .role .rbar { font-size:0.83rem; color:var(--ink); margin-top:9px; padding-top:9px; border-top:1px solid var(--line); }
+  .role .rbar b { font-family:'JetBrains Mono',monospace; font-size:0.57rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mid); font-weight:500; margin-right:6px; }
+  .role.future { border-left-style:dashed; }
+  .role.nested { margin-left:22px; }
+  .tag-future { font-family:'JetBrains Mono',monospace; font-size:0.54rem; letter-spacing:0.12em; text-transform:uppercase; background:var(--sand-soft); border:1px solid var(--line); padding:2px 7px; color:var(--charcoal); }
+  .roles-cap { font-size:0.86rem; color:var(--mid); margin:0 0 4px; }
+  @media (max-width:680px) { .role.nested { margin-left:10px; } }
+
+  .flow { margin:20px 0; counter-reset:step; }
+  .step { display:flex; gap:18px; padding:12px 0; border-bottom:1px solid var(--line); }
+  .step:last-child { border-bottom:none; }
+  .step::before { counter-increment:step; content:counter(step,decimal-leading-zero); font-family:'JetBrains Mono',monospace; font-size:0.78rem; font-weight:500; color:var(--sand); background:var(--ink); width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .step .body { padding-top:3px; font-size:0.9rem; line-height:1.5; } .step .body b { font-weight:700; }
+
+  .timeline { margin:20px 0; }
+  .tl { display:grid; grid-template-columns:96px 1fr; gap:18px; padding:10px 0; border-bottom:1px solid var(--line); }
+  .tl:last-child { border-bottom:none; }
+  .tl .t { font-family:'JetBrains Mono',monospace; font-size:0.8rem; font-weight:500; color:var(--ink); }
+  .tl .e { font-size:0.88rem; line-height:1.45; } .tl .e b { font-weight:700; }
+  .tl.svc .t { color:var(--ink); } .tl.svc { background:var(--sand-soft); }
+
+  table { width:100%; border-collapse:collapse; margin:20px 0; font-size:0.86rem; }
+  th { text-align:left; font-family:'JetBrains Mono',monospace; font-size:0.62rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); padding:8px 12px; border-bottom:2px solid var(--ink); }
+  td { padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.45; }
+  td.mono, th.mono { font-family:'JetBrains Mono',monospace; }
+  tr:last-child td { border-bottom:none; }
+
+  .checklist { list-style:none; margin:16px 0; }
+  .checklist li { display:flex; gap:12px; padding:8px 0; font-size:0.89rem; line-height:1.45; border-bottom:1px solid var(--line); }
+  .checklist li:last-child { border-bottom:none; }
+  .checklist .box { width:15px; height:15px; border:1.5px solid var(--ink); flex-shrink:0; margin-top:4px; }
+
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 6px; }
+  .chip { font-family:'JetBrains Mono',monospace; font-size:0.74rem; background:var(--sand-soft); border:1px solid var(--line); padding:5px 11px; }
+  .chip span { color:var(--mid); }
+  .flowcall { background:var(--white); border:1px solid var(--line); border-left:3px solid var(--charcoal); padding:14px 18px; margin:12px 0; }
+  .flowcall .call { font-family:'JetBrains Mono',monospace; font-size:0.82rem; font-weight:500; color:var(--ink); }
+  .flowcall .mean { font-size:0.82rem; color:var(--mid); margin-top:3px; }
+
+  .strip { background:var(--sand); color:var(--ink); padding:18px 24px; margin:26px 0; display:flex; gap:16px; align-items:flex-start; }
+  .strip .mk { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:0.7rem; letter-spacing:0.1em; padding-top:3px; white-space:nowrap; }
+  .strip p { font-size:0.9rem; font-weight:500; line-height:1.5; margin:0; }
+  .strip.dark { background:var(--charcoal); color:var(--paper); } .strip.dark .mk { color:var(--sand); }
+
+  ul.plain { list-style:none; margin:14px 0; }
+  ul.plain li { position:relative; padding:6px 0 6px 22px; font-size:0.9rem; line-height:1.5; border-bottom:1px solid var(--line); }
+  ul.plain li:last-child { border-bottom:none; }
+  ul.plain li::before { content:''; position:absolute; left:4px; top:15px; width:6px; height:6px; background:var(--sand); border:1px solid var(--line-strong); border-radius:50%; }
+
+  .close { background:var(--ink); color:var(--paper); padding:70px 0; }
+  .close .eyebrow { color:var(--sand); }
+  .close h2 { font-weight:200; font-size:clamp(1.8rem,5vw,2.8rem); line-height:1.1; margin:20px 0; letter-spacing:-0.015em; }
+  .close h2 strong { font-weight:700; }
+  .close p { color:rgba(246,242,234,0.82); font-weight:300; max-width:60ch; }
+  .close .sources { margin-top:38px; padding-top:26px; border-top:1px solid rgba(219,202,173,0.28); display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .close .sources .k { font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--sand); margin-bottom:6px; }
+  .close .sources .v { font-size:0.85rem; color:var(--paper); line-height:1.45; }
+
+  .printbtn { position:fixed; bottom:22px; right:22px; z-index:50; display:inline-flex; align-items:center; gap:9px; background:var(--ink); color:var(--paper); border:1px solid var(--sand); font-family:'JetBrains Mono',monospace; font-size:0.68rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; padding:12px 17px; border-radius:999px; cursor:pointer; box-shadow:0 6px 22px rgba(20,20,19,0.3); transition:background .15s ease, color .15s ease; }
+  .printbtn:hover { background:var(--sand); color:var(--ink); }
+  .printbtn svg { width:15px; height:15px; }
+  .printbtn svg * { stroke:currentColor; fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+  @media print { .printbtn { display:none !important; } }
+  @media (max-width:680px) { .printbtn { bottom:16px; right:16px; padding:11px 14px; font-size:0.62rem; } }
+
+  .footer { background:var(--charcoal); color:rgba(246,242,234,0.6); padding:22px 0; font-family:'JetBrains Mono',monospace; font-size:0.64rem; letter-spacing:0.1em; }
+  .footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  @media (max-width:680px) {
+    .wrap { padding:0 22px; }
+    .cards { grid-template-columns:1fr; }
+    .person { grid-template-columns:1fr; gap:4px; }
+    .close .sources { grid-template-columns:1fr; }
+    .cover-ambient { width:420px; height:420px; right:-160px; opacity:0.5; }
+    .tier .wrap { flex-direction:column; align-items:flex-start; gap:18px; }
+    .org-row { grid-template-columns:repeat(2,1fr); gap:10px 8px; }
+    .org-row::before { display:none; }
+    .tl { grid-template-columns:80px 1fr; gap:12px; }
+  }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  @media print {
+    :root { --paper:#ffffff; }
+    body { background:#fff; }
+    * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .contents, .printbtn { display:none !important; }
+    .wrap { max-width:100%; padding:0 0.5in; }
+    .cover { padding:48px 0; min-height:9.3in; display:flex; align-items:center; break-after:page; }
+    .close { padding:46px 0; break-before:page; }
+    section.block { padding:30px 0; }
+    .tier { padding:34px 0; break-inside:avoid; }
+    .card, .role, .tl, .person, .step, .flowcall, .strip, .conviction, .quote-mission, .pc-note, .org, .chips, table tr { break-inside:avoid; }
+    h3, h4.sub, .domain-title, .serves, .roles-cap, .lead { break-after:avoid; }
+    p, li { orphans:3; widows:3; }
+    a { color:inherit; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<header class="cover">
+  <svg class="cover-ambient" viewBox="0 0 620 620" aria-hidden="true">
+    <circle cx="310" cy="310" r="300"/><circle cx="310" cy="310" r="238"/>
+    <circle cx="310" cy="310" r="176" class="ring-live"/><circle cx="310" cy="310" r="114"/>
+    <circle cx="310" cy="310" r="54"/><circle cx="310" cy="310" r="9" class="core"/>
+    <circle cx="486" cy="310" r="6" class="core"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow">Orbit Church &middot; Buckeye, Arizona</span>
+    <h1>Worship &amp;<br><strong>Production</strong></h1>
+    <p class="sub">How we help the room revolve everything around Jesus. Vision at the top, strategy in the middle, the how at the base.</p>
+    <div class="cover-meta">
+      <div><div class="k">For</div><div class="v">Everyone who reads it</div></div>
+      <div><div class="k">Built on</div><div class="v">Orbit's mission &amp; values</div></div>
+      <div><div class="k">Living source</div><div class="v">Planning Center</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTENTS -->
+<nav class="contents">
+  <div class="wrap">
+    <span class="eyebrow">The shape of this handbook</span>
+    <div class="toc-tier"><a href="#vision"><span class="rn">I</span><span class="tt">Vision</span></a></div>
+    <div class="toc-tier">
+      <a href="#strategy"><span class="rn">II</span><span class="tt">Strategy</span></a>
+      <div class="toc-sub"><a href="#worship-we-build">The worship we build</a><a href="#people-we-build">The people we build</a><a href="#how-we-operate">How we operate</a></div>
+    </div>
+    <div class="toc-tier">
+      <a href="#execution"><span class="rn">III</span><span class="tt">Execution</span></a>
+      <div class="toc-sub"><a href="#ex-people">People &amp; seats</a><a href="#ex-planning">Planning &amp; songs</a><a href="#ex-band">The band &amp; the set</a><a href="#ex-rig">The rig</a><a href="#ex-room">The room</a><a href="#ex-auditions">Bringing people on</a><a href="#ex-rhythm">The weekly rhythm</a></div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="block" style="border-bottom:none; padding-top:52px; padding-bottom:60px;">
+    <p class="lead">This handbook is a pyramid. At the top is one <strong>vision</strong>, the thing everything answers to. Under it sits our <strong>strategy</strong>, the few commitments that turn the vision into direction. At the base is <strong>execution</strong>, every system and habit that carries it out. Read top down. If anything at the base ever stops serving what is above it, we change the base, never the vision.</p>
+  </section>
+</div>
+
+<!-- TIER I -->
+<div class="tier" id="vision">
+  <div class="wrap">
+    <svg class="pyr" width="76" height="66" viewBox="0 0 76 66" aria-hidden="true">
+      <polygon class="on" points="38,4 27,24 49,24"/><polygon points="27,24 49,24 58,44 18,44"/><polygon points="18,44 58,44 70,64 6,64"/>
+    </svg>
+    <div>
+      <span class="tlabel">Tier I</span>
+      <h2>The <strong>vision</strong></h2>
+      <p class="tsum">One thing, and everything below serves it. It is not our own. It is Orbit's mission, lived out in a room.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="block">
+    <h3>Where it starts: the church</h3>
+    <p>We do not carry a separate vision. We serve the church's one mission, and worship and production is one of the ways it comes true on a Sunday.</p>
+    <div class="quote-mission">We exist so people will find peace and develop purpose by revolving everything around Jesus.<span>Orbit Church &middot; mission</span></div>
+    <p>The name is the picture. An orbit is everything held in place by a center. When Jesus is the center, a life settles into the peace and purpose it was made for. Our whole job is to make Him the unmistakable center of the room.</p>
+
+    <h3>The vision for worship &amp; production</h3>
+    <div class="conviction">
+      <span class="eyebrow">The apex</span>
+      <p>We help the room <strong>revolve everything around Jesus.</strong> Every eye, every heart, every song, screen, light, and camera bends toward Him. If people leave having met God, we did our job. If they leave impressed with us, we missed it.</p>
+    </div>
+
+    <h3>The fruit: the Orbit Sound</h3>
+    <p>Real worship, done with skill and imagination, starts to produce a sound of its own. That is the Orbit Sound. It is not a genre we borrow, it is what comes out of a team that actually worships Jesus. We chase the worship, and the sound follows.</p>
+
+    <div class="conviction">
+      <span class="eyebrow">The heart under all of it</span>
+      <p>There is no room here for ego or turf. <strong>God does not need any of us.</strong> He will move with or without our help. Obedience is the only currency that counts.</p>
+    </div>
+  </section>
+</div>
+
+<!-- TIER II -->
+<div class="tier" id="strategy">
+  <div class="wrap">
+    <svg class="pyr" width="76" height="66" viewBox="0 0 76 66" aria-hidden="true">
+      <polygon points="38,4 27,24 49,24"/><polygon class="on" points="27,24 49,24 58,44 18,44"/><polygon points="18,44 58,44 70,64 6,64"/>
+    </svg>
+    <div>
+      <span class="tlabel">Tier II</span>
+      <h2>The <strong>strategy</strong></h2>
+      <p class="tsum">Vision becomes direction through a few commitments: the worship we build, the people we build, and how we operate. Each one grows out of an Orbit value.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="block" id="worship-we-build">
+    <h3>The worship we build</h3>
+    <p class="lead">Four marks. Every set, every song, every Sunday is measured against them.</p>
+    <div class="cards">
+      <div class="card"><div class="lbl">01</div><h4>Excellent</h4><p>We pursue excellence so the room can forget we are here. It is hospitality, not performance. We bring our best even on our off days.</p><span class="from">From: We are ON on our off days</span></div>
+      <div class="card"><div class="lbl">02</div><h4>Christ-Centered</h4><p>Every choice points to Jesus and stands on His Word, never on us or a vague spirituality. We revolve everything around Him.</p><span class="from">From: We put God's Word in our world</span></div>
+      <div class="card"><div class="lbl">03</div><h4>Real</h4><p>We worship for real before we ask anyone to follow. No performing, no pretending. We offer what we actually have, honestly.</p><span class="from">From: We work with what we have</span></div>
+      <div class="card"><div class="lbl">04</div><h4>Creative</h4><p>We imagine more of what God could do through worship and production, and keep reaching for it. The Orbit Sound is built here.</p><span class="from">From: We imagine more</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="people-we-build">
+    <h3>The people we build</h3>
+    <p class="lead">Those four marks only ever show up through a certain kind of person. We build two things into everyone.</p>
+    <div class="cards">
+      <div class="card"><div class="lbl">05</div><h4>High Skill</h4><p>We get good on purpose. Skill is how excellence and creativity become real, and it is a gift to the room. We teach it forward instead of hoarding it.</p></div>
+      <div class="card"><div class="lbl">06</div><h4>High Character</h4><p>Who you are offstage is who you are. The platform reveals character, it does not build it. Humility and obedience are the standard, on the stage and off it.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="how-we-operate">
+    <h3>How we operate</h3>
+    <p class="lead">A few operating commitments shape everything at the base.</p>
+    <ul class="plain">
+      <li><strong>Plan far, hold loose.</strong> We aim to sit two quarters ahead and refine every quarter. Margin lets us minister on Sunday instead of scrambling, and hold the set loosely enough to follow the room.</li>
+      <li><strong>Equip, don't hoard.</strong> A skill that lives in only one person is a liability. We spread it across the team on purpose.</li>
+      <li><strong>Work with what we have.</strong> We are portable. We build the room and tear it down every week, and we steward the people and gear God has given us instead of waiting on better.</li>
+      <li><strong>Start stuff.</strong> Purpose takes initiative. We keep launching what serves the vision.</li>
+    </ul>
+
+    <h3>Where "start stuff" is taking us</h3>
+    <ul class="plain">
+      <li><strong>Worship Nights.</strong> Time set apart to seek God, where the Orbit Sound gets room to breathe.</li>
+      <li><strong>Youth Worship.</strong> Raising up the next room of worshipers.</li>
+      <li><strong>Songwriting and original music.</strong> Writing out of this house and recording it, so the Orbit Sound outlives a single Sunday.</li>
+      <li><strong>Leaders.</strong> A real pipeline where apprentices grow into leads.</li>
+    </ul>
+
+    <div class="strip dark"><span class="mk">GUARDING THE VISION</span><p>Ideas are welcome from anyone, and we want them. The one condition is that a change has to move us toward this vision, not away from it. Efficiency and preference do not get to quietly redirect the mission. We would rather be slow and aligned than fast and drifting.</p></div>
+  </section>
+</div>
+
+<!-- TIER III -->
+<div class="tier" id="execution">
+  <div class="wrap">
+    <svg class="pyr" width="76" height="66" viewBox="0 0 76 66" aria-hidden="true">
+      <polygon points="38,4 27,24 49,24"/><polygon points="27,24 49,24 58,44 18,44"/><polygon class="on" points="18,44 58,44 70,64 6,64"/>
+    </svg>
+    <div>
+      <span class="tlabel">Tier III</span>
+      <h2>The <strong>execution</strong></h2>
+      <p class="tsum">The base. The roles, systems, and habits that carry the vision out. This is the how, and it is built to change as we grow. What sits above it does not.</p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- A: PEOPLE -->
+  <section class="block" id="ex-people">
+    <div class="domain-title"><span class="dn">A</span><h3>People &amp; seats</h3></div>
+    <div class="serves">Serves &middot; <b>High Skill</b> &middot; <b>High Character</b> &middot; <b>Excellent</b></div>
+    <p>Clear ownership by role. Seats change hands over time, so this describes the seats, not the names. Know who leads your area, and go to them first.</p>
+
+    <div class="org">
+      <div class="org-tier"><div class="node lead"><div class="role">Lead Pastor</div><span>Vision &amp; covering</span></div></div>
+      <div class="rail"></div>
+      <div class="org-tier"><div class="node head"><div class="role">Worship Leader</div><span>Leads the ministry &amp; the room</span></div></div>
+      <div class="rail"></div>
+      <div class="org-row">
+        <div class="branch"><div class="node"><div class="role">Music Director</div><span>The band</span></div><div class="rail"></div><ul><li>Band + Tracks</li><li>Ableton as an instrument</li></ul></div>
+        <div class="branch"><div class="node"><div class="role">Vocal Lead</div><span>The voices</span></div><div class="rail"></div><ul><li>Frontline Vocals</li><li>Choir</li></ul></div>
+        <div class="branch"><div class="node"><div class="role">Production Director</div><span>The environment</span></div><div class="rail"></div><ul><li>Audio, Visual</li><li>Lighting</li><li>Livestream / Capture</li></ul></div>
+        <div class="branch"><div class="node"><div class="role">Service Coordinator</div><span>The live service</span></div><div class="rail"></div><ul><li>Runs the clock</li><li>&amp; the flow</li></ul></div>
+      </div>
+      <p class="org-cap">These four coordinate across every service. On Sunday, the Service Coordinator runs the live flow and each area submits to their calls.</p>
+    </div>
+
+    <div class="pc-note">In Planning Center this is the <b>WP | Band</b>, <b>WP | Vocals</b>, and <b>WP | Production</b> teams, with Worship Leader and Service Coordinator scheduled on the <b>Programming</b> team that runs the service.</div>
+
+    <p style="font-size:0.98rem; font-weight:300; margin-top:6px;">The Lead Pastor sets the vision and the standard the whole ministry answers to. Everything below is how that vision gets carried in a room.</p>
+
+    <h4 class="sub">Direction</h4>
+    <div class="roles">
+      <div class="role">
+        <div class="rtop"><span class="rname">Worship Leader</span><span class="rrep">Reports to Lead Pastor</span></div>
+        <p class="rpurpose">Leads the church into worship, and leads the whole ministry toward the vision.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>The spiritual and musical direction of worship, from the front and behind the scenes.</li>
+          <li>The culture and health of the team, and raising up new leaders.</li>
+          <li>The song vision and the audition process, including the spiritual interview.</li>
+          <li>Direction across the four leads below, keeping every area pointed at the vision.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>the room meets God, and the team is healthy and growing.</div>
+      </div>
+    </div>
+
+    <h4 class="sub">The coordinating leads</h4>
+    <p class="roles-cap">These four sit level and coordinate across every service.</p>
+    <div class="roles">
+      <div class="role">
+        <div class="rtop"><span class="rname">Music Director</span><span class="rrep">Reports to Worship Leader</span></div>
+        <p class="rpurpose">The musical backbone of the set. Turns the worship leader's direction into what the band actually plays.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>Knowing every song cold, and calling the flow live in Nashville numbers.</li>
+          <li>The band: arrangements, rehearsal quality, and scheduling the players.</li>
+          <li>The Ableton build, click, and tracks, until an Ableton Lead is raised up.</li>
+          <li>Coordinating tightly with the Vocal Lead and the Service Coordinator.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>seamless, dynamic sets the band can follow anywhere.</div>
+      </div>
+      <div class="role future nested">
+        <div class="rtop"><span class="rname">Ableton Lead &nbsp;<span class="tag-future">Future seat</span></span><span class="rrep">Reports to Music Director</span></div>
+        <p class="rpurpose">Owns the Ableton and Tracks build so the MD can focus on leading the band.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>The weekly session build, plus the Orbit template and checklist.</li>
+          <li>Sunday computer readiness, Dante routing, and the backup plan.</li>
+          <li>Training and scheduling the Ableton crew.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>every set built, reviewed, and bulletproof before Sunday. Today the MD holds this.</div>
+      </div>
+      <div class="role">
+        <div class="rtop"><span class="rname">Vocal Lead</span><span class="rrep">Reports to Worship Leader</span></div>
+        <p class="rpurpose">Owns the voices, frontline and choir.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>Vocal blend, parts, and health across frontline vocals and choir.</li>
+          <li>Coordinating and communicating with vocalists week to week.</li>
+          <li>Developing new vocalists, and being their first point of contact.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>vocals that lead the room without pulling focus.</div>
+      </div>
+      <div class="role">
+        <div class="rtop"><span class="rname">Production Director</span><span class="rrep">Reports to Worship Leader</span></div>
+        <p class="rpurpose">Owns the whole environment so the room supports worship without distraction.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>Audio, visual, lighting, and livestream / capture.</li>
+          <li>Developing the craft leads and the apprentice pipeline beneath them.</li>
+          <li>Gear, systems, and production standards, including scenes and safety.</li>
+          <li>Making sure every area is scheduled deep, not one person thin.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>the room disappears, and the techs are trained and covered.</div>
+      </div>
+      <div class="role">
+        <div class="rtop"><span class="rname">Service Coordinator</span><span class="rrep">Reports to Worship Leader</span></div>
+        <p class="rpurpose">Runs the live service so every element lands on cue.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>The Sunday clock and flow, and the service side of the runthroughs.</li>
+          <li>Cueing hosts, speakers, and transitions, and comms during the service.</li>
+          <li>The run sheet in Planning Center.</li>
+          <li>Authority during an assigned service: every area submits to their calls.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>no dead air, clean transitions, a service that breathes.</div>
+      </div>
+    </div>
+
+    <h4 class="sub">Under the Production Director</h4>
+    <div class="roles">
+      <div class="role">
+        <div class="rtop"><span class="rname">Audio Lead</span><span class="rrep">Reports to Production Director</span></div>
+        <p class="rpurpose">Owns the room's sound and the broadcast mix.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>The front-of-house mix, monitors and in-ears, and line check.</li>
+          <li>Scenes built ahead for the complex moves, and the console as an instrument.</li>
+          <li>The livestream audio feed, with the Livestream / Capture Lead.</li>
+          <li>Training audio techs to carry a service.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>a cohesive, worshipful mix with every voice clear.</div>
+      </div>
+      <div class="role">
+        <div class="rtop"><span class="rname">Visual Lead</span><span class="rrep">Reports to Production Director</span></div>
+        <p class="rpurpose">Owns what is on every screen.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>ProPresenter lyrics and slides, word-accurate and clean.</li>
+          <li>Sermon slides and the confidence monitors.</li>
+          <li>Setup and care of the LED wall.</li>
+          <li>Training ProPresenter operators.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>the room can always worship the words.</div>
+      </div>
+      <div class="role">
+        <div class="rtop"><span class="rname">Lighting Lead</span><span class="rrep">Reports to Production Director</span></div>
+        <p class="rpurpose">Owns the light in the room.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>Looks and cues that follow the dynamics of the set.</li>
+          <li>A distraction-free, human environment, never a light show.</li>
+          <li>Rig safety and power load, checked every setup.</li>
+          <li>Training lighting operators.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>engaging but human, and safe every single week.</div>
+      </div>
+      <div class="role">
+        <div class="rtop"><span class="rname">Livestream / Capture Lead</span><span class="rrep">Reports to Production Director</span></div>
+        <p class="rpurpose">Owns the window into the church: the cameras, the switch, and the stream.</p>
+        <div class="rlabel">Owns</div>
+        <ul>
+          <li>Multi-camera capture, switching, and the Resi stream.</li>
+          <li>Livestream audio coordination with the Audio Lead.</li>
+          <li>Framing and shot discipline that serve the moment, not just wide coverage.</li>
+          <li>Training camera and switcher operators.</li>
+        </ul>
+        <div class="rbar"><b>The bar</b>a clean stream, and a faithful window into the room.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B: PLANNING -->
+  <section class="block" id="ex-planning">
+    <div class="domain-title"><span class="dn">B</span><h3>Planning &amp; songs</h3></div>
+    <div class="serves">Serves &middot; <b>Christ-Centered</b> &middot; <b>Excellent</b> &middot; <b>Plan far, hold loose</b></div>
+
+    <p class="lead">We plan two quarters ahead and refine every quarter. At the Q2 meeting we set Q4, at the Q3 meeting we set Q1, and on. Far enough out to build with intention, close enough to keep adjusting as God leads.</p>
+
+    <h3>The weekly build</h3>
+    <div class="flow">
+      <div class="step"><div class="body"><b>Songs into Planning Center.</b> New songs and their MultiTracks land in Planning Center so everything lives in one place.</div></div>
+      <div class="step"><div class="body"><b>Schedule the team.</b> Once blockout dates are in, we schedule vocalists and the band, always leaving an auxiliary slot to grow someone into leading a song.</div></div>
+      <div class="step"><div class="body"><b>Lock keys, then the set.</b> Each lead vocalist confirms their key in ChartBuilder. Once keys are in, we lock the set.</div></div>
+      <div class="step"><div class="body"><b>Build the set.</b> The locked set goes to the MD for the Ableton build and the arrangement, running roughly two months ahead. Charts and numbers import to ChartBuilder weekly.</div></div>
+      <div class="step"><div class="body"><b>Set the vision for the week.</b> Arrangement, flow, tags, choir and acoustic moments go in the notes. We build intentionally, not reactively.</div></div>
+    </div>
+
+    <h3>The bigger rhythm</h3>
+    <ul class="plain">
+      <li>Twice a year we lock 8 to 10 new songs for the next six months, expecting to cut a couple that do not land.</li>
+      <li>We keep the working rotation tight, around 14 to 16 songs we already do well.</li>
+      <li>We keep a flex list of hymns, tags, and older songs to pull from as the moment calls.</li>
+    </ul>
+
+    <div class="strip"><span class="mk">READY AT ALL TIMES</span><p>Some songs are tagged Ready at All Times in Planning Center. Everyone memorizes them and knows the key and the numbers they play them in. Ready at All Times means ready with no rehearsal.</p></div>
+
+    <h3>What makes a banger</h3>
+    <p>The live song list lives in Planning Center. What you carry is the filter. A banger clears all four:</p>
+    <div class="cards">
+      <div class="card"><div class="lbl">01</div><h4>Christ-centered</h4><p>It points to Jesus, with the gospel and sound theology in it.</p></div>
+      <div class="card"><div class="lbl">02</div><h4>Tempo conscious</h4><p>Its tempo and energy serve the set. We know what it does to the flow before it goes in.</p></div>
+      <div class="card"><div class="lbl">03</div><h4>Moves us forward</h4><p>It moves the church forward in faith and theology. It teaches and stretches, it does not just fill a slot.</p></div>
+      <div class="card"><div class="lbl">04</div><h4>Lands the moment</h4><p>It pays off on the bridge, the chorus, or both. The part the room feels and carries home.</p></div>
+    </div>
+
+    <table>
+      <thead><tr><th>Tier</th><th>What it is</th><th>How it behaves</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">CORE</td><td>The anchors of the season.</td><td>Played often, carry the most weight.</td></tr>
+        <tr><td class="mono">NEW</td><td>Introduced across the six-month window.</td><td>Played heavily early so they land.</td></tr>
+        <tr><td class="mono">SECONDARY</td><td>The wider pool that keeps it fresh.</td><td>Played more evenly, by priority.</td></tr>
+        <tr><td class="mono">FLEX</td><td>Hymns, tags, older and spontaneous songs.</td><td>Pulled as needed or as felt.</td></tr>
+      </tbody>
+    </table>
+    <div class="strip"><span class="mk">SOURCE OF TRUTH</span><p>Planning Center is the living record for songs, keys, tiers, and Ready at All Times. When this handbook and Planning Center disagree, Planning Center wins.</p></div>
+  </section>
+
+  <!-- C: BAND -->
+  <section class="block" id="ex-band">
+    <div class="domain-title"><span class="dn">C</span><h3>The band &amp; the set</h3></div>
+    <div class="serves">Serves &middot; <b>Excellent</b> &middot; <b>Creative</b></div>
+
+    <p class="lead">The Music Director is the musical backbone of the set, a player and a caller at once. From inside the band, the MD steers the dynamics, reads the room, and calls transitions in the <strong>Nashville Number System</strong> so the team can follow the worship leader anywhere. On Sunday the drummer fires the Ableton tracks to the click.</p>
+
+    <div class="cards">
+      <div class="card"><div class="lbl">Song</div><h4>Knows every song cold</h4><p>Form, arrangement, and feel, in the keys we play. Eyes up, not down.</p></div>
+      <div class="card"><div class="lbl">Flow</div><h4>Calls the moments</h4><p>Builds, drops, holds, tags, and turnarounds, called clearly into a mic.</p></div>
+      <div class="card"><div class="lbl">Band</div><h4>Speaks in numbers</h4><p>Changes go out in Nashville numbers, so a call works in any key.</p></div>
+      <div class="card"><div class="lbl">Room</div><h4>Reads and responds</h4><p>Feels the dynamics, carries the spontaneous moments, works with audio.</p></div>
+    </div>
+
+    <h3>Nashville numbers</h3>
+    <div class="chips">
+      <span class="chip">1 <span>home</span></span><span class="chip">4 <span>lift</span></span><span class="chip">5 <span>tension</span></span><span class="chip">6m <span>the minor</span></span>
+      <span class="chip">hold the 1</span><span class="chip">build on the 4</span><span class="chip">drop to the 1</span><span class="chip">back to the top</span><span class="chip">tag the chorus</span>
+    </div>
+    <p>Beyond the basics, the MD also calls the more advanced moves that give worship its lift: walk-ups and walk-downs that move the band as one line, gospel turnarounds, snap builds that cut the whole band and rebuild it a layer at a time, and the half-step key bump into a final chorus.</p>
+    <div class="flowcall"><div class="call">"Turnaround 7&ndash;5&ndash;6&ndash;4, then 2&ndash;5&ndash;1 into the reprise, up a half step."</div><div class="mean">A gospel turnaround into a key-bumped last chorus. The point is that one short call, in numbers, moves the whole band together.</div></div>
+
+    <div class="strip"><span class="mk">POSTURE</span><p>Servant leadership over showmanship. Stay composed when something breaks, keep the band moving, and hold the set loosely enough to follow where worship goes.</p></div>
+  </section>
+
+  <!-- D: RIG -->
+  <section class="block" id="ex-rig">
+    <div class="domain-title"><span class="dn">D</span><h3>The rig</h3></div>
+    <div class="serves">Serves &middot; <b>Excellent</b> &middot; <b>Work with what we have</b></div>
+
+    <p class="lead">A deliberately simple rig. Less friction in tracks, ProPresenter, and setup means more margin for ministry. Ableton runs under the MD and plays like an instrument on the stage, the <span class="mono">Tracks</span> chair on the band.</p>
+
+    <h3>How it is set up</h3>
+    <ul class="plain">
+      <li><strong>One protected Sunday computer</strong> runs the service and nothing else. Three build machines are where the sets get made.</li>
+      <li><strong>The machines stay put; the Ableton license rotates</strong> to whoever is building. People learn on the build machines, so there is no separate training rig.</li>
+      <li><strong>On Sunday the drummer fires the tracks,</strong> locked to the click, launching each song from the kit.</li>
+    </ul>
+
+    <h3>The weekly build, in short</h3>
+    <div class="flow">
+      <div class="step"><div class="body">Confirm the final set in Planning Center, then pull new songs from MultiTracks and the Orbit arrangements from the shared drive.</div></div>
+      <div class="step"><div class="body">Build each song in its own session, then arrange the full set for seamless transitions.</div></div>
+      <div class="step"><div class="body">Collect All and Save, zip, and upload to the team Google Drive. Keep personal copies private, never public.</div></div>
+      <div class="step"><div class="body">Export a reference MP3 with that weekend's exact instrumentation.</div></div>
+      <div class="step"><div class="body">The MD or Ableton Lead reviews every set before Sunday, then it is loaded and tested on the Sunday computer.</div></div>
+    </div>
+    <p>On Sunday, the set gets routed out over Dante to the audio console (click, guide, and the instrument tracks), the songs are keymapped so the drummer can fire them, and it tears down like any other instrument at the end.</p>
+
+    <h3>Every Sunday set must have</h3>
+    <ul class="checklist">
+      <li><span class="box"></span> Official Orbit template</li>
+      <li><span class="box"></span> Correct Dante routing, click, and guide</li>
+      <li><span class="box"></span> Locators for each song, no missing samples</li>
+      <li><span class="box"></span> Tested on the Sunday computer</li>
+      <li><span class="box"></span> Reviewed by the MD or Ableton Lead</li>
+      <li><span class="box"></span> A build machine standing by as backup</li>
+    </ul>
+    <div class="strip"><span class="mk">IF THE SUNDAY COMPUTER FAILS</span><p>Fall back in order: a build machine first, then run without tracks. We are never dead in the water. The band can carry a set on its own if it has to.</p></div>
+  </section>
+
+  <!-- E: ROOM -->
+  <section class="block" id="ex-room">
+    <div class="domain-title"><span class="dn">E</span><h3>The room</h3></div>
+    <div class="serves">Serves &middot; <b>Excellent</b> &middot; <b>Creative</b> &middot; <b>Accessible</b></div>
+
+    <p class="lead">Audio, visual, lighting, and livestream build the room people walk into. Every one of them is a chance to show people more of Jesus, so the mix, the screen, the light, and the shot all revolve around Him too.</p>
+    <div class="pc-note">In Planning Center these are the <b>WP | Production</b> chairs: Audio, ProPresenter, Lights Operator, Cameras, Video Switcher, Livestream Audio, and the LED Wall.</div>
+    <div class="strip dark"><span class="mk">DURING A SERVICE</span><p>The Service Coordinator runs the flow, and every area submits to their calls for that service. Leads own their craft; the coordinator owns the clock. Both answer to the Production Director.</p></div>
+
+    <h4 class="sub">Audio</h4>
+    <p>The goal is a cohesive, worshipful room, never a muffled voice or a harsh mix. The board is your instrument, so know it well enough to build the moment. Mix from the seats using the board and the iPad, not only from behind the console, and never leave it unattended during a runthrough or service.</p>
+    <p>Lean on scenes. Build them ahead of time for the complex moves in a set so a newer tech can carry a service with confidence. Set them during line check one input at a time, drums then tonal then vocals, and keep global safes to only what will not change during service.</p>
+
+    <h4 class="sub">Visual (ProPresenter &amp; LED)</h4>
+    <p>Without lyrics on the screen, no one can worship the words, so treat every slide as ministry. Advance on the last word or two of the current line, thinking about how much time someone needs to read it before they sing it. Match the words exactly, keep slides clean, drive from the keyboard, and follow your speakers on the confidence monitor so you can lead them if they lose their place. Setup and care of the LED wall live here too.</p>
+
+    <h4 class="sub">Lighting</h4>
+    <p>A distraction-free, engaging room. Light the dynamics, bright and driving for the big songs, warm and pulled back for the intimate ones, and keep it human, never a show about the lights. The rule of thumb is simple: if it is worth it, it is worth it. Safety is not optional: rigging secured, cable taped out of walkways, power load checked, nothing overhead that has not been double-checked before doors.</p>
+
+    <h4 class="sub">Livestream</h4>
+    <p>A 3 to 4 camera rig with a switcher, running Resi for the stream. The goal is not broadcast outreach yet. It is a clean, faithful window into the room, so we frame with intention, keep the feed steady, and raise up new operators. The stream is how someone at home meets the same God the room is meeting, so we put our best foot forward.</p>
+    <p>Livestream audio comes off the board today as a simple stereo feed. We can build a dedicated broadcast mix when it is worth it, and we can pull the full multitrack over Dante to capture a whole service for later use. We pick the option that fits the moment.</p>
+  </section>
+
+  <!-- F: AUDITIONS -->
+  <section class="block" id="ex-auditions">
+    <div class="domain-title"><span class="dn">F</span><h3>Bringing people on</h3></div>
+    <div class="serves">Serves &middot; <b>High Skill</b> &middot; <b>High Character</b> &middot; <b>Accessible</b></div>
+
+    <p class="lead">The path from first submission to serving, or to a gracious no. Two off-ramps are built in on purpose. The Worship Leader and Vocal Lead carry it.</p>
+    <div class="flow">
+      <div class="step"><div class="body"><b>Audition submitted.</b> The online form comes in, and an automatic confirmation goes out.</div></div>
+      <div class="step"><div class="body"><b>First review.</b> The Worship Leader decides whether to move to a live audition, with a verdict inside 48 hours and the candidate contacted within 72. <em>A no is delivered warmly, with growth areas where they help.</em></div></div>
+      <div class="step"><div class="body"><b>Prep.</b> Candidates get the tracks, a standard key they can ask to move, in-ears, a number chart, the expectation to come memorized, and a preview of the spiritual interview.</div></div>
+      <div class="step"><div class="body"><b>Live audition.</b> Vocalists lead one song and harmonize on another. Musicians play to the track on in-ears. Everyone meets with the Worship Leader for the spiritual interview.</div></div>
+      <div class="step"><div class="body"><b>Decision.</b> A verdict within 48 hours, with next steps. <em>The second off-ramp, delivered with the same grace.</em></div></div>
+      <div class="step"><div class="body"><b>Assimilation.</b> Paced to the person: shadow for a few weeks, ease in on a song or two, or integrate right away if they are ready.</div></div>
+    </div>
+    <div class="strip"><span class="mk">TONE</span><p>Every no stays pastoral. People hand us something vulnerable when they audition. How we turn someone down says as much about Orbit as how we welcome someone in.</p></div>
+  </section>
+
+  <!-- G: RHYTHM -->
+  <section class="block" id="ex-rhythm">
+    <div class="domain-title"><span class="dn">G</span><h3>The weekly rhythm</h3></div>
+    <div class="serves">Serves &middot; <b>Real</b> &middot; <b>Excellent</b></div>
+
+    <h3>Quarterly rehearsal</h3>
+    <p>Its own event on the calendar, a Saturday set aside to learn the next quarter's songs, prep worship-night material, and work the hard transitions. As much about the band as people as about the notes.</p>
+
+    <h3>The Sunday clock</h3>
+    <p>Arizona time. Setup and teardown are the job, not a favor. They are the backbone of a portable church.</p>
+    <div class="timeline">
+      <div class="tl"><div class="t">5:00a</div><div class="e"><b>Setup call.</b> Production and setup crews load in and build the room. Audio line checks as the stage comes up.</div></div>
+      <div class="tl"><div class="t">6:45a</div><div class="e"><b>WP Huddle.</b> Relationships first. We connect as people before we execute as a team.</div></div>
+      <div class="tl"><div class="t">7:00a</div><div class="e"><b>Worship Runthrough.</b> The band and vocals get the music together, find the arrangements and the pockets.</div></div>
+      <div class="tl"><div class="t">7:30a</div><div class="e"><b>General call, then Service Runthrough.</b> The full service, exactly as it runs, with hosts, speakers, and every transition.</div></div>
+      <div class="tl"><div class="t">8:15a</div><div class="e"><b>Serve Team Rally.</b> The whole team together before doors.</div></div>
+      <div class="tl svc"><div class="t">9:00a</div><div class="e"><b>Service one.</b></div></div>
+      <div class="tl svc"><div class="t">10:45a</div><div class="e"><b>Service two.</b></div></div>
+      <div class="tl"><div class="t">12:15p</div><div class="e"><b>Teardown.</b> Tear your station down like any other instrument. We are guests in this building every week.</div></div>
+    </div>
+    <p>The set is planned but held loosely. Follow the worship leader and the MD, and when a moment opens up, we go.</p>
+
+    <div class="conviction">
+      <span class="eyebrow">Back to the apex</span>
+      <p>If we do our jobs right, no one remembers the production. They remember that <strong>they met God.</strong> Everything in this handbook, top to bottom, exists for that.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- CLOSE -->
+<section class="close">
+  <div class="wrap">
+    <span class="eyebrow">Welcome to the team</span>
+    <h2>Now go <strong>build the room.</strong></h2>
+    <p>Learn it from the top down. Catch the vision first, live the strategy, and the execution will make sense. Shadow, ask who leads your area, and when in doubt choose the option that helps the room revolve everything around Jesus.</p>
+    <div class="sources">
+      <div><div class="k">Songs &amp; scheduling</div><div class="v">Planning Center. Sets, keys, teams, blockouts, and Ready at All Times.</div></div>
+      <div><div class="k">Charts &amp; numbers</div><div class="v">ChartBuilder. Imported from Planning Center weekly.</div></div>
+      <div><div class="k">Files</div><div class="v">Google Drive. Zipped song and setlist sessions, plus Orbit arrangements.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap"><span>ORBIT CHURCH &middot; BUCKEYE, ARIZONA</span><span>WORSHIP &amp; PRODUCTION HANDBOOK</span></div>
+</footer>
+
+<button class="printbtn" onclick="window.print()" aria-label="Print or save this handbook as a PDF" title="Print or save as PDF">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>
+  Save as PDF
+</button>
+
+</body>
+</html>
